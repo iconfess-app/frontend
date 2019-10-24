@@ -1,0 +1,13 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true,
+    "browser": true
+  },
+  "extends": ["airbnb-base", "plugin:react/recommended", "prettier"],
+  "parser": "babel-eslint",
+  "plugins": ["react", "import"],
+  "rules": {
+    "no-underscore-dangle": "off"
+  }
+}
