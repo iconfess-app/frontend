@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
@@ -14,12 +14,13 @@ class App extends Component {
     const { handleLogout } = this.props;
     return (
       <>
-          <button onClick={handleLogout}>logout</button>
-          <Router>
-            <AnonRoute exact path="/login" component={Login} />
-            <AnonRoute exact path="/signup" component={Signup} />
-            <PrivateRoute exact path="/private" component={PrivateView} />
-          </Router>
+        <button onClick={handleLogout}>logout</button>
+        <Router>
+          <h1>test</h1>
+          <AnonRoute exact path="/login" component={Login} />
+          <AnonRoute exact path="/signup" component={Signup} />
+          <PrivateRoute exact path="/private" component={PrivateView} />
+        </Router>
       </>
     );
   }
