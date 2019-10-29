@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import React, { Component } from 'react';
 import { withAuth } from '../../Context/AuthContext';
 import authservice from '../../services/authService';
 
