@@ -8,10 +8,7 @@ class Signup extends Component {
     username: "",
     password: "",
     email: "",
-    over16: false,
-    allowsContact: false,
-    allowsLocation: false,
-    darkMode: true
+    isOver16: false,
   };
 
   handleChange = (event) => {
@@ -27,20 +24,17 @@ class Signup extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-    const { username, password, email, over16, allowsContact, allowsLocation, darkMode } = this.state;
+    const { username, password, email, isOver16 } = this.state;
     authservice.signup({
       username,
       password,
       email,
-      over16,
-      allowsContact,
-      allowsLocation,
-      darkMode
+      isOver16,
     });
   }
 
   render() {
-    const { username, password, email, over16, allowsContact, allowsLocation, darkMode } = this.state;
+    const { username, password, email, isOver16 } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -51,10 +45,10 @@ class Signup extends Component {
           <label>E-mail:</label>
           <input type="email" name="email" value={email} onChange={this.handleChange} />
           <label>
-            <input type="checkbox" name="over16" value={over16} onChange={this.handleClick} />
+            <input type="checkbox" name="over16" value={isOver16} onChange={this.handleClick} />
             I am over 16
           </label>
-          <label>
+          {/* <label>
             <input type="checkbox" name="allowsContact" value={allowsContact} onChange={this.handleClick} />
             Allow other users to contact me
           </label>
@@ -65,7 +59,7 @@ class Signup extends Component {
           <label>
             <input type="checkbox" name="darkMode" checked value={darkMode} onChange={this.handleClick} />
             Dark mode
-          </label>
+          </label> */}
           <input type="submit" value="Signup" />
         </form>
 
