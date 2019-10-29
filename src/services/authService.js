@@ -9,14 +9,14 @@ class AuthService {
   }
 
   signup(user) {
-    const { username, password } = user;
-    return this.auth.post('/signup', {username, password})
+    const { username, password, email, over16, allowsContact, allowsLocation, darkMode } = user;
+    return this.auth.post('/signup', { username, password, email, over16, allowsContact, allowsLocation, darkMode })
       .then(({ data }) => data);
   }
 
   login(user) {
-    const { username, password } = user;
-    return this.auth.post('/login', {username, password})
+    const { email, password } = user;
+    return this.auth.post('/login', { email, password })
       .then(({ data }) => data);
   }
 
@@ -27,7 +27,7 @@ class AuthService {
 
   me(user) {
     return this.auth.get('/me')
-    .then(response => response.data)
+      .then(response => response.data)
   }
 }
 
