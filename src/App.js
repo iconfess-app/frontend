@@ -9,6 +9,8 @@ import { withAuth } from './Context/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
 import AnonRoute from './components/AnonRoute';
+import myConfessionsPage from './views/MyConfessions';
+import Confessional from './views/Confess';
 
 class App extends Component {
   render() {
@@ -20,6 +22,8 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />
+          <Route exact path="/myconfessions" component={myConfessionsPage} />
+          <Route exact path="/confess" component={Confessional} />
           <PrivateRoute exact path="/private" component={PrivateView} />
         </Router>
       </>
