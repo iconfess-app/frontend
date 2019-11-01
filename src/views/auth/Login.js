@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withAuth } from '../../Context/AuthContext';
-import authservice from '../../services/authService';
 
 class Login extends Component {
   state = {
@@ -16,7 +15,7 @@ class Login extends Component {
   handleFormSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
-    authservice.login({
+    this.props.handleLogin({
       email,
       password
     })
