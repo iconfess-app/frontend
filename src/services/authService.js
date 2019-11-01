@@ -25,6 +25,18 @@ class AuthService {
       .then(response => response.data)
   }
 
+  edit(user) {
+    const { username, hashedPassword, avatar, darkMode, allowsContact, allowsLocation, email } = user;
+    return this.auth.put('/edit', { username, hashedPassword, avatar, darkMode, allowsContact, allowsLocation, email })
+      .then(({ data }) => data);
+  }
+
+  updatepassword(user) {
+    const { password } = user;
+    return this.auth.post('/updatepassword', { password })
+      .then(({ data }) => data);
+  }
+
   me(user) {
     return this.auth.get('/me')
       .then(response => response.data)
