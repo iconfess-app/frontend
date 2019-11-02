@@ -15,6 +15,7 @@ class Home extends Component {
   async componentDidMount() {
     try {
       const allConfessions = await confessionService.getAllConfessions();
+      console.log(allConfessions);
       this.setState({
         allConfessions,
         loading: false,
@@ -26,7 +27,7 @@ class Home extends Component {
 
   renderConfessions = () => {
     const { allConfessions } = this.state;
-    console.log(this.props);
+    console.log(this.state);
     return allConfessions.map(message => {
       const { description, category, _id, user, time, likesCounter } = message;
       return (

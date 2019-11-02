@@ -24,6 +24,10 @@ class ConfessionService {
   getOneConfession(id) {
     return this.axios.get(id).then(response => response.data);
   }
+
+  deleteConfession(id) {
+    return this.axios.delete(id).then(response => response.data);
+  }
 }
 
 const confessionService = new ConfessionService();
