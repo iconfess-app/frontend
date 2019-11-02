@@ -37,7 +37,7 @@ const CardConfession = props => {
             description={description}
             likesCounter={likesCounter}
             category={category}
-            id={id}
+            confessionId={id}
           />
         )}
       ></Route>

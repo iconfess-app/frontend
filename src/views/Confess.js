@@ -74,7 +74,7 @@ class Confessional extends Component {
               { value: 'Self-esteem', label: 'Self-esteem' },
               { value: 'Health', label: 'Health' },
               { value: 'Studies', label: 'Studies' },
-              { value: 'Miscellaneus', label: 'Miscellaneus' },
+              { value: 'Miscellaneous', label: 'Miscellaneous' },
             ]}
           />
           <label>
