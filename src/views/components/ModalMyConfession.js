@@ -1,4 +1,20 @@
 /* eslint-disable no-console */
+
+
+
+
+
+
+
+
+// THIS MODAL IS NOT BEING USED //
+
+
+
+
+
+
+
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 import confessionService from '../../services/confessionService';

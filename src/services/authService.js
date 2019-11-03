@@ -26,8 +26,8 @@ class AuthService {
   }
 
   edit(user) {
-    const { username, hashedPassword, avatar, darkMode, allowsContact, allowsLocation, email } = user;
-    return this.auth.put('/edit', { username, hashedPassword, avatar, darkMode, allowsContact, allowsLocation, email })
+    const { username, hashedPassword, avatar, lightMode, allowsContact, allowsLocation, email } = user;
+    return this.auth.put('/edit', { username, hashedPassword, avatar, lightMode, allowsContact, allowsLocation, email })
       .then(({ data }) => data);
   }
 
