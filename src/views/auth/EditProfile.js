@@ -10,18 +10,18 @@ class EditProfile extends Component {
     allowsContact: "",
     allowsLocation: "",
     avatar: "",
-    darkMode: "",
+    lightMode: "",
     email: "",
   };
 
   componentDidMount = () => {
-    const { username, allowsContact, allowsLocation, darkMode, avatar, email } = this.props.user;
+    const { username, allowsContact, allowsLocation, lightMode, avatar, email } = this.props.user;
     this.setState({
       username,
       allowsContact,
       allowsLocation,
       avatar,
-      darkMode,
+      lightMode,
       email,
     });
   }
@@ -40,20 +40,20 @@ class EditProfile extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { username, password, allowsContact, allowsLocation, darkMode, avatar, email } = this.state;
+    const { username, password, allowsContact, allowsLocation, lightMode, avatar, email } = this.state;
     this.props.handleUpdate({
       username,
       password,
       allowsContact,
       allowsLocation,
-      darkMode,
+      lightMode,
       avatar,
       email,
     })
   }
 
   render() {
-    const { username, allowsContact, allowsLocation, avatar, darkMode } = this.state;
+    const { username, allowsContact, allowsLocation, avatar, lightMode } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -68,8 +68,8 @@ class EditProfile extends Component {
             Allow other users to know my location
           </label>
           <label>
-            <input type="checkbox" name="darkMode" value={darkMode} checked={darkMode} onChange={this.handleChange} />
-            Dark mode
+            <input type="checkbox" name="lightMode" value={lightMode} checked={lightMode} onChange={this.handleChange} />
+            Light mode
           </label>
           <label>
             Pick up your avatar:

@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import authService from '../services/authService';
 import confessionService from '../services/confessionService';
 import CardMyConfessions from './components/CardMyConfession';
 
@@ -26,13 +25,28 @@ class myConfessionsPage extends Component {
     }
   }
 
-  user = () => {
-    return authService.me();
-  };
+  handleDelete = (id) => {
+    this.setState({
+      loading: true,
+    })
+    confessionService.deleteConfession(id)
+      .then(() => {
+        this.updateConfessionList();
+      })
+  }
+
+  async updateConfessionList() {
+    const updatedConfessions = await confessionService.getMyConfessions();
+    this.setState({
+      myConfessions: updatedConfessions,
+      loading: false,
+    })
+  }
+
 
   renderMyConfessions = () => {
     const { myConfessions } = this.state;
-    return myConfessions.map(message => {
+    return myConfessions.map((message) => {
       const { description, category, _id, time, likesCounter, date } = message;
       return (
         <CardMyConfessions
@@ -43,10 +57,11 @@ class myConfessionsPage extends Component {
           likesCounter={likesCounter}
           date={date}
           id={_id}
+          onDelete={() => this.handleDelete(_id)}
         />
       );
     });
-  };
+  }
 
   render() {
     const { loading } = this.state;
