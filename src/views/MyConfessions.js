@@ -15,7 +15,6 @@ class myConfessionsPage extends Component {
   async componentDidMount() {
     try {
       const myConfessions = await confessionService.getMyConfessions();
-      console.log(myConfessions);
       this.setState({
         myConfessions,
         loading: false,
@@ -25,34 +24,35 @@ class myConfessionsPage extends Component {
     }
   }
 
-  handleDelete = (id) => {
+  handleDelete = id => {
     this.setState({
       loading: true,
-    })
-    confessionService.deleteConfession(id)
-      .then(() => {
-        this.updateConfessionList();
-      })
-  }
+    });
+    confessionService.deleteConfession(id).then(() => {
+      this.updateConfessionList();
+    });
+  };
 
   async updateConfessionList() {
     const updatedConfessions = await confessionService.getMyConfessions();
     this.setState({
       myConfessions: updatedConfessions,
       loading: false,
-    })
+    });
   }
-
 
   renderMyConfessions = () => {
     const { myConfessions } = this.state;
-    return myConfessions.map((message) => {
+    return myConfessions.map(message => {
       const { description, category, _id, time, likesCounter, date } = message;
+      // const categories = category.map(item => {
+      //   return item.value;
+      // });
       return (
         <CardMyConfessions
           key={_id}
           description={description}
-          category={category}
+          categories={category}
           time={time}
           likesCounter={likesCounter}
           date={date}
@@ -61,7 +61,7 @@ class myConfessionsPage extends Component {
         />
       );
     });
-  }
+  };
 
   render() {
     const { loading } = this.state;
