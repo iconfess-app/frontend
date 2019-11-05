@@ -1,24 +1,34 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import confessionService from '../services/confessionService';
 import Select from 'react-select';
+import confessionService from '../services/confessionService';
 
 class Confessional extends Component {
   constructor() {
     super();
     this.state = {
       description: '',
-      category: '',
+      category: null,
       isDestroyed: true,
       submitted: false,
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleSelect = category => {
-    this.setState({ category: category.value });
+    console.log(category);
+    this.setState({ category: [...category] });
   };
+
+  // handleSelect(event) {
+  //   const [category] = event;
+  //   console.log(category.value);
+  //   this.setState({
+  //     category: category.value,
+  //   });
+  // }
 
   handleInput(event) {
     const { target } = event;
@@ -43,7 +53,8 @@ class Confessional extends Component {
   }
 
   render() {
-    const { description, category, isDestroyed } = this.state;
+    const { description, isDestroyed } = this.state;
+    console.log(this.state);
     return (
       <div>
         <h1>Confessional</h1>
@@ -61,9 +72,12 @@ class Confessional extends Component {
           <p>Máx.3000 characters</p>
           <label>Choose a category</label>
           <Select
-            name="category"
-            value={category}
+            closeMenuOnSelect={false}
+            isMulti
+            placeholder={'Choose one or more categories'}
+            autoFocus={true}
             onChange={this.handleSelect}
+            onMouseOver={this.handleMouseDown}
             options={[
               { value: 'Sex', label: 'Sex' },
               { value: 'Family', label: 'Family' },
