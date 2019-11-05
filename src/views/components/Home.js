@@ -40,6 +40,7 @@ class Home extends Component {
           time={time}
           likesCounter={likesCounter}
           chat={user.allowsContact}
+          id={_id}
         />
       );
     });
