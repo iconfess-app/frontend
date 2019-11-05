@@ -14,21 +14,13 @@ class Confessional extends Component {
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleSelect = category => {
-    console.log(category);
-    this.setState({ category: [...category] });
+    const categoryValue = category.map(category => category.value);
+    console.log(categoryValue);
+    this.setState({ category: [...categoryValue] });
   };
-
-  // handleSelect(event) {
-  //   const [category] = event;
-  //   console.log(category.value);
-  //   this.setState({
-  //     category: category.value,
-  //   });
-  // }
 
   handleInput(event) {
     const { target } = event;

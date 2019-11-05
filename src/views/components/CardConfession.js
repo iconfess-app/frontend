@@ -11,7 +11,8 @@ const CardConfession = props => {
     display: 'inline-block',
     marginRight: '16px',
   };
-  const { avatar, username, description, category, time, likesCounter, chat } = props;
+  const { avatar, username, description, categories, time, likesCounter, chat } = props;
+  const category = categories.map(item => item.value);
   return (
     <div className="card" style={cardStyle}>
       <div className="card-header">
@@ -29,7 +30,11 @@ const CardConfession = props => {
         <p>{description}</p>
       </div>
       <div className="card-footer">
-        <p style={inline}>{category}</p>
+        <ul>
+          {category.map((category, index) => (
+            <li key={index}>{category}</li>
+          ))}
+        </ul>
         <p style={inline}>{likesCounter} likes</p>
         <p style={inline}>{chat ? 'Chat with me' : 'No chat icon'}</p>
       </div>

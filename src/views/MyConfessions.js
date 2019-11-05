@@ -45,9 +45,6 @@ class myConfessionsPage extends Component {
     const { myConfessions } = this.state;
     return myConfessions.map(message => {
       const { description, category, _id, time, likesCounter, date } = message;
-      // const categories = category.map(item => {
-      //   return item.value;
-      // });
       return (
         <CardMyConfessions
           key={_id}
