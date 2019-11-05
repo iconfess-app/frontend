@@ -25,9 +25,8 @@ class ConfessionService {
     return this.axios.delete(`myconfessions/${id}`).then(response => response.data);
   }
 
-  likeConfession(body) {
-    const { id, likesCounter } = body;
-    return this.axios.patch(`/confessions/${id}/update`, likesCounter).then(response => response.data);
+  likeConfession(id) {
+    return this.axios.post(`/confessions/${id}/like`).then(response => response.data);
   }
 }
 

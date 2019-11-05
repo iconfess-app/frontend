@@ -34,7 +34,7 @@ class Home extends Component {
         <CardConfession
           key={_id}
           description={description}
-          category={category}
+          categories={category}
           username={user.username}
           avatar={user.avatar}
           time={time}

@@ -44,17 +44,14 @@ class myConfessionsPage extends Component {
   renderMyConfessions = () => {
     const { myConfessions } = this.state;
     return myConfessions.map(message => {
-      const { description, category, _id, time, likesCounter, date } = message;
-      // const categories = category.map(item => {
-      //   return item.value;
-      // });
+      const { description, category, _id, time, likes, date } = message;
       return (
         <CardMyConfessions
           key={_id}
           description={description}
           categories={category}
           time={time}
-          likesCounter={likesCounter}
+          likes={likes}
           date={date}
           id={_id}
           onDelete={() => this.handleDelete(_id)}

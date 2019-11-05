@@ -18,9 +18,9 @@ class CardMyConfession extends Component {
       display: 'inline-block',
       marginRight: '16px',
     };
-    const { date, description, categories, time, likesCounter, onDelete } = this.props;
-    const category = categories.map(item => item.value);
-    console.log(category);
+    const { date, description, categories, time, likes, onDelete } = this.props;
+
+    console.log(likes);
     return (
       <div className="card" style={cardStyle}>
         <div className="card-header">
@@ -32,11 +32,11 @@ class CardMyConfession extends Component {
         <div>
           <p>{description}</p>
           <ul>
-            {category.map((category, index) => (
+            {categories.map((category, index) => (
               <li key={index}>{category}</li>
             ))}
           </ul>
-          <p>{likesCounter}</p>
+          <p>{likes.length} likes</p>
           <Popup trigger={<button>Delete</button>} position="right center">
             <div>
               Are you sure you want to delete?
@@ -69,7 +69,7 @@ export default CardMyConfession;
 //     display: 'inline-block',
 //     marginRight: '16px',
 //   };
-//   const { date, description, category, time, likesCounter, id } = props;
+//   const { date, description, category, time, likes, id } = props;
 
 //   return (
 //     <div className="card" style={cardStyle}>
@@ -81,7 +81,7 @@ export default CardMyConfession;
 //       </div>
 //       <div className="description">
 //         <p>{description} </p>
-//         <p>{likesCounter} </p>
+//         <p>{likes} </p>
 //         <p>{category}</p>
 //         <button>Delete</button>
 //         {/* <NavLink to={`/${id}`} activeClassName="selectedConfession">
@@ -96,7 +96,7 @@ export default CardMyConfession;
 //           <ModalMyConfession
 //             {...myconfession}
 //             description={description}
-//             likesCounter={likesCounter}
+//             likes={likes}
 //             category={category}
 //             confessionId={id}
 //           />
@@ -104,7 +104,7 @@ export default CardMyConfession;
 //       ></Route>
 //       <div className="card-footer">
 //         <p style={inline}>{category}</p>
-//         <p style={inline}>{likesCounter} likes</p>
+//         <p style={inline}>{likes} likes</p>
 //         <p style={inline}>
 //           <a href="/">Delete</a> */
 //         /* </p>
