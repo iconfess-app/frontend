@@ -28,6 +28,10 @@ class ConfessionService {
   likeConfession(id) {
     return this.axios.post(`/confessions/${id}/like`).then(response => response.data);
   }
+
+  unlikeConfession(id) {
+    return this.axios.post(`/confessions/${id}/unlike`).then(response => response.data);
+  }
 }
 
 const confessionService = new ConfessionService();

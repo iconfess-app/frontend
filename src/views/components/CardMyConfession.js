@@ -19,8 +19,6 @@ class CardMyConfession extends Component {
       marginRight: '16px',
     };
     const { date, description, categories, time, likes, onDelete } = this.props;
-
-    console.log(likes);
     return (
       <div className="card" style={cardStyle}>
         <div className="card-header">

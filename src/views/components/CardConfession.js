@@ -1,46 +1,63 @@
 import React, { Component } from 'react';
+import { withAuth } from '../../Context/AuthContext';
 import confessionService from '../../services/confessionService';
 
 class CardConfession extends Component {
   state = {
-    liked: false,
-    likes: this.props.likesCounter,
+    likes: "",
+    liked: "",
   }
 
-  handleChange = () => {
+  componentDidMount = () => {
+    const { likes } = this.props;
     this.setState({
-      liked: !this.state.liked,
+      likes: [...likes],
     });
-    this.handleIncrement();
+    this.checkIfUserDidLike();
   }
 
-  handleIncrement = () => {
-    const { liked } = this.state;
-    if (liked === false) {
+  checkIfUserDidLike = () => {
+    const { likes } = this.props;
+    const userId = this.props.user._id;
+    if (likes.includes(userId) === true) {
       this.setState({
-        likes: this.props.likesCounter + 1,
+        liked: true,
       })
-    }
-    if (liked === true) {
+    } else if (likes.includes(userId) === false) {
       this.setState({
-        likes: this.props.likesCounter,
-      })
+        liked: false,
+      });
     }
-    this.handleUpdate();
-    // const likesCounter = this.state.likes;
-    // console.log(id, likesCounter);
-    // confessionService.likeConfession({ id, likesCounter });
   }
 
-  handleUpdate = () => {
-    const { id } = this.props;
-    const likesCounter = this.state.likes;
-    console.log(id, likesCounter);
-    confessionService.likeConfession({ id, likesCounter });
+  handleLike = () => {
+    try {
+      confessionService.likeConfession(this.props.id);
+      this.setState({
+        liked: true,
+        likes: [...this.props.likes],
+      });
+      console.log(this.state.likes.length);
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  handleUnlike = () => {
+    try {
+      confessionService.unlikeConfession(this.props.id);
+      this.setState({
+        liked: false,
+        likes: [...this.props.likes],
+      });
+      console.log(this.state.likes.length);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   render() {
-    console.log(this.state);
     const cardStyle = {
       border: '1px solid black',
       marginBottom: '16px',
@@ -52,8 +69,8 @@ class CardConfession extends Component {
       marginRight: '16px',
     };
     const { avatar, username, description, categories, time, chat } = this.props;
-    //const category = categories.map(item => item.value);
     const { likes } = this.state;
+
     return (
       <div className="card" style={cardStyle} >
         <div className="card-header">
@@ -77,12 +94,10 @@ class CardConfession extends Component {
             ))}
           </ul>
 
-          {/* Adds like input */}
-          <input type="checkbox"
-            onChange={this.handleChange}
-            defaultChecked={this.state.liked} />
+          {this.state.liked && <div onClick={this.handleUnlike}><img src="/images/icon-liked.png" alt="liked full heart" /></div>}
+          {!this.state.liked && <div onClick={this.handleLike}><img src="/images/icon-unliked.png" alt="unliked empty heart" /></div>}
 
-          <p style={inline}>{likes} likes</p>
+          <p style={inline}>{likes.length} likes</p>
 
           <p style={inline}>{chat ? 'Chat with me' : 'No chat icon'}</p>
         </div>
@@ -91,4 +106,4 @@ class CardConfession extends Component {
   }
 }
 
-export default CardConfession;
+export default withAuth(CardConfession);
