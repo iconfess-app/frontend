@@ -21,6 +21,10 @@ class ConfessionService {
     return this.axios.post('/confess', { description, category, isDestroyed }).then(({ data }) => data);
   }
 
+  getOneConfession(id) {
+    return this.axios.get(`confessions/${id}`).then(response => response.data);
+  }
+
   deleteConfession(id) {
     return this.axios.delete(`myconfessions/${id}`).then(response => response.data);
   }
