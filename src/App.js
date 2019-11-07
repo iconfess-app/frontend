@@ -22,6 +22,7 @@ class App extends Component {
       <>
         <button onClick={handleLogout}>logout</button>
         <Router>
+
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />
