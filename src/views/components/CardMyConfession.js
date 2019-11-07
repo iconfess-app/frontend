@@ -19,8 +19,6 @@ class CardMyConfession extends Component {
       marginRight: '16px',
     };
     const { date, description, categories, time, likesCounter, onDelete } = this.props;
-    const category = categories.map(item => item.value);
-    console.log(category);
     return (
       <div className="card" style={cardStyle}>
         <div className="card-header">
@@ -32,7 +30,7 @@ class CardMyConfession extends Component {
         <div>
           <p>{description}</p>
           <ul>
-            {category.map((category, index) => (
+            {categories.map((category, index) => (
               <li key={index}>{category}</li>
             ))}
           </ul>
