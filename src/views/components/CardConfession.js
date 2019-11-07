@@ -12,7 +12,6 @@ const CardConfession = props => {
     marginRight: '16px',
   };
   const { avatar, username, description, categories, time, likesCounter, chat } = props;
-  const category = categories.map(item => item.value);
   return (
     <div className="card" style={cardStyle}>
       <div className="card-header">
@@ -31,7 +30,7 @@ const CardConfession = props => {
       </div>
       <div className="card-footer">
         <ul>
-          {category.map((category, index) => (
+          {categories.map((category, index) => (
             <li key={index}>{category}</li>
           ))}
         </ul>

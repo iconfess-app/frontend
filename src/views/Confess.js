@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import Select from 'react-select';
+import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 
 class Confessional extends Component {
@@ -8,9 +9,12 @@ class Confessional extends Component {
     super();
     this.state = {
       description: '',
-      category: null,
+      category: [],
       isDestroyed: true,
       submitted: false,
+      isSensitive: false,
+      isUncategorized: true,
+      isTooLong: false,
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,8 +22,21 @@ class Confessional extends Component {
 
   handleSelect = category => {
     const categoryValue = category.map(category => category.value);
-    console.log(categoryValue);
     this.setState({ category: [...categoryValue] });
+
+    // isCategorized validation
+    console.log(category.length);
+    if (category.length > 0) {
+      console.log('Ok! categories on');
+      this.setState({
+        isUncategorized: false,
+      });
+    } else {
+      console.log('No categories???');
+      this.setState({
+        isUncategorized: true,
+      });
+    }
   };
 
   handleInput(event) {
@@ -29,6 +46,42 @@ class Confessional extends Component {
     this.setState({
       [name]: value,
     });
+
+    // isSensitivevalidation
+    const { description } = this.state;
+    const keyword = description.toLowerCase();
+    const sensitiveValidation = sensitiveContent.some(substring => keyword.includes(substring));
+    if (sensitiveValidation === true) {
+      this.setState({
+        isSensitive: true,
+      });
+    } else {
+      this.setState({
+        isSensitive: false,
+      });
+    }
+
+    // isTooLong validation
+    if (description.length > 140) {
+      this.setState({
+        isTooLong: true,
+      });
+    } else {
+      this.setState({
+        isTooLong: false,
+      });
+    }
+
+    // isTooShort validation
+    if (description.length < 10) {
+      this.setState({
+        isTooShort: true,
+      });
+    } else {
+      this.setState({
+        isTooShort: false,
+      });
+    }
   }
 
   handleSubmit(event) {
@@ -45,8 +98,11 @@ class Confessional extends Component {
   }
 
   render() {
-    const { description, isDestroyed } = this.state;
-    console.log(this.state);
+    const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
+    const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
+    const errorStyle = {
+      color: 'red',
+    };
     return (
       <div>
         <h1>Confessional</h1>
@@ -62,6 +118,9 @@ class Confessional extends Component {
             cols="30"
           />
           <p>Máx.3000 characters</p>
+          {isSensitive && <p className={errorStyle}>Keep it friendly, this is forbidden content!</p>}
+          {isTooLong && <p className={errorStyle}>This confession is too long!!</p>}
+          {isTooShort && <p className={errorStyle}>This confession is too short!!</p>}
           <label>Choose a category</label>
           <Select
             closeMenuOnSelect={false}
@@ -81,13 +140,15 @@ class Confessional extends Component {
               { value: 'Health', label: 'Health' },
               { value: 'Studies', label: 'Studies' },
               { value: 'Miscellaneous', label: 'Miscellaneous' },
+              { value: 'Relationships', label: 'Relationships' },
             ]}
           />
+          {isUncategorized && <p className={errorStyle}>You must choose a category!!</p>}
           <label>
             <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
             This secret will be destroyed after 24h.
           </label>
-          <button>Submit</button>
+          <button disabled={!validConfession}>Submit</button>
         </form>
       </div>
     );
