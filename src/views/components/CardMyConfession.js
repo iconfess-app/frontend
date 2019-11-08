@@ -19,6 +19,7 @@ class CardMyConfession extends Component {
       marginRight: '16px',
     };
     const { date, description, categories, time, likes, onDelete } = this.props;
+
     return (
       <div className="card" style={cardStyle}>
         <div className="card-header">
@@ -49,66 +50,3 @@ class CardMyConfession extends Component {
 }
 
 export default CardMyConfession;
-
-// import React from 'react';
-// import Popup from 'reactjs-popup';
-// import confessionService from '../../services/confessionService';
-// import {Route} from 'react-router-dom';
-// import ModalMyConfession from './ModalMyConfession';
-
-// const CardConfession = props => {
-//   const cardStyle = {
-//     border: '1px solid black',
-//     marginBottom: '16px',
-//     borderRadius: '25px',
-//     padding: '16px',
-//   };
-//   const inline = {
-//     display: 'inline-block',
-//     marginRight: '16px',
-//   };
-//   const { date, description, category, time, likes, id } = props;
-
-//   return (
-//     <div className="card" style={cardStyle}>
-//       <div className="card-header">
-//         <span className="avatar">{date}</span>
-//         <p className="time" style={inline}>
-//           {time}
-//         </p>
-//       </div>
-//       <div className="description">
-//         <p>{description} </p>
-//         <p>{likes} </p>
-//         <p>{category}</p>
-//         <button>Delete</button>
-//         {/* <NavLink to={`/${id}`} activeClassName="selectedConfession">
-//           {description}
-//         </NavLink> */}
-//         </div>
-//       <Route
-//         exact
-//         path="/:id"
-//         // component={ModalMyConfession}
-//         render={myconfession => (
-//           <ModalMyConfession
-//             {...myconfession}
-//             description={description}
-//             likes={likes}
-//             category={category}
-//             confessionId={id}
-//           />
-//         )}
-//       ></Route>
-//       <div className="card-footer">
-//         <p style={inline}>{category}</p>
-//         <p style={inline}>{likes} likes</p>
-//         <p style={inline}>
-//           <a href="/">Delete</a> */
-//         /* </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CardConfession;
