@@ -6,7 +6,6 @@ class CardConfession extends Component {
   state = {
     likes: "",
     liked: "",
-    numberOfLikes: "",
   }
 
   checkIfUserDidLike = () => {
@@ -26,37 +25,34 @@ class CardConfession extends Component {
   componentDidMount = () => {
     this.setState({
       likes: [...this.props.likes],
-      numberOfLikes: this.props.likes.length,
     });
     this.checkIfUserDidLike();
-    this.handleLike();
   }
 
   handleLike = () => {
-    try {
-      confessionService.likeConfession(this.props.id);
-      // const updatedConfession = this.updateConfession();
-      this.setState({
-        // likes: updatedConfession.likes,
-        liked: true,
+    confessionService.likeConfession(this.props.id)
+      .then((confession) => {
+        this.setState({
+          likes: [...confession.likes],
+          liked: true,
+        })
+      })
+      .catch(error => {
+        console.log(error);
       });
-    } catch (error) {
-      console.log(error);
-    }
   }
 
-
   handleUnlike = () => {
-    try {
-      confessionService.unlikeConfession(this.props.id);
-      // const updatedConfession = this.updateConfession();
-      this.setState({
-        // likes: updatedConfession.likes,
-        liked: false,
+    confessionService.unlikeConfession(this.props.id)
+      .then((confession) => {
+        this.setState({
+          likes: [...confession.likes],
+          liked: false,
+        })
+      })
+      .catch(error => {
+        console.log(error);
       });
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   render() {
@@ -72,7 +68,6 @@ class CardConfession extends Component {
     };
     const { avatar, username, description, categories, time, chat } = this.props;
     const { likes } = this.state;
-    console.log(this.state);
     return (
       <div className="card" style={cardStyle} >
         <div className="card-header">
