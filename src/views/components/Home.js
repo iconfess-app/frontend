@@ -7,7 +7,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allConfessions: [],
+      recentConfessions: [],
       loading: true,
     };
   }
@@ -15,9 +15,16 @@ class Home extends Component {
   async componentDidMount() {
     try {
       const allConfessions = await confessionService.getAllConfessions();
-      console.log(allConfessions);
+      const recentConfessions = [];
+      const now = new Date();
+      allConfessions.forEach((confession) => {
+        const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
+        if (minAgo < 1140 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
+          recentConfessions.push(confession);
+        }
+      });
       this.setState({
-        allConfessions,
+        recentConfessions,
         loading: false,
       });
     } catch (error) {
@@ -26,10 +33,9 @@ class Home extends Component {
   }
 
   renderConfessions = () => {
-    const { allConfessions } = this.state;
-    console.log(this.state);
-    return allConfessions.map(message => {
-      const { description, category, _id, user, time, likes } = message;
+    const { recentConfessions } = this.state;
+    return recentConfessions.map(message => {
+      const { description, category, _id, user, time, likes, created_at } = message;
       return (
         <CardConfession
           key={_id}
@@ -41,6 +47,7 @@ class Home extends Component {
           likes={likes}
           chat={user.allowsContact}
           id={_id}
+          created={created_at}
         />
       );
     });

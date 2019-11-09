@@ -6,6 +6,14 @@ class CardConfession extends Component {
   state = {
     likes: "",
     liked: "",
+    posted: "",
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      likes: [...this.props.likes],
+    });
+    this.checkIfUserDidLike();
   }
 
   checkIfUserDidLike = () => {
@@ -20,13 +28,22 @@ class CardConfession extends Component {
         liked: false,
       });
     }
+    this.calculateHours();
   }
 
-  componentDidMount = () => {
-    this.setState({
-      likes: [...this.props.likes],
-    });
-    this.checkIfUserDidLike();
+  calculateHours = () => {
+    const postedMinutesAgo = parseInt(((new Date()) - new Date(`${this.props.created}`)) / 60000);
+    if (postedMinutesAgo > 1440) {
+      const days = parseInt(postedMinutesAgo / 1140);
+      return this.setState({ posted: `${days}d ago` })
+    }
+    if (postedMinutesAgo < 1440 && postedMinutesAgo > 60) {
+      const hours = parseInt(postedMinutesAgo / 60);
+      return this.setState({ posted: `${hours}h ago`, })
+      // eslint-disable-next-line no-else-return
+    } else {
+      return this.setState({ posted: `${postedMinutesAgo}min ago`, })
+    }
   }
 
   handleLike = () => {
@@ -66,8 +83,9 @@ class CardConfession extends Component {
       display: 'inline-block',
       marginRight: '16px',
     };
-    const { avatar, username, description, categories, time, chat } = this.props;
-    const { likes } = this.state;
+    const { avatar, username, description, categories, chat } = this.props;
+    const { likes, posted } = this.state;
+
     return (
       <div className="card" style={cardStyle} >
         <div className="card-header">
@@ -78,7 +96,7 @@ class CardConfession extends Component {
             @{username}
           </p>
           <p className="time" style={inline}>
-            {time}
+            {posted}
           </p>
         </div>
         <div className="description">
