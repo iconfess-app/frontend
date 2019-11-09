@@ -32,7 +32,7 @@ class Signup extends Component {
     let usernameValid = true;
     const errorMessage = { ...this.state.errorMessage };
 
-    if (username.length < 3 && username.length > 15) {
+    if (username.length < 3 || username.length > 15) {
       usernameValid = false;
       errorMessage.username = 'Must be between 3 and 15 characters long';
     }
