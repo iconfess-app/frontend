@@ -29,7 +29,7 @@ class Home extends Component {
     const { allConfessions } = this.state;
     console.log(this.state);
     return allConfessions.map(message => {
-      const { description, category, _id, user, time, likesCounter } = message;
+      const { description, category, _id, user, time, likes } = message;
       return (
         <CardConfession
           key={_id}
@@ -38,8 +38,9 @@ class Home extends Component {
           username={user.username}
           avatar={user.avatar}
           time={time}
-          likesCounter={likesCounter}
+          likes={likes}
           chat={user.allowsContact}
+          id={_id}
         />
       );
     });
