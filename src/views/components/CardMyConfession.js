@@ -18,15 +18,15 @@ class CardMyConfession extends Component {
       display: 'inline-block',
       marginRight: '16px',
     };
-    const { date, description, categories, time, likes, onDelete } = this.props;
+    const { date, description, categories, likes, onDelete } = this.props;
 
     return (
       <div className="card" style={cardStyle}>
         <div className="card-header">
           <span className="avatar">{date}</span>
-          <p className="time" style={inline}>
+          {/* <p className="time" style={inline}>
             {time}
-          </p>
+          </p> */}
         </div>
         <div>
           <p>{description}</p>

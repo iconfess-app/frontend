@@ -7,7 +7,6 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // allConfessions: [],
       recentConfessions: [],
       loading: true,
     };
@@ -19,46 +18,22 @@ class Home extends Component {
       const recentConfessions = [];
       const now = new Date();
       allConfessions.forEach((confession) => {
-        const hoursAgo = (now - new Date(`${confession.created_at}`)) / 3.6e+6;
-        if (hoursAgo < 24 || confession.isDistroyed === false) {
+        const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
+        if (minAgo < 1140 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
           recentConfessions.push(confession);
         }
       });
-      return this.setState({
+      this.setState({
         recentConfessions,
         loading: false,
       });
-
-      // console.log(allConfessions);
-      // this.setState({
-      //   allConfessions,
-      //   loading: true,
-      // });
-      // this.discardOldConfessions();
     } catch (error) {
       console.log(error);
     }
   }
 
-  // discardOldConfessions = () => {
-  //   const { allConfessions } = this.state;
-  //   const recentConfessions = [];
-  //   const now = new Date();
-  //   allConfessions.forEach((confession) => {
-  //     const hoursAgo = (now - new Date(`${confession.created_at}`)) / 3.6e+6;
-  //     if (hoursAgo < 24 || confession.isDistroyed === false) {
-  //       recentConfessions.push(confession);
-  //     }
-  //   });
-  //   return this.setState({
-  //     recentConfessions,
-  //     loading: false,
-  //   });
-  // }
-
   renderConfessions = () => {
     const { recentConfessions } = this.state;
-
     return recentConfessions.map(message => {
       const { description, category, _id, user, time, likes, created_at } = message;
       return (
