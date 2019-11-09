@@ -33,12 +33,16 @@ class CardConfession extends Component {
 
   calculateHours = () => {
     const postedMinutesAgo = parseInt(((new Date()) - new Date(`${this.props.created}`)) / 60000);
-    if (postedMinutesAgo > 60) {
+    if (postedMinutesAgo > 1440) {
+      const days = parseInt(postedMinutesAgo / 1140);
+      return this.setState({ posted: `${days}d ago` })
+    }
+    if (postedMinutesAgo < 1440 && postedMinutesAgo > 60) {
       const hours = parseInt(postedMinutesAgo / 60);
-      return this.setState({ posted: `${hours} hours ago`, })
+      return this.setState({ posted: `${hours}h ago`, })
       // eslint-disable-next-line no-else-return
     } else {
-      return this.setState({ posted: `${postedMinutesAgo} minutes ago`, })
+      return this.setState({ posted: `${postedMinutesAgo}min ago`, })
     }
   }
 
@@ -81,8 +85,6 @@ class CardConfession extends Component {
     };
     const { avatar, username, description, categories, chat } = this.props;
     const { likes, posted } = this.state;
-
-    console.log(this.props);
 
     return (
       <div className="card" style={cardStyle} >
