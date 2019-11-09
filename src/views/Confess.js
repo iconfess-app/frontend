@@ -43,45 +43,53 @@ class Confessional extends Component {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-    this.setState({
-      [name]: value,
-    });
+    // this.setState({
+    //   [name]: value,
+    // });
 
     // isSensitivevalidation
     const { description } = this.state;
     const keyword = description.toLowerCase();
     const sensitiveValidation = sensitiveContent.some(substring => keyword.includes(substring));
-    if (sensitiveValidation === true) {
-      this.setState({
-        isSensitive: true,
-      });
-    } else {
-      this.setState({
-        isSensitive: false,
-      });
-    }
+
+    this.setState({
+      [name]: value,
+      isSensitive: sensitiveValidation,
+      isTooLong: description.length > 140 ? true : false,
+      isTooShort: description.length < 10 ? true : false,
+    });
+
+    // if (sensitiveValidation === true) {
+    //   this.setState({
+    //     isSensitive: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     isSensitive: false,
+    //   });
+    // }
 
     // isTooLong validation
-    if (description.length > 140) {
-      this.setState({
-        isTooLong: true,
-      });
-    } else {
-      this.setState({
-        isTooLong: false,
-      });
-    }
+    // if (description.length > 140) {
+    //   this.setState({
+    //     isTooLong: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     isTooLong: false,
+    //   });
+    // }
 
     // isTooShort validation
-    if (description.length < 10) {
-      this.setState({
-        isTooShort: true,
-      });
-    } else {
-      this.setState({
-        isTooShort: false,
-      });
-    }
+    // if (description.length < 10) {
+    //   this.setState({
+    //     isTooShort: true,
+    //   });
+    // } else {
+    //   this.setState({
+    //     isTooShort: false,
+    //   });
+    // }
   }
 
   handleSubmit(event) {
@@ -118,9 +126,9 @@ class Confessional extends Component {
             cols="30"
           />
           <p>Máx.3000 characters</p>
-          {isSensitive && <p className={errorStyle}>Keep it friendly, this is forbidden content!</p>}
-          {isTooLong && <p className={errorStyle}>This confession is too long!!</p>}
-          {isTooShort && <p className={errorStyle}>This confession is too short!!</p>}
+          {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
+          {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
+          {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
           <label>Choose a category</label>
           <Select
             closeMenuOnSelect={false}
@@ -143,7 +151,7 @@ class Confessional extends Component {
               { value: 'Relationships', label: 'Relationships' },
             ]}
           />
-          {isUncategorized && <p className={errorStyle}>You must choose a category!!</p>}
+          {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
           <label>
             <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
             This secret will be destroyed after 24h.
