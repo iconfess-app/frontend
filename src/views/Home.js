@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import confessionService from '../../services/confessionService';
-import CardConfession from './CardConfession';
-import NavBar from './NavBar';
+import confessionService from '../services/confessionService';
+import CardConfession from './components/CardConfession';
+import NavBar from './components/NavBar';
 
 class Home extends Component {
   constructor(props) {
