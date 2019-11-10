@@ -5,7 +5,7 @@ import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 import ChangePassword from './components/ChangePassword';
-import Home from './views/components/Home';
+import Home from './views/Home';
 import { withAuth } from './Context/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
