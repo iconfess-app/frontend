@@ -1,0 +1,19 @@
+* {
+  background-color: lightblue;
+  --gutter: 20px;
+}
+
+.scroll {
+  overflow: auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x proximity; 
+}
+
+.item {
+  height: auto;
+  display: inline-block;
+  text-align: center;
+  padding: 5%;
+  text-decoration: none;
+}
