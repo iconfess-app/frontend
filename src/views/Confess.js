@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
+import NavBar from './components/NavBar.js';
 
 class Confessional extends Component {
   constructor() {
@@ -158,6 +159,7 @@ class Confessional extends Component {
           </label>
           <button disabled={!validConfession}>Submit</button>
         </form>
+        <NavBar />
       </div>
     );
   }

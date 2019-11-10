@@ -2,8 +2,11 @@
 import React, { Component } from 'react';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
+import NavBar from './components/NavBar';
+
 // CSS FILE WITH VERY BASIC FEATURES DONE ONLY TO TEST, STYLES MUST BE ADDED IN THE SASS FILE
 import './Home.css';
+
 
 class Home extends Component {
   constructor(props) {
@@ -27,7 +30,7 @@ class Home extends Component {
       console.log(error);
     }
   }
-
+  
   filterByDate = () => {
     const { allConfessions } = this.state;
     const recentConfessions = [];
@@ -112,7 +115,7 @@ class Home extends Component {
   render() {
     const { loading, category, usesCategory, searchValue } = this.state;
     return (
-      <div>
+      <div className="container">
         <input className="search-bar" type="text" name="searchBar" value={searchValue} placeholder="Type a keyword to search..." onChange={this.handleSearch} />
         <h3>Most popular categories</h3>
         <div className="scroll">
@@ -134,6 +137,7 @@ class Home extends Component {
         <h3>{category} confessions</h3>
         {usesCategory ? <p onClick={this.handleRecent}>View all</p> : <></>}
         {loading ? 'loading...' : this.renderConfessions()}
+        <NavBar />
       </div >
     );
   }

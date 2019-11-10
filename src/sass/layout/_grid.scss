@@ -1,0 +1,18 @@
+@import '../base/colors';
+
+@media only screen and (min-width: 600px) {
+  #root {
+    background-color: $color-second-layer;
+  }
+  .container {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color-dark-gray;
+    min-height: 100vh;
+    height: 100%;
+  }
+  nav {
+    position: sticky;
+  }
+}

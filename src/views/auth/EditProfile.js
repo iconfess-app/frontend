@@ -3,6 +3,7 @@ import Select from 'react-select';
 import Popup from 'reactjs-popup';
 import ChangePassword from '../../components/ChangePassword';
 import { withAuth } from '../../Context/AuthContext';
+import NavBar from '../components/NavBar';
 
 class EditProfile extends Component {
   state = {
@@ -110,6 +111,7 @@ class EditProfile extends Component {
         <Popup trigger={<button>Change your password</button>} position="right center">
           <ChangePassword />
         </Popup>
+        <NavBar />
       </div>
     );
   }

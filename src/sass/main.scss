@@ -4,6 +4,7 @@
 @import 'base/reset';
 @import 'base/normalize';
 @import 'base/typography';
+@import 'base/colors';
 
 @import 'layout/navbar';
 @import 'layout/grid';
@@ -13,3 +14,9 @@
 
 @import 'themes/dark';
 @import 'themes/light';
+
+// Global styles //
+
+body {
+  background-color: $color-dark-gray;
+}

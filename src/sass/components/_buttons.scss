@@ -1,0 +1,24 @@
+@import '../base/colors';
+
+// Add Button //
+
+.add-btn {
+  width: 56px;
+  height: 56px;
+  background-color: $color-light-red;
+  border-radius: 100%;
+  justify-content: center;
+  position: relative;
+  bottom: 27px;
+  -webkit-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  path {
+    fill: $color-light-text;
+  }
+  &:hover,
+  .active {
+    fill: $color-light-text;
+    background-color: $color-dark-gray;
+  }
+}
