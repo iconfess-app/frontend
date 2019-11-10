@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
-
 // CSS FILE WITH VERY BASIC FEATURES DONE ONLY TO TEST, STYLES MUST BE ADDED IN THE SASS FILE
 import './Home.css';
 
@@ -15,6 +14,7 @@ class Home extends Component {
       loading: true,
       category: "Recent",
       usesCategory: false,
+      searchValue: "",
     };
   }
 
@@ -67,9 +67,22 @@ class Home extends Component {
     });
   }
 
+  handleSearch = (e) => {
+    e.preventDefault();
+    this.setState({
+      searchValue: e.target.value,
+    });
+  }
+
   renderConfessions = () => {
-    const { recentConfessions } = this.state;
-    return recentConfessions.map(message => {
+    const { recentConfessions, searchValue } = this.state;
+
+    const filteredConfessions = recentConfessions.filter(confession => {
+      const { description } = confession;
+      return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
+    });
+
+    return filteredConfessions.map(message => {
       const { description, category, _id, user, time, likes, created_at } = message;
       return (
         <CardConfession
@@ -89,10 +102,10 @@ class Home extends Component {
   };
 
   render() {
-    // imported CSS should go into SASS
-    const { loading, category, usesCategory } = this.state;
+    const { loading, category, usesCategory, searchValue } = this.state;
     return (
       <div>
+        <input className="search-bar" type="text" name="searchBar" value={searchValue} placeholder="Type a keyword to search..." onChange={this.handleSearch} />
         <h3>Most popular categories</h3>
         <div className="scroll">
           <ul className="hscroll">
@@ -107,7 +120,6 @@ class Home extends Component {
             <li className="item"><img name="Miscellaneous" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Misc.</p></li>
             <li className="item"><img name="Relationships" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Relationships</p></li>
             <li className="item"><img name="Studies" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Studies</p></li>
-            {/* <li className="item"><img onClick={this.handleRecent} src="/images/misc.png" alt="misc category icon"></img><p>Recent</p></li> */}
           </ul>
         </div>
         <h3>{category} confessions</h3>
