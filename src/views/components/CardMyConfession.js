@@ -14,10 +14,10 @@ class CardMyConfession extends Component {
       borderRadius: '25px',
       padding: '16px',
     };
-    const inline = {
-      display: 'inline-block',
-      marginRight: '16px',
-    };
+    // const inline = {
+    //   display: 'inline-block',
+    //   marginRight: '16px',
+    // };
     const { date, description, categories, likes, onDelete } = this.props;
 
     return (

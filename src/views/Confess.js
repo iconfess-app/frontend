@@ -109,9 +109,9 @@ class Confessional extends Component {
   render() {
     const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
-    const errorStyle = {
-      color: 'red',
-    };
+    // const errorStyle = {
+    //   color: 'red',
+    // };
     return (
       <div>
         <h1>Confessional</h1>
