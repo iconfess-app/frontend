@@ -1,7 +1,3 @@
-* {
-  background-color: lightblue;
-  --gutter: 20px;
-}
 
 .scroll {
   overflow: auto;
