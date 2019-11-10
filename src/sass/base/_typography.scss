@@ -1,3 +1,27 @@
-.username {
-  color: #e45f35;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Rubik:400,700&display=swap');
+
+* {
+  font-size: 16px;
 }
+
+.container {
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h4 {
+  font-family: 'Rubik', sans-serif;
+}
+
+h3,
+h5,
+p,
+ul,
+span {
+  font-family: 'Open Sans', sans-serif;
+}
+
+// Variables //
+
+$text-xs: 0.875em;

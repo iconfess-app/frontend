@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import confessionService from '../services/confessionService';
 import CardMyConfessions from './components/CardMyConfession';
+import NavBar from './components/NavBar';
 
 class myConfessionsPage extends Component {
   constructor(props) {
@@ -66,6 +67,7 @@ class myConfessionsPage extends Component {
       <div>
         <h1>My confessions</h1>
         {loading ? 'loading...' : this.renderMyConfessions()}
+        <NavBar />
       </div>
     );
   }

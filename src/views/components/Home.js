@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import confessionService from '../../services/confessionService';
 import CardConfession from './CardConfession';
+import NavBar from './NavBar';
 
 class Home extends Component {
   constructor(props) {
@@ -17,9 +18,9 @@ class Home extends Component {
       const allConfessions = await confessionService.getAllConfessions();
       const recentConfessions = [];
       const now = new Date();
-      allConfessions.forEach((confession) => {
+      allConfessions.forEach(confession => {
         const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
-        if (minAgo < 1140 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
+        if (minAgo < 1140 || (minAgo < 7200 && confession.isDestroyed === false)) {
           recentConfessions.push(confession);
         }
       });
@@ -56,9 +57,10 @@ class Home extends Component {
   render() {
     const { loading } = this.state;
     return (
-      <div>
+      <div className="container">
         <h1>All confessions</h1>
         {loading ? 'loading...' : this.renderConfessions()}
+        <NavBar />
       </div>
     );
   }

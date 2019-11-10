@@ -1,0 +1,45 @@
+@import '../base/colors';
+@import '../base/typography';
+
+nav {
+  height: 56px;
+  background-color: $color-dark-gray;
+  position: -webkit-sticky; /* Safari */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999999;
+  .navbar {
+    background-color: $color-first-layer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+      .current-label {
+        display: none;
+        transform: display 2s;
+      }
+      path {
+        fill: $color-light-text;
+        transition: 0.05s;
+      }
+      &:hover,
+      &.current {
+        path {
+          fill: $color-light-red;
+        }
+        .current-label {
+          display: block;
+          margin-top: 5px;
+          color: $color-light-red;
+          font-size: $text-xs;
+        }
+      }
+    }
+  }
+}
