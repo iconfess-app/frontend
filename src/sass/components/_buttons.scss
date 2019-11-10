@@ -16,8 +16,9 @@
   path {
     fill: $color-light-text;
   }
-}
-
-.add-btn.active {
-  background-color: $color-dark-gray;
+  &:hover,
+  .active {
+    fill: $color-light-text;
+    background-color: $color-dark-gray;
+  }
 }
