@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 
-// CSS FILE DONE ONLY TO TEST, STYLES MUST BE ADDED PROPERLY
+// CSS FILE WITH VERY BASIC FEATURES DONE ONLY TO TEST, STYLES MUST BE ADDED IN THE SASS FILE
 import './Home.css';
 
 class Home extends Component {
@@ -14,6 +14,7 @@ class Home extends Component {
       recentConfessions: [],
       loading: true,
       category: "Recent",
+      usesCategory: false,
     };
   }
 
@@ -45,6 +46,7 @@ class Home extends Component {
     this.setState({
       category,
       recentConfessions: [...filteredConfessions],
+      usesCategory: true,
     })
   }
 
@@ -60,6 +62,8 @@ class Home extends Component {
     });
     this.setState({
       recentConfessions,
+      usesCategory: !this.state.usesCategory,
+      category: 'Recent',
     });
   }
 
@@ -86,10 +90,10 @@ class Home extends Component {
 
   render() {
     // imported CSS should go into SASS
-    const { loading } = this.state;
+    const { loading, category, usesCategory } = this.state;
     return (
       <div>
-        <h1>Most popular categories</h1>
+        <h3>Most popular categories</h3>
         <div className="scroll">
           <ul className="hscroll">
             <li className="item"><img name="Family" onClick={this.handleCategory} src="/images/family.png" alt="family category icon"></img><p>Family</p></li>
@@ -103,10 +107,11 @@ class Home extends Component {
             <li className="item"><img name="Miscellaneous" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Misc.</p></li>
             <li className="item"><img name="Relationships" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Relationships</p></li>
             <li className="item"><img name="Studies" onClick={this.handleCategory} src="/images/misc.png" alt="misc category icon"></img><p>Studies</p></li>
-            <li className="item"><img onClick={this.handleRecent} src="/images/misc.png" alt="misc category icon"></img><p>Recent</p></li>
+            {/* <li className="item"><img onClick={this.handleRecent} src="/images/misc.png" alt="misc category icon"></img><p>Recent</p></li> */}
           </ul>
         </div>
-        <h1>{this.state.category} confessions</h1>
+        <h3>{category} confessions</h3>
+        {usesCategory ? <p onClick={this.handleRecent}>View all</p> : <></>}
         {loading ? 'loading...' : this.renderConfessions()}
       </div >
     );
