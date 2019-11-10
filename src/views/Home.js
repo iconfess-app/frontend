@@ -21,47 +21,51 @@ class Home extends Component {
   async componentDidMount() {
     try {
       const allConfessions = await confessionService.getAllConfessions();
-      const recentConfessions = [];
-      const now = new Date();
-      allConfessions.forEach((confession) => {
-        const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
-        if (minAgo < 1140 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
-          recentConfessions.push(confession);
-        }
-      });
-      this.setState({
-        allConfessions,
-        recentConfessions,
-        loading: false,
-      });
+      this.setState({ allConfessions });
+      this.filterByDate();
     } catch (error) {
       console.log(error);
     }
   }
 
-  handleCategory = (event) => {
-    const category = event.target.name;
-    const confessions = this.state.allConfessions;
-    const filteredConfessions = confessions.filter(confession => confession.category.includes(category));
-    this.setState({
-      category,
-      recentConfessions: [...filteredConfessions],
-      usesCategory: true,
-    })
-  }
-
-  handleRecent = () => {
+  filterByDate = () => {
     const { allConfessions } = this.state;
     const recentConfessions = [];
     const now = new Date();
     allConfessions.forEach((confession) => {
       const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
-      if (minAgo < 1140 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
+      if (minAgo < 1440 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
         recentConfessions.push(confession);
       }
     });
-    this.setState({
+    return this.setState({
       recentConfessions,
+      loading: false,
+    });
+  }
+
+  handleCategory = (event) => {
+    const { allConfessions } = this.state;
+    const recentConfessions = [];
+    const now = new Date();
+    allConfessions.forEach((confession) => {
+      const minAgo = (now - new Date(`${confession.created_at}`)) / 60000;
+      if (minAgo < 1440 || ((minAgo < 7200) && (confession.isDestroyed === false))) {
+        recentConfessions.push(confession);
+      }
+    });
+    const category = event.target.name;
+    const filteredConfessions = recentConfessions.filter(confession => confession.category.includes(category));
+    this.setState({
+      category,
+      recentConfessions: filteredConfessions,
+      usesCategory: true,
+    })
+  }
+
+  handleRecent = () => {
+    this.filterByDate();
+    this.setState({
       usesCategory: !this.state.usesCategory,
       category: 'Recent',
     });
@@ -80,6 +84,10 @@ class Home extends Component {
     const filteredConfessions = recentConfessions.filter(confession => {
       const { description } = confession;
       return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
+    });
+
+    filteredConfessions.sort(function (a, b) {
+      return (a.created_at < b.created_at) ? 1 : ((a.created_at > b.created_at) ? -1 : 0);
     });
 
     return filteredConfessions.map(message => {
@@ -109,6 +117,7 @@ class Home extends Component {
         <h3>Most popular categories</h3>
         <div className="scroll">
           <ul className="hscroll">
+            {/* ========== STUDIES & RELATIONSHIPS IMAGES MISSING ========= */}
             <li className="item"><img name="Family" onClick={this.handleCategory} src="/images/family.png" alt="family category icon"></img><p>Family</p></li>
             <li className="item"><img name="Self-esteem" onClick={this.handleCategory} src="/images/self-esteem.png" alt="self-esteem category icon"></img><p>Self-esteem</p></li>
             <li className="item"><img name="Addictions" onClick={this.handleCategory} src="/images/addictions.png" alt="addictions category icon"></img><p>Addictions</p></li>
