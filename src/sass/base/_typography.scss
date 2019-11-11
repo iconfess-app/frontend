@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Rubik:400,700&display=swap');
+@import '../base/colors';
 
 * {
   font-size: 16px;
@@ -18,10 +19,22 @@ h3,
 h5,
 p,
 ul,
-span {
+span, 
+label {
   font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: $color-dark-red;
+  text-decoration: underline;
 }
 
 // Variables //
 
 $text-xs: 0.875em;
+
+.xsmall-text {
+  font-size: $text-xs;
+}
+
+

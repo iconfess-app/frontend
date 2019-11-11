@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
-import NavBar from './components/NavBar.js';
+import NavBar from './components/NavBar';
 
 class Confessional extends Component {
   constructor() {
@@ -44,9 +44,6 @@ class Confessional extends Component {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-    // this.setState({
-    //   [name]: value,
-    // });
 
     // isSensitivevalidation
     const { description } = this.state;
@@ -59,38 +56,6 @@ class Confessional extends Component {
       isTooLong: description.length > 140 ? true : false,
       isTooShort: description.length < 10 ? true : false,
     });
-
-    // if (sensitiveValidation === true) {
-    //   this.setState({
-    //     isSensitive: true,
-    //   });
-    // } else {
-    //   this.setState({
-    //     isSensitive: false,
-    //   });
-    // }
-
-    // isTooLong validation
-    // if (description.length > 140) {
-    //   this.setState({
-    //     isTooLong: true,
-    //   });
-    // } else {
-    //   this.setState({
-    //     isTooLong: false,
-    //   });
-    // }
-
-    // isTooShort validation
-    // if (description.length < 10) {
-    //   this.setState({
-    //     isTooShort: true,
-    //   });
-    // } else {
-    //   this.setState({
-    //     isTooShort: false,
-    //   });
-    // }
   }
 
   handleSubmit(event) {
@@ -114,51 +79,54 @@ class Confessional extends Component {
     // };
     return (
       <div>
-        <h1>Confessional</h1>
-        <form className="form-group" onSubmit={this.handleSubmit}>
-          <label>What do you wish to confess?</label>
-          <textarea
-            type="text"
-            name="description"
-            onChange={this.handleInput}
-            placeholder="I confess..."
-            value={description}
-            rows="10"
-            cols="30"
-          />
-          <p>Máx.3000 characters</p>
-          {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
-          {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
-          {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
-          <label>Choose a category</label>
-          <Select
-            closeMenuOnSelect={false}
-            isMulti
-            placeholder={'Choose one or more categories'}
-            autoFocus={true}
-            onChange={this.handleSelect}
-            onMouseOver={this.handleMouseDown}
-            options={[
-              { value: 'Sex', label: 'Sex' },
-              { value: 'Family', label: 'Family' },
-              { value: 'Work', label: 'Work' },
-              { value: 'Addictions', label: 'Addictions' },
-              { value: 'Friends', label: 'Friends' },
-              { value: 'Fantasies', label: 'Fantasies' },
-              { value: 'Self-esteem', label: 'Self-esteem' },
-              { value: 'Health', label: 'Health' },
-              { value: 'Studies', label: 'Studies' },
-              { value: 'Miscellaneous', label: 'Miscellaneous' },
-              { value: 'Relationships', label: 'Relationships' },
-            ]}
-          />
-          {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
-          <label>
-            <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
-            This secret will be destroyed after 24h.
+        <div className="container">
+          <h2>Confessional</h2>
+          <p className="xsmall-text">Suggested: <a className="xsmall-text" href="#">User conditions about confessions content</a></p>
+          <form className="form-group" onSubmit={this.handleSubmit}>
+            <label>What do you wish to confess?</label>
+            <textarea
+              type="text"
+              name="description"
+              onChange={this.handleInput}
+              placeholder="I confess..."
+              value={description}
+              rows="10"
+              cols="30"
+            />
+            <p className="xsmall-text">Max. 140 characters</p>
+            {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
+            {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
+            {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
+            <label>Choose a category</label>
+            <Select
+              closeMenuOnSelect={false}
+              isMulti
+              placeholder={'Choose one or more categories'}
+              autoFocus={true}
+              onChange={this.handleSelect}
+              onMouseOver={this.handleMouseDown}
+              options={[
+                { value: 'Sex', label: 'Sex' },
+                { value: 'Family', label: 'Family' },
+                { value: 'Work', label: 'Work' },
+                { value: 'Addictions', label: 'Addictions' },
+                { value: 'Friends', label: 'Friends' },
+                { value: 'Fantasies', label: 'Fantasies' },
+                { value: 'Self-esteem', label: 'Self-esteem' },
+                { value: 'Health', label: 'Health' },
+                { value: 'Studies', label: 'Studies' },
+                { value: 'Miscellaneous', label: 'Miscellaneous' },
+                { value: 'Relationships', label: 'Relationships' },
+              ]}
+            />
+            {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
+            <label>
+              <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
+              This secret will be destroyed after 24h.
           </label>
-          <button disabled={!validConfession}>Submit</button>
-        </form>
+            <button disabled={!validConfession}>Submit</button>
+          </form>
+        </div>
         <NavBar />
       </div>
     );
