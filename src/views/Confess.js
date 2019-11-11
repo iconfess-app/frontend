@@ -102,67 +102,68 @@ class Confessional extends Component {
         submitted: true,
       });
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
+}
 
-  render() {
-    const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
-    const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
-    // const errorStyle = {
-    //   color: 'red',
-    // };
-    return (
-      <div>
-        <h1>Confessional</h1>
-        <form className="form-group" onSubmit={this.handleSubmit}>
-          <label>What do you wish to confess?</label>
-          <textarea
-            type="text"
-            name="description"
-            onChange={this.handleInput}
-            placeholder="I confess..."
-            value={description}
-            rows="10"
-            cols="30"
-          />
-          <p>Máx.3000 characters</p>
-          {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
-          {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
-          {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
-          <label>Choose a category</label>
-          <Select
-            closeMenuOnSelect={false}
-            isMulti
-            placeholder={'Choose one or more categories'}
-            autoFocus={true}
-            onChange={this.handleSelect}
-            onMouseOver={this.handleMouseDown}
-            options={[
-              { value: 'Sex', label: 'Sex' },
-              { value: 'Family', label: 'Family' },
-              { value: 'Work', label: 'Work' },
-              { value: 'Addictions', label: 'Addictions' },
-              { value: 'Friends', label: 'Friends' },
-              { value: 'Fantasies', label: 'Fantasies' },
-              { value: 'Self-esteem', label: 'Self-esteem' },
-              { value: 'Health', label: 'Health' },
-              { value: 'Studies', label: 'Studies' },
-              { value: 'Miscellaneous', label: 'Miscellaneous' },
-              { value: 'Relationships', label: 'Relationships' },
-            ]}
-          />
-          {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
-          <label>
-            <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
-            This secret will be destroyed after 24h.
+render() {
+  const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
+  const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
+  // const errorStyle = {
+  //   color: 'red',
+  // };
+  return (
+    <div>
+      <h1>Confessional</h1>
+      <form className="form-group" onSubmit={this.handleSubmit}>
+        <label>What do you wish to confess?</label>
+        <textarea
+          type="text"
+          name="description"
+          onChange={this.handleInput}
+          placeholder="I confess..."
+          value={description}
+          rows="10"
+          cols="30"
+        />
+        <p>Máx.3000 characters</p>
+        {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
+        {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
+        {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
+        <label>Choose a category</label>
+        <Select
+          closeMenuOnSelect={false}
+          isMulti
+          placeholder={'Choose one or more categories'}
+          autoFocus={true}
+          onChange={this.handleSelect}
+          onMouseOver={this.handleMouseDown}
+          options={[
+            { value: 'Sex', label: 'Sex' },
+            { value: 'Family', label: 'Family' },
+            { value: 'Work', label: 'Work' },
+            { value: 'Addictions', label: 'Addictions' },
+            { value: 'Friends', label: 'Friends' },
+            { value: 'Fantasies', label: 'Fantasies' },
+            { value: 'Self-esteem', label: 'Self-esteem' },
+            { value: 'Health', label: 'Health' },
+            { value: 'Studies', label: 'Studies' },
+            { value: 'Miscellaneous', label: 'Miscellaneous' },
+            { value: 'Relationships', label: 'Relationships' },
+          ]}
+        />
+        {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
+        <label>
+          <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
+          This secret will be destroyed after 24h.
           </label>
-          <button disabled={!validConfession}>Submit</button>
-        </form>
-        <NavBar />
-      </div>
-    );
-  }
+        <button disabled={!validConfession}>Submit</button>
+      </form>
+      <NavBar />
+    </div>
+  );
+}
 }
 
 export default Confessional;

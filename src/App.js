@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import ReactNotification from 'react-notifications-component';
 import './sass/main.scss';
 
 import PrivateView from './views/PrivateView';
@@ -23,6 +24,7 @@ class App extends Component {
       <>
         <button onClick={handleLogout}>logout</button>
         <Router>
+          <ReactNotification />
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />

@@ -17,14 +17,14 @@ class Login extends Component {
     const { email, password } = this.state;
     this.props.handleLogin({
       email,
-      password
+      password,
     })
   }
 
   render() {
     const { email, password } = this.state;
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form onSubmit={this.handleFormSubmit} >
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={this.handleChange} />
         <label>Password:</label>
