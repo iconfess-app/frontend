@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
-import NavBar from './components/NavBar.js';
+import NavBar from './components/NavBar';
 
 class Confessional extends Component {
   constructor() {

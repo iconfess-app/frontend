@@ -4,6 +4,7 @@ import Popup from 'reactjs-popup';
 import ChangePassword from '../../components/ChangePassword';
 import { withAuth } from '../../Context/AuthContext';
 import NavBar from '../components/NavBar';
+import avatars from '../../data/avatars.json';
 
 class EditProfile extends Component {
   state = {
@@ -54,6 +55,7 @@ class EditProfile extends Component {
 
   render() {
     const { username, allowsContact, allowsLocation, lightMode } = this.state;
+    console.log(avatars);
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
