@@ -1,0 +1,88 @@
+@import '../base/colors';
+@import '../base/typography';
+
+.card {
+  background-color: $color-first-layer;
+  border-radius: 10px;
+  margin: 2em 0;
+  padding: 1em;
+  .card-header {
+    display: flex;
+    margin-bottom: 1em;
+    .avatar {
+      img {
+        border-radius: 100%;
+        margin-right: 8px;
+      }
+    }
+    .username {
+      font-weight: bold;
+    }
+    .time {
+      color: $color-medium-text;
+      display: flex;
+      span {
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        path {
+          fill: $color-medium-text;
+        }
+      }
+    }
+  }
+  .categories {
+    margin-top: 1.5em;
+    ul {
+      display: flex;
+      flex-direction: row;
+      li {
+        margin-right: 8px;
+        color: $color-medium-text;
+      }
+    }
+  }
+  .card-footer {
+    display: flex;
+    margin-top: 1.5em;
+    justify-content: space-between;
+    .likes {
+      color: $color-light-red;
+      button {
+        margin-right: 5px;
+        outline: none;
+        transform: scale(1, 1);
+        path {
+          transition: all 0.3s ease 0s;
+        }
+        &:focus {
+          outline: none;
+          border: none;
+        }
+        &.full {
+          path {
+            fill: $color-light-red;
+            transition: all 0.5s;
+          }
+        }
+      }
+    }
+    .chat {
+      svg {
+        path {
+          fill: $color-white-text;
+        }
+      }
+    }
+    .chat-none {
+      svg {
+        path {
+          fill: $color-disabled-text;
+        }
+      }
+    }
+    .report {
+      margin-left: 8px;
+    }
+  }
+}
