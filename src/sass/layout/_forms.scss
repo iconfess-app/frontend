@@ -1,0 +1,75 @@
+@import '../base/colors';
+@import '../base/typography';
+
+input[type='search'] {
+  width: 100%;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border: 0 none;
+  padding: 12px 40px;
+  height: 40px;
+  margin-top: 1em;
+  outline: none;
+  color: $color-light-text;
+  background: url(/images/icon-search.svg) no-repeat 12px 10px $color-first-layer;
+  // -webkit-transition: all 0.7s ease 0s;
+  // -moz-transition: all 0.7s ease 0s;
+  // -o-transition: all 0.7s ease 0s;
+  // transition: all 0.7s ease 0s;
+  &:focus {
+    color: $color-white-text;
+  }
+  &::placeholder {
+    color: $color-medium-text;
+  }
+  &::-webkit-search-cancel-button {
+    position: relative;
+    right: 20px;
+    -webkit-appearance: none;
+  }
+}
+
+.form {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $color-dark-gray;
+  min-height: 100vh;
+  height: 100%;
+  margin-bottom: 120px;
+}
+
+label {
+  color: $color-light-gray;
+  margin: 5px 0 10px 0;
+}
+
+textarea {
+  width: 314px;
+  height: 200px;
+  background-color: $color-text-area;
+  border: $color-text-area;
+  border-radius: 10px;
+  padding: 17px 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.xsmall-text {
+  color: $color-medium-gray;
+}
+
+.form li img {
+  opacity: 0.6;
+}
+
+.activeStyle {
+  img {
+    opacity: 1;
+  }
+  p {
+    color: $color-dark-red;
+  }
+}

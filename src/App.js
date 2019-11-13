@@ -1,6 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ReactNotification from 'react-notifications-component';
 import './sass/main.scss';
 
 import PrivateView from './views/PrivateView';
@@ -22,9 +22,8 @@ class App extends Component {
     const { handleLogout } = this.props;
     return (
       <>
-        <button onClick={handleLogout}>logout</button>
         <Router>
-          <ReactNotification />
+          <button onClick={handleLogout}>Log out</button>
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />

@@ -25,7 +25,6 @@ class Login extends Component {
     const { email, password } = this.state;
     return (
       <form onSubmit={this.handleFormSubmit} >
-        <div className="notification error">Something went wrong!</div>
         <label>Email:</label>
         <input type="email" name="email" value={email} onChange={this.handleChange} />
         <label>Password:</label>

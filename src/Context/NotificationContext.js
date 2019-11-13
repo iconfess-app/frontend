@@ -5,7 +5,27 @@ const NotificationContext = createContext();
 
 const NotificationProvider = NotificationContext.Provider;
 
-const FlashConsumer = NotificationContext.Consumer;
+const NotificationConsumer = NotificationContext.Consumer;
+
+export const withFlash = (Comp) => {
+  return class WithFlash extends Component {
+
+    render() {
+      return (
+        <NotificationConsumer>
+          {
+            ({
+              message,
+              type,
+              handleShow,
+              handleHide
+            }) => <Comp {...this.props} message={message} type={type} handleShow={handleShow} handleHide={handleHide} />
+          }
+        </NotificationConsumer>
+      )
+    }
+  }
+}
 
 export default class FlashProvider extends Component {
   state = {
@@ -13,38 +33,32 @@ export default class FlashProvider extends Component {
     type: '',
   }
 
-  handleFlash = (message) => { }
+  handleFlash = (message, type) => {
+    this.setState({
+      message,
+      type,
+    })
+  }
 
-  handleHide = () => { }
+  handleHide = () => {
+    setTimeout(() => {
+      console.log('Setting time out');
+    }, 3000);
+  }
 
   render() {
+    const { message, type } = this.state;
+    const { children } = this.props;
     return (
-      <NotificationProvider value={this.state}>
-        <div className="flash">
-          <div className={`${this.state.type}`}>
-            <p>{this.state.message}</p>
-            {this.props.children}
-          </div>
-        </div>
+      <NotificationProvider value={{
+        message,
+        type,
+        handleFlash: this.handleFlash,
+        handlHide: this.handleHide,
+      }}>
+        {children}
       </NotificationProvider>
     )
   }
 }
 
-export const withFlash = (Comp) => {
-  return class WithFlash extends Component {
-
-    render() {
-      return (
-        <FlashConsumer>
-          {
-            ({
-              handleShow,
-              handleHide
-            }) => <Comp {...this.props} handleShow={handleShow} handleHide={handleHide} />
-          }
-        </FlashConsumer>
-      )
-    }
-  }
-}

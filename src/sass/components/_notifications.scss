@@ -2,13 +2,45 @@
 @import '../base/typography';
 
 .notification {
-  padding: 10px 20px;
-  margin: 0 5px 0 10px;
+  padding: 10px 40px;
+  margin: 5vw 5vh 0 5vw;
   border-radius:  30px;
-  position: sticky;
+  position: fixed;
   width: auto;
   color: black;
+  z-index: 1;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
 }
+
+.slide-in {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+}
+
+.slide-out {
+    animation: slide-out 2s forwards;
+    -webkit-animation: slide-out 2s forwards;
+}
+    
+@keyframes slide-in {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+    
+@keyframes slide-out {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slide-out {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+
 .error {
   background-color: $color-light-red;
 }
