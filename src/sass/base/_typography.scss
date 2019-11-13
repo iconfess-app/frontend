@@ -20,7 +20,8 @@ h5,
 p,
 ul,
 span, 
-label {
+label,
+button {
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -28,6 +29,7 @@ a {
   color: $color-dark-red;
   text-decoration: underline;
 }
+
 
 // Variables //
 

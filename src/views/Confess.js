@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import Select from 'react-select';
+import { Link } from 'react-router-dom';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
+// CSS PARA LLEVAR A SASS
+import './Home.css';
 
 class Confessional extends Component {
   constructor() {
@@ -14,42 +16,37 @@ class Confessional extends Component {
       isDestroyed: true,
       submitted: false,
       isSensitive: false,
-      isUncategorized: true,
+      isUncategorized: false,
       isTooLong: false,
     };
-    this.handleInput = this.handleInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSelect = category => {
-    const categoryValue = category.map(category => category.value);
-    this.setState({ category: [...categoryValue] });
-
-    // isCategorized validation
-    console.log(category.length);
-    if (category.length > 0) {
-      console.log('Ok! categories on');
-      this.setState({
-        isUncategorized: false,
-      });
+  handleCategory = (event) => {
+    const newCategory = event.target.name;
+    const category = [...this.state.category];
+    if (category.includes(newCategory)) {
+      // Take out item
+      const index = category.indexOf(event.target.name);
+      if (index !== -1) {
+        category.splice(index, 1);
+        this.setState({
+          category: [...category],
+        });
+      }
     } else {
-      console.log('No categories???');
       this.setState({
-        isUncategorized: true,
+        category: [newCategory, ...category],
       });
     }
-  };
+  }
 
-  handleInput(event) {
+  handleInput = (event) => {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-
-    // isSensitivevalidation
     const { description } = this.state;
     const keyword = description.toLowerCase();
     const sensitiveValidation = sensitiveContent.some(substring => keyword.includes(substring));
-
     this.setState({
       [name]: value,
       isSensitive: sensitiveValidation,
@@ -58,14 +55,21 @@ class Confessional extends Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { category } = this.state;
     try {
-      event.preventDefault();
-      const newConfession = confessionService.postNewConfession(this.state);
-      console.log(newConfession);
-      this.setState({
-        submitted: true,
-      });
+      if (category.length === 0) {
+        this.setState({
+          isUncategorized: true,
+        });
+      } else {
+        const newConfession = confessionService.postNewConfession(this.state);
+        console.log(newConfession);
+        this.setState({
+          submitted: true,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -74,61 +78,51 @@ class Confessional extends Component {
   render() {
     const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
-    // const errorStyle = {
-    //   color: 'red',
-    // };
+    const categories = ['Family', 'Addictions', 'Fantasies', 'Friends', 'Health', 'Misc.', 'Self-esteem', 'Sex', 'Work'];
+
     return (
-      <div>
-        <div className="container">
-          <h2>Confessional</h2>
-          <p className="xsmall-text">Suggested: <a className="xsmall-text" href="#">User conditions about confessions content</a></p>
-          <form className="form-group" onSubmit={this.handleSubmit}>
-            <label>What do you wish to confess?</label>
-            <textarea
-              type="text"
-              name="description"
-              onChange={this.handleInput}
-              placeholder="I confess..."
-              value={description}
-              rows="10"
-              cols="30"
-            />
-            <p className="xsmall-text">Max. 140 characters</p>
-            {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
-            {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
-            {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
-            <label>Choose a category</label>
-            <Select
-              closeMenuOnSelect={false}
-              isMulti
-              placeholder={'Choose one or more categories'}
-              autoFocus={true}
-              onChange={this.handleSelect}
-              onMouseOver={this.handleMouseDown}
-              options={[
-                { value: 'Sex', label: 'Sex' },
-                { value: 'Family', label: 'Family' },
-                { value: 'Work', label: 'Work' },
-                { value: 'Addictions', label: 'Addictions' },
-                { value: 'Friends', label: 'Friends' },
-                { value: 'Fantasies', label: 'Fantasies' },
-                { value: 'Self-esteem', label: 'Self-esteem' },
-                { value: 'Health', label: 'Health' },
-                { value: 'Studies', label: 'Studies' },
-                { value: 'Miscellaneous', label: 'Miscellaneous' },
-                { value: 'Relationships', label: 'Relationships' },
-              ]}
-            />
-            {isUncategorized && <p style={{ color: 'red' }}>You must choose a category!!</p>}
-            <label>
-              <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
-              This secret will be destroyed after 24h.
+      <div className="form">
+        {/* <div className="container"> */}
+        {/* <div className="content"> */}
+        <h2>Confessional</h2>
+        <p className="xsmall-text">Suggested: User conditions about confessions content</p>
+        <form className="form-group" onSubmit={this.handleSubmit}>
+          <label>What do you wish to confess?</label>
+          <textarea
+            type="text"
+            name="description"
+            onChange={this.handleInput}
+            placeholder="I confess..."
+            value={description}
+            rows="10"
+            cols="30"
+          />
+          <p className="xsmall-text">Max. 140 characters</p>
+          {isSensitive && <p style={{ color: 'red' }}>Keep it friendly, this is forbidden content!</p>}
+          {isTooLong && <p style={{ color: 'red' }}>This confession is too long!!</p>}
+          {isTooShort && <p style={{ color: 'red' }}>This confession is too short!!</p>}
+          <label>Choose a category</label>
+
+          <div className="scroll">
+            <ul className="hscroll">
+              {/* ==== STUDIES & RELATIONSHIPS IMAGES MISSING, just add them to the category array and to the pics folder ====== */}
+              {categories.map(category => {
+                return <li key={category} className="item" name={category} onClick={this.handleCategory}><img src={`/images/${category}.png`} alt="category icon" /><p>{category}</p></li>
+              })}
+            </ul>
+          </div>
+          {isUncategorized && <p style={{ color: 'red' }}>Pick up at least one category</p>}
+          <p>{this.state.category}</p>
+          <label>
+            <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
+            This secret will be destroyed after 24h.
           </label>
-            <button disabled={!validConfession}>Submit</button>
-          </form>
-        </div>
+          <button className="btn btn-primary" disabled={!validConfession}>I want to confess it</button>
+          <button className="btn btn-outlined"><Link to="/">I regretted</Link></button>
+        </form>
+
         <NavBar />
-      </div>
+      </div >
     );
   }
 }
