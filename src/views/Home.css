@@ -1,19 +1,13 @@
-
-.scroll {
+/* .scroll {
   overflow: auto;
   white-space: nowrap;
   overflow-x: scroll;
-  scroll-snap-type: x proximity; 
-}
+  scroll-snap-type: x proximity;
+} */
 
-.item {
+/* .item {
   height: auto;
   display: inline-block;
   text-align: center;
   padding: 5%;
   text-decoration: none;
-}
-
-.item img {
-  width: 100px;
-}
