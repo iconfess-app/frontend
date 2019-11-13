@@ -1,4 +1,8 @@
+
+/* This gave conflict, I don't which font-weight is the good one so I left both */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Rubik:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Rubik:400,700&display=swap');
+
 @import '../base/colors';
 
 * {
@@ -20,9 +24,18 @@ h5,
 p,
 ul,
 span,
-input {
+input
+span, 
+label,
+button {
   font-family: 'Open Sans', sans-serif;
 }
+
+a {
+  color: $color-dark-red;
+  text-decoration: underline;
+}
+
 
 // Variables //
 

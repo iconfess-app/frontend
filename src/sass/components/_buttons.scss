@@ -22,3 +22,27 @@
     background-color: $color-dark-gray;
   }
 }
+
+.btn {
+  padding: 10px 16px;
+  margin: 10px 0;
+  border-radius: 30px;
+  display: block;
+  margin: 20px auto;
+  width: 275px;
+  height: 57px;
+  a {
+    text-decoration: none;
+  }
+}
+
+.btn-primary {
+  background-color: $color-light-red;
+  color: $color-white-text;
+}
+
+.btn-outlined {
+  background-color: $color-dark-gray;
+  color: $color-light-red;
+  border: 1px solid $color-light-red;
+}
