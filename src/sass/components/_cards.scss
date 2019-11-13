@@ -48,12 +48,15 @@
     justify-content: space-between;
     .likes {
       color: $color-light-red;
+      display: flex;
       button {
         margin-right: 5px;
         outline: none;
-        transform: scale(1, 1);
+        // transform: scale(1, 1);
+        // transition: all 2s ease-out;
         path {
-          transition: all 0.3s ease 0s;
+          fill: none;
+          transition: fill 2s ease-out;
         }
         &:focus {
           outline: none;
@@ -62,7 +65,6 @@
         &.full {
           path {
             fill: $color-light-red;
-            transition: all 0.5s;
           }
         }
       }
@@ -84,5 +86,22 @@
     .report {
       margin-left: 8px;
     }
+  }
+}
+
+// Heart likes
+.icon-like-wrapper {
+  display: inline-block;
+  padding: 1px 5px;
+}
+
+.icon-like {
+  fill: transparent;
+  transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
+
+  &--active {
+    fill: $color-light-red;
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
   }
 }

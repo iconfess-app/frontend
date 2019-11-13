@@ -21,7 +21,6 @@ class App extends Component {
     const { handleLogout } = this.props;
     return (
       <>
-        <button onClick={handleLogout}>logout</button>
         <Router>
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />

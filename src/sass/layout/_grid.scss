@@ -1,8 +1,16 @@
 @import '../base/colors';
 
+.container {
+  min-width: 100%;
+  margin-bottom: 80px;
+}
+
 .content {
   padding: 1em;
-  margin-bottom: 80px;
+}
+
+.mt-2 {
+  margin-top: 2em;
 }
 
 @media only screen and (min-width: 600px) {
