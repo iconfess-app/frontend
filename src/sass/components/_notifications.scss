@@ -1,0 +1,22 @@
+@import '../base/colors';
+@import '../base/typography';
+
+.notification {
+  padding: 10px 20px;
+  margin: 0 5px 0 10px;
+  border-radius:  30px;
+  position: sticky;
+  width: auto;
+  color: black;
+}
+.error {
+  background-color: $color-light-red;
+}
+.success {
+  background-color: $color-dark-purple;
+}
+.regular {
+  background-color: $color-medium-gray;
+}
+
+
