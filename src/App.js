@@ -19,10 +19,9 @@ import Information from './views/Information';
 
 class App extends Component {
   render() {
-    const { handleLogout } = this.props;
+    // const { handleLogout } = this.props;
     return (
       <>
-        <button onClick={handleLogout}>logout</button>
         <Router>
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
