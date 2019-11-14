@@ -15,10 +15,11 @@ import AnonRoute from './components/AnonRoute';
 import EditProfile from './views/auth/EditProfile';
 import myConfessionsPage from './views/MyConfessions';
 import Confessional from './views/Confess';
+import Information from './views/Information';
 
 class App extends Component {
   render() {
-    const { handleLogout } = this.props;
+    // const { handleLogout } = this.props;
     return (
       <>
         <Router>
@@ -30,6 +31,7 @@ class App extends Component {
           <PrivateRoute exact path="/changepw" component={ChangePassword} />
           <Route exact path="/myconfessions" component={myConfessionsPage} />
           <Route exact path="/confess" component={Confessional} />
+          <Route exact path="/privacy-policy" component={Information} />
         </Router>
       </>
     );

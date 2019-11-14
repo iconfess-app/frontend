@@ -85,7 +85,7 @@ class Home extends Component {
       return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
     });
 
-    filteredConfessions.sort(function(a, b) {
+    filteredConfessions.sort(function (a, b) {
       return a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : 0;
     });
 
