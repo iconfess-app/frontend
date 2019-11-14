@@ -103,7 +103,6 @@ class CardConfession extends Component {
         </div>
         <div className="card-footer">
           <div className="likes">
-            {/* <button onClick={this.handleLike} className={liked ? 'full' : 'none'}> */}
             <div className="icon-like-wrapper">
               <svg
                 onClick={this.handleLike}
@@ -121,7 +120,6 @@ class CardConfession extends Component {
                 />
               </svg>
             </div>
-            {/* </button> */}
 
             {likes.length === 1 ? <span>{likes.length} like</span> : <span>{likes.length} likes</span>}
           </div>

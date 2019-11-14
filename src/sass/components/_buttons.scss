@@ -29,10 +29,15 @@
   border-radius: 30px;
   display: block;
   margin: 20px auto;
-  width: 275px;
-  height: 57px;
+  width: 100%;
+  // width: 275px;
+  height: 56px;
+  font-size: 1.2em;
   a {
     text-decoration: none;
+  }
+  &:focus {
+    outline: none;
   }
 }
 
