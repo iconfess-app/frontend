@@ -5,10 +5,6 @@ import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
 
-// CSS PARA LLEVAR A SASS
-import './Home.css';
-
-
 class Confessional extends Component {
   constructor() {
     super();
