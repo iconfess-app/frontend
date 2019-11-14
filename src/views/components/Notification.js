@@ -1,7 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Flash(props) {
-  return <div className={`notification slide-in ${props.type}`}>{props.message}</div>
+class Flash extends Component {
+
+  componentDidMount = () => {
+    setTimeout(() => {
+      document.getElementsByClassName('notification').
+       }, 3000);
+  }
+
+  render() {
+    return (
+      <div className="notification">{this.props.children}</div>
+    )
+  }
 }
 
 export default Flash;

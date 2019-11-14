@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import React, { Component, createContext } from 'react';
+import Flash from '../views/components/Notification';
 
 const NotificationContext = createContext();
 
@@ -56,6 +57,7 @@ export default class FlashProvider extends Component {
         handleFlash: this.handleFlash,
         handlHide: this.handleHide,
       }}>
+        <Flash className={type}>{message}</Flash>
         {children}
       </NotificationProvider>
     )
