@@ -1,6 +1,4 @@
-
 /* This gave conflict, I don't which font-weight is the good one so I left both */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Rubik:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Rubik:400,700&display=swap');
 
 @import '../base/colors';
@@ -14,18 +12,18 @@
 }
 
 h1,
-h2,
-h4 {
+h2 {
   font-family: 'Rubik', sans-serif;
 }
 
 h3,
 h5,
+h4,
 p,
 ul,
 span,
-input
-span, 
+input,
+span,
 label,
 button {
   font-family: 'Open Sans', sans-serif;
@@ -35,7 +33,6 @@ a {
   color: $color-dark-red;
   text-decoration: underline;
 }
-
 
 // Variables //
 
@@ -48,6 +45,20 @@ input {
   color: $color-white-text;
   font-weight: 300;
   line-height: 1.6em;
+}
+
+h3 {
+  color: $color-medium-text;
+  font-size: 1.471em;
+  font-weight: 300;
+  text-align: center;
+}
+
+h4 {
+  color: $color-medium-text;
+  font-size: 1.3em;
+  line-height: 1.4em;
+  margin-bottom: 2em;
 }
 
 h5 {

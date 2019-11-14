@@ -49,7 +49,7 @@ class NavBar extends Component {
               />
               <path d="M18 10H6V12H18V10Z" fill="white" />
             </svg>
-            <span className="current-label">Edit</span>
+            <span className="current-label">Archive</span>
           </NavLink>
           <NavLink to="/edit" exact activeClassName="current">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

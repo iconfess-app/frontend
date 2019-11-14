@@ -5,9 +5,8 @@ import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
 
-// CSS PARA LLEVAR A SASS
-import './Home.css';
-
+// // CSS PARA LLEVAR A SASS
+// import './Home.css';
 
 class Confessional extends Component {
   constructor() {
@@ -23,7 +22,7 @@ class Confessional extends Component {
     };
   }
 
-  handleCategory = (event) => {
+  handleCategory = event => {
     const newCategory = event.target.name;
     const category = [...this.state.category];
     if (category.includes(newCategory)) {
@@ -40,9 +39,9 @@ class Confessional extends Component {
         category: [newCategory, ...category],
       });
     }
-  }
+  };
 
-  handleInput = (event) => {
+  handleInput = event => {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
@@ -55,9 +54,9 @@ class Confessional extends Component {
       isTooLong: description.length > 140 ? true : false,
       isTooShort: description.length < 10 ? true : false,
     });
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     const { category } = this.state;
     try {
@@ -75,12 +74,22 @@ class Confessional extends Component {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   render() {
     const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
-    const categories = ['Family', 'Addictions', 'Fantasies', 'Friends', 'Health', 'Misc.', 'Self-esteem', 'Sex', 'Work'];
+    const categories = [
+      'Family',
+      'Addictions',
+      'Fantasies',
+      'Friends',
+      'Health',
+      'Misc.',
+      'Self-esteem',
+      'Sex',
+      'Work',
+    ];
 
     return (
       <div className="form">
@@ -109,7 +118,17 @@ class Confessional extends Component {
             <ul className="hscroll">
               {/* ==== STUDIES & RELATIONSHIPS IMAGES MISSING, just add them to the category array and to the pics folder ====== */}
               {categories.map(category => {
-                return <li key={category} className="item" name={category} onClick={this.handleCategory}><img src={`/images/${category}.png`} alt="category icon" /><p>{category}</p></li>
+                return (
+                  <li key={category} className="item">
+                    <img
+                      src={`/images/${category}.png`}
+                      alt="category icon"
+                      name={category}
+                      onClick={this.handleCategory}
+                    />
+                    <p>{category}</p>
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -119,12 +138,16 @@ class Confessional extends Component {
             <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
             This secret will be destroyed after 24h.
           </label>
-          <button className="btn btn-primary" disabled={!validConfession}>I want to confess it</button>
-          <button className="btn btn-outlined"><Link to="/">I regretted</Link></button>
+          <button className="btn btn-primary" disabled={!validConfession}>
+            I want to confess it
+          </button>
+          <button className="btn btn-outlined">
+            <Link to="/">I regretted</Link>
+          </button>
         </form>
 
         <NavBar />
-      </div >
+      </div>
     );
   }
 }

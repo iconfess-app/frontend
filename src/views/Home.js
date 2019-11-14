@@ -4,9 +4,6 @@ import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
 
-// CSS FILE WITH VERY BASIC FEATURES DONE ONLY TO TEST, STYLES MUST BE ADDED IN THE SASS FILE
-import './Home.css';
-
 class Home extends Component {
   constructor(props) {
     super(props);
