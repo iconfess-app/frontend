@@ -30,8 +30,8 @@ button {
 }
 
 a {
-  color: $color-dark-red;
-  text-decoration: underline;
+  color: $color-light-red;
+  // text-decoration: underline;
 }
 
 // Variables //
@@ -45,6 +45,13 @@ input {
   color: $color-white-text;
   font-weight: 300;
   line-height: 1.6em;
+}
+
+h2 {
+  color: $color-light-red;
+  font-size: 1.616em;
+  text-align: center;
+  line-height: 1.3em;
 }
 
 h3 {
