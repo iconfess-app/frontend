@@ -207,7 +207,10 @@ class Login extends Component {
             </button>
             <div className="group-form__footer">
               <p>
-                Don’t have an account? <a href="/signup">Sign Up</a>
+                Don’t have an account?
+                <a href="/signup" className="red-link">
+                  Sign Up
+                </a>
               </p>
             </div>
           </form>

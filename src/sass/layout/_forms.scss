@@ -24,7 +24,7 @@
     &[type='password'] {
       font-family: large Verdana, sans-serif;
       letter-spacing: 1px;
-      font-size: 1.4em;
+      font-size: 1.2em;
     }
   }
   &__toggle-password {
@@ -39,6 +39,7 @@
     position: relative;
     padding-left: 24px;
     cursor: pointer;
+    line-height: 1.4em;
     input {
       position: absolute;
       opacity: 0;

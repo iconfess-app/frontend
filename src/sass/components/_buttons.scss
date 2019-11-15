@@ -39,6 +39,10 @@
   &:focus {
     outline: none;
   }
+  &:disabled {
+    background-color: $color-first-layer;
+    color: $color-third-layer;
+  }
 }
 
 .btn-primary {

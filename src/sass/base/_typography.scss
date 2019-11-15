@@ -29,9 +29,12 @@ button {
   font-family: 'Open Sans', sans-serif;
 }
 
-a {
+.red-link {
   color: $color-light-red;
-  // text-decoration: underline;
+}
+
+.white-link {
+  border-bottom: 1px solid $color-white-text;
 }
 
 // Variables //
