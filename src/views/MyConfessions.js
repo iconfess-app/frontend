@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardMyConfessions from './components/CardMyConfession';
 import NavBar from './components/NavBar';
@@ -21,7 +22,7 @@ class myConfessionsPage extends Component {
         loading: false,
       });
     } catch (error) {
-      console.log(error);
+      this.props.handleFlash('Check your internet connection', 'error');
     }
   }
 
@@ -32,6 +33,7 @@ class myConfessionsPage extends Component {
     confessionService.deleteConfession(id).then(() => {
       this.updateConfessionList();
     });
+    this.props.handleFlash('Confession deleted', 'success');
   };
 
   async updateConfessionList() {
@@ -73,4 +75,4 @@ class myConfessionsPage extends Component {
   }
 }
 
-export default myConfessionsPage;
+export default withFlash(myConfessionsPage);

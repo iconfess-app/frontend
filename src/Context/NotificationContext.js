@@ -53,11 +53,13 @@ export default class FlashProvider extends Component {
         notifications,
         handleFlash: this.handleFlash,
       }}>
-        {notifications[0].message !== '' &&
-          notifications.map((flash, index) => {
-            return <Flash key={index} message={flash.message} type={flash.type} />
-          })
-        }
+        <div className="notification_container">
+          {notifications[0].message !== '' &&
+            notifications.map((flash, index) => {
+              return <Flash key={index} message={flash.message} type={flash.type} />
+            })
+          }
+        </div>
         {children}
       </NotificationProvider>
     )

@@ -1,9 +1,16 @@
 @import '../base/colors';
 @import '../base/typography';
 
+// .notification-container {
+//   position: fixed;
+//   z-index: 999 !important;
+//   margin: 6vw 5vh 0 5vw;
+//   width: auto;
+// }
+
 .notification {
   padding: 10px 25px 10px 40px;
-  margin: 10vw 5vh 0 5vw;
+  margin: 6vw 5vh 0 5vw;
   border-radius:  30px;
   position: fixed;
   width: auto;
@@ -19,6 +26,12 @@
 
 .notification:first-child {
   display: none;
+}
+
+.close_notification {
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0 10px;
 }
 
 .slide-in {
@@ -57,12 +70,6 @@
 }
 .regular {
   background-color: $color-medium-gray;
-}
-
-.close_notification {
-  width: 16px;
-  height: 16px;
-  margin: 4px 0 0 10px;
 }
 
 

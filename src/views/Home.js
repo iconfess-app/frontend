@@ -1,11 +1,9 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
-
-// CSS FILE WITH VERY BASIC FEATURES DONE ONLY TO TEST, STYLES MUST BE ADDED IN THE SASS FILE
-import './Home.css';
 
 class Home extends Component {
   constructor(props) {
@@ -26,7 +24,7 @@ class Home extends Component {
       this.setState({ allConfessions });
       this.filterByDate();
     } catch (error) {
-      console.log(error);
+      this.props.handleFlash('Oops! Something went wrong', 'error');
     }
   }
 
@@ -88,7 +86,7 @@ class Home extends Component {
       return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
     });
 
-    filteredConfessions.sort(function(a, b) {
+    filteredConfessions.sort(function (a, b) {
       return a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : 0;
     });
 
@@ -249,4 +247,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withFlash(Home);

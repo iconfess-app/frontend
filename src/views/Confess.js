@@ -8,7 +8,7 @@ import NavBar from './components/NavBar';
 import { withFlash } from '../Context/NotificationContext';
 
 // CSS PARA LLEVAR A SASS
-import './Home.css';
+
 
 
 class Confessional extends Component {
@@ -77,9 +77,10 @@ class Confessional extends Component {
         this.setState({
           submitted: true,
         });
+        this.props.handleFlash('Yay! Confession submitted!', 'success');
       }
     } catch (error) {
-      console.log(error)
+      this.props.handleFlash('Oops! Something went wrong', 'error');
     }
   }
 
