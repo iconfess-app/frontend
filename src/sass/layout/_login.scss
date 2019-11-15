@@ -1,0 +1,11 @@
+.login-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 3em auto;
+  padding: 0 2.5em;
+  &__logo {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+}
