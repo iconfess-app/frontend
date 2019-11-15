@@ -2,20 +2,28 @@
 @import '../base/typography';
 
 .notification {
-  padding: 10px 40px;
-  margin: 5vw 5vh 0 5vw;
+  padding: 10px 25px 10px 40px;
+  margin: 10vw 5vh 0 5vw;
   border-radius:  30px;
   position: fixed;
   width: auto;
   color: black;
   z-index: 1;
-  transform: translateX(-100%);
-  -webkit-transform: translateX(-100%);
+  transform: translateX(-120%);
+  -webkit-transform: translateX(-120%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.notification:first-child {
+  display: none;
 }
 
 .slide-in {
-    animation: slide-in 0.5s forwards;
-    -webkit-animation: slide-in 0.5s forwards;
+    animation: slide-in 2s forwards;
+    -webkit-animation: slide-in 2s forwards;
 }
 
 .slide-out {
@@ -32,13 +40,13 @@
 }
     
 @keyframes slide-out {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
+    0% { transform: translateX(0%) }
+    100% { transform: translateX(-200%); }
 }
 
 @-webkit-keyframes slide-out {
-    0% { -webkit-transform: translateX(0%); }
-    100% { -webkit-transform: translateX(-100%); }
+    0% { transform: translateX(0%) }
+    100% { -webkit-transform: translateX(-200%); }
 }
 
 .error {
@@ -49,6 +57,12 @@
 }
 .regular {
   background-color: $color-medium-gray;
+}
+
+.close_notification {
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0 10px;
 }
 
 

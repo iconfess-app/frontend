@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
-import Flash from './components/Notification';
+import { withFlash } from '../Context/NotificationContext';
 
 // CSS PARA LLEVAR A SASS
 import './Home.css';
@@ -36,6 +37,7 @@ class Confessional extends Component {
         this.setState({
           category: [...category],
         });
+        // this.props.handleFlash('There was a problem with your confession!', 'error');
       }
     } else {
       this.setState({
@@ -68,6 +70,7 @@ class Confessional extends Component {
           isUncategorized: true,
           error: true,
         });
+        this.props.handleFlash('Pick at least one category', 'error');
       } else {
         const newConfession = confessionService.postNewConfession(this.state);
         console.log(newConfession);
@@ -81,14 +84,14 @@ class Confessional extends Component {
   }
 
   render() {
-    const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort, submitted, error } = this.state;
+    const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
     const categories = ['Family', 'Addictions', 'Fantasies', 'Friends', 'Health', 'Misc.', 'Self-esteem', 'Sex', 'Work'];
 
     return (
       <div className="form">
-        {submitted && <Flash message="Confession sucessfully submitted" type="success" />}
-        {error && <Flash message="You didn't pick up a category" type="error" />}
+        {/* {submitted && <Flash message="Confession sucessfully submitted" type="success" />}
+        {error && <Flash message="You didn't pick up a category" type="error" />} */}
         {/* <div className="container"> */}
         {/* <div className="content"> */}
         <h2>Confessional</h2>
@@ -134,4 +137,4 @@ class Confessional extends Component {
   }
 }
 
-export default Confessional;
+export default withFlash(Confessional);

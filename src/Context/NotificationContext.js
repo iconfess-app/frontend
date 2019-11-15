@@ -16,11 +16,10 @@ export const withFlash = (Comp) => {
         <NotificationConsumer>
           {
             ({
-              message,
-              type,
-              handleShow,
-              handleHide
-            }) => <Comp {...this.props} message={message} type={type} handleShow={handleShow} handleHide={handleHide} />
+              notifications,
+              handleFlash,
+            }) => <Comp {...this.props} notifications={notifications} handleFlash={handleFlash}
+              />
           }
         </NotificationConsumer>
       )
@@ -30,37 +29,39 @@ export const withFlash = (Comp) => {
 
 export default class FlashProvider extends Component {
   state = {
-    message: '',
-    type: '',
+    notifications: [
+      {
+        message: [],
+        type: [],
+      }
+    ],
   }
 
   handleFlash = (message, type) => {
+    const newFlash = { message, type };
     this.setState({
-      message,
-      type,
+      notifications: [...this.state.notifications, newFlash],
     })
   }
 
-  handleHide = () => {
-    setTimeout(() => {
-      console.log('Setting time out');
-    }, 3000);
-  }
-
   render() {
-    const { message, type } = this.state;
+    console.log(this.state.notifications);
+    const { notifications } = this.state;
     const { children } = this.props;
     return (
       <NotificationProvider value={{
-        message,
-        type,
+        notifications,
         handleFlash: this.handleFlash,
-        handlHide: this.handleHide,
       }}>
-        <Flash className={type}>{message}</Flash>
+        {notifications[0].message !== '' &&
+          notifications.map((flash, index) => {
+            return <Flash key={index} message={flash.message} type={flash.type} />
+          })
+        }
         {children}
       </NotificationProvider>
     )
   }
 }
+
 
