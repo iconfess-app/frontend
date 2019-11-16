@@ -31,22 +31,6 @@ class CardConfession extends Component {
       liked: liked ? true : false,
       userReported: isReported ? true : false,
     })
-    // if (likes.includes(userId)) {
-    //   this.setState({
-    //     liked: 
-    //   });
-    // } else
-    //   if (reported.includes(userId)) {
-    //     this.setState({
-    //       userReported: true,
-    //     });
-    //   }
-    // const liked = likes.includes(userId);
-    // const userReported = reported.includes(userId);
-    // this.setState({
-    //   liked,
-    //   userReported,
-    // })
     this.calculateHours();
   };
 
@@ -93,16 +77,6 @@ class CardConfession extends Component {
         });
       })
       .catch(error => console.log(error));
-    // try {
-    //   confessionService.reportConfession(id)
-    //   this.setState({
-    //     userReported: true,
-    //   })
-    //   console.log('Thank you. We will keep an eye on it.', 'success');
-    //   this.componentDidMount();
-    // } catch (error) {
-    //   console.log('Something happened while trying to report.', 'error');
-    // }
   };
 
   render() {
