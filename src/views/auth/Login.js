@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withAuth } from '../../Context/AuthContext';
+import { withFlash } from '../../Context/NotificationContext';
 
 class Login extends Component {
   state = {
@@ -26,11 +27,11 @@ class Login extends Component {
     this.props.handleLogin({
       email,
       password,
-    })
+    });
+    this.props.handleFlash('Welcome back dear confessor!', 'success');
   };
 
   render() {
-    console.log(this.props);
     const { email, password, hidden } = this.state;
     return (
       <div className="container">
@@ -221,4 +222,4 @@ class Login extends Component {
   }
 }
 
-export default withAuth(Login);
+export default withAuth(withFlash(Login));

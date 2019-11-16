@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-//import { Redirect } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import { withAuth } from '../../Context/AuthContext';
+import { withFlash } from '../../Context/NotificationContext';
 import confessionService from '../../services/confessionService';
 import '../../sass/main.scss';
 
@@ -66,23 +66,23 @@ class CardConfession extends Component {
 
   handleReport = () => {
     const { id } = this.props;
-    const { userReported } = this.state;
-    const call = userReported ? console.log('You already reported this confession') : confessionService.reportConfession(id);
-
-    call
+    confessionService.reportConfession(id)
       .then(confession => {
         this.setState({
           reported: [...confession.reported],
-          userReported: !userReported,
+          userReported: true,
         });
       })
-      .catch(error => console.log(error));
+      .catch(error => this.props.handleFlash('Something went wrong', 'error'));
   };
+
+  handleNotification = () => {
+    this.props.handleFlash('You already reported this confession :) we are on it!', 'regular');
+  }
 
   render() {
     const { avatar, username, description, categories, chat } = this.props;
     const { likes, posted, liked, userReported } = this.state;
-    console.log(this.state.userReported);
     return (
       <div className="card">
         <div className="card-header">
@@ -159,7 +159,7 @@ class CardConfession extends Component {
                 </button>
               )}
             {userReported ? (
-              <button onClick={console.log('You already reported this confession.', 'regular')} className="report">
+              <button onClick={this.handleNotification} className="report">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
@@ -217,4 +217,4 @@ class CardConfession extends Component {
   }
 }
 
-export default withAuth(CardConfession);
+export default withAuth(withFlash(CardConfession));

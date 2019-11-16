@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withAuth } from '../../Context/AuthContext';
+import { withFlash } from '../../Context/NotificationContext';
 
 class Signup extends Component {
   state = {
@@ -31,12 +32,10 @@ class Signup extends Component {
     const { username } = this.state;
     let usernameValid = true;
     const errorMessage = { ...this.state.errorMessage };
-
     if (username.length < 3 || username.length > 15) {
       usernameValid = false;
       errorMessage.username = 'Must be between 3 and 15 characters long';
     }
-
     this.setState({ usernameValid, errorMessage }, this.validateForm);
   };
 
@@ -48,13 +47,10 @@ class Signup extends Component {
     const { email } = this.state;
     let emailValid = true;
     const errorMessage = { ...this.state.errorMessage };
-
-    // checks for format _@_._
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailValid = false;
       errorMessage.email = 'This is an invalid email format';
     }
-
     this.setState({ emailValid, errorMessage }, this.validateForm);
   };
 
@@ -97,32 +93,27 @@ class Signup extends Component {
     const { isOver16 } = this.state;
     let ageValid = true;
     const errorMessage = { ...this.state.errorMessage };
-
-    // checks if is over 16
     if (!isOver16) {
       ageValid = false;
       errorMessage.isOver16 = 'You must be over 16 years old';
     }
-
     this.setState({ ageValid, errorMessage }, this.validateForm);
   };
-
-  // handleChange = event => {
-  //   const { target } = event;
-  //   const value = target.type === 'checkbox' ? target.checked : target.value;
-  //   const { name } = target;
-  //   this.setState({ [name]: value });
-  // };
 
   handleFormSubmit = event => {
     event.preventDefault();
     const { username, password, email, isOver16 } = this.state;
-    this.props.handleSignup({
-      username,
-      password,
-      email,
-      isOver16,
-    });
+    try {
+      this.props.handleSignup({
+        username,
+        password,
+        email,
+        isOver16,
+      });
+      this.props.handleFlash('You are an iConfessor now :D', 'success');
+    } catch (error) {
+      this.props.handleFlash('Oops, your signup went wrong', 'error');
+    }
   };
 
   render() {
@@ -139,7 +130,6 @@ class Signup extends Component {
       errorMessage,
       hidden,
     } = this.state;
-    console.log(this.state);
     return (
       <div className="container">
         <div className="content">
@@ -316,13 +306,13 @@ class Signup extends Component {
                   />
                 </svg>
               ) : (
-                <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M8.48756 0C5.55822 0 2.704 1.62294 0.375556 4.72127L0 5.16389L0.375556 5.60651C2.704 8.70484 5.55822 10.3278 8.48756 10.3278C11.4169 10.3278 14.2711 8.70484 16.5996 5.60651L16.9 5.16389L16.5244 4.72127C14.196 1.62294 11.4169 0 8.48756 0ZM6.23422 5.16389C6.23422 3.9098 7.21067 2.95079 8.48756 2.95079C9.76444 2.95079 10.7409 3.9098 10.7409 5.16389C10.7409 6.41798 9.76444 7.37698 8.48756 7.37698C7.21067 7.37698 6.23422 6.41798 6.23422 5.16389ZM1.87778 5.16389C3.83067 2.80325 6.084 1.4754 8.41244 1.4754C6.38444 1.4754 4.732 3.1721 4.732 5.16389C4.732 7.00814 6.15911 8.5573 7.96178 8.77861C5.78356 8.63107 3.75556 7.37698 1.87778 5.16389ZM9.01333 8.77861C10.816 8.48353 12.2431 7.00814 12.2431 5.16389C12.2431 3.1721 10.5907 1.54917 8.56267 1.4754C10.8911 1.4754 13.0693 2.72948 15.0973 5.16389C13.2196 7.37698 11.1164 8.63107 9.01333 8.77861Z"
-                    fill="#7E8186"
-                  />
-                </svg>
-              )}
+                  <svg width="17" height="11" viewBox="0 0 17 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8.48756 0C5.55822 0 2.704 1.62294 0.375556 4.72127L0 5.16389L0.375556 5.60651C2.704 8.70484 5.55822 10.3278 8.48756 10.3278C11.4169 10.3278 14.2711 8.70484 16.5996 5.60651L16.9 5.16389L16.5244 4.72127C14.196 1.62294 11.4169 0 8.48756 0ZM6.23422 5.16389C6.23422 3.9098 7.21067 2.95079 8.48756 2.95079C9.76444 2.95079 10.7409 3.9098 10.7409 5.16389C10.7409 6.41798 9.76444 7.37698 8.48756 7.37698C7.21067 7.37698 6.23422 6.41798 6.23422 5.16389ZM1.87778 5.16389C3.83067 2.80325 6.084 1.4754 8.41244 1.4754C6.38444 1.4754 4.732 3.1721 4.732 5.16389C4.732 7.00814 6.15911 8.5573 7.96178 8.77861C5.78356 8.63107 3.75556 7.37698 1.87778 5.16389ZM9.01333 8.77861C10.816 8.48353 12.2431 7.00814 12.2431 5.16389C12.2431 3.1721 10.5907 1.54917 8.56267 1.4754C10.8911 1.4754 13.0693 2.72948 15.0973 5.16389C13.2196 7.37698 11.1164 8.63107 9.01333 8.77861Z"
+                      fill="#7E8186"
+                    />
+                  </svg>
+                )}
             </span>
             {!passwordValid && (
               <div className="error-message">
@@ -363,4 +353,4 @@ class Signup extends Component {
   }
 }
 
-export default withAuth(Signup);
+export default withAuth(withFlash(Signup));

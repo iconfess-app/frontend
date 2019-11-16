@@ -22,6 +22,7 @@ function Information() {
       <p>Needless to say, iConfess will never make any action to know your identity, let alone share it with
         any particular or third-party. By signing up, you do allow iConfess to use your email for important
         information about your account or promotional reasons.</p>
+      <p>iConfess does not hold any responsability concerning the content of its users posts, confessions and/or chat conversations.</p>
     </div>
     <Navbar />
   </div>

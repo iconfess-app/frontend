@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './sass/main.scss';

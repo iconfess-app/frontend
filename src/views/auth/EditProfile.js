@@ -3,6 +3,7 @@ import Popup from 'reactjs-popup';
 import { Link } from 'react-router-dom';
 import ChangePassword from '../../components/ChangePassword';
 import { withAuth } from '../../Context/AuthContext';
+import { withFlash } from '../../Context/NotificationContext';
 import NavBar from '../components/NavBar';
 import avatars from '../../data/avatars.json';
 
@@ -51,15 +52,21 @@ class EditProfile extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     const { username, password, allowsContact, allowsLocation, lightMode, avatar, email } = this.state;
-    this.props.handleUpdate({
-      username,
-      password,
-      allowsContact,
-      allowsLocation,
-      lightMode,
-      avatar,
-      email,
-    });
+    try {
+      this.props.handleUpdate({
+        username,
+        password,
+        allowsContact,
+        allowsLocation,
+        lightMode,
+        avatar,
+        email,
+      });
+      this.props.handleFlash('Your profile is updated', 'success');
+    } catch (error) {
+      this.props.handleFlash('Oops! Something went wrong', 'error');
+    }
+
   };
 
   render() {
@@ -213,4 +220,4 @@ class EditProfile extends Component {
   }
 }
 
-export default withAuth(EditProfile);
+export default withAuth(withFlash(EditProfile));

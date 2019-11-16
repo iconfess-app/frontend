@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import sensitiveContent from '../data/sensitiveContent.json';
 import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
+import { withFlash } from '../Context/NotificationContext';
 
 class Confessional extends Component {
   constructor() {
@@ -16,6 +18,7 @@ class Confessional extends Component {
       isSensitive: false,
       isUncategorized: false,
       isTooLong: false,
+      error: false,
     };
   }
 
@@ -60,16 +63,18 @@ class Confessional extends Component {
       if (category.length === 0) {
         this.setState({
           isUncategorized: true,
+          error: true,
         });
+        this.props.handleFlash(`Missing confession's category`, 'error');
       } else {
-        const newConfession = confessionService.postNewConfession(this.state);
-        console.log(newConfession);
+        confessionService.postNewConfession(this.state);
         this.setState({
           submitted: true,
         });
+        this.props.handleFlash('Yay! Confession submitted!', 'success');
       }
     } catch (error) {
-      console.log(error);
+      this.props.handleFlash('Oops! Something went wrong', 'error');
     }
   };
 
@@ -90,8 +95,6 @@ class Confessional extends Component {
 
     return (
       <div className="form">
-        {/* <div className="container"> */}
-        {/* <div className="content"> */}
         <h2>Confessional</h2>
         <p className="xsmall-text">Suggested: User conditions about confessions content</p>
         <form className="form-group" onSubmit={this.handleSubmit}>
@@ -113,7 +116,6 @@ class Confessional extends Component {
 
           <div className="scroll">
             <ul className="hscroll">
-              {/* ==== STUDIES & RELATIONSHIPS IMAGES MISSING, just add them to the category array and to the pics folder ====== */}
               {categories.map(category => {
                 return (
                   <li key={category} className="item">
@@ -149,4 +151,4 @@ class Confessional extends Component {
   }
 }
 
-export default Confessional;
+export default withFlash(Confessional);
