@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+//import { Redirect } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import { withAuth } from '../../Context/AuthContext';
 import confessionService from '../../services/confessionService';
 import '../../sass/main.scss';
@@ -8,27 +10,43 @@ class CardConfession extends Component {
     likes: '',
     liked: '',
     posted: '',
+    reported: [],
+    userReported: '',
   };
 
   componentDidMount = () => {
     this.setState({
       likes: [...this.props.likes],
+      reported: [...this.props.reported],
     });
-    this.checkIfUserDidLike();
+    this.checkIfUserDidLikeAndReported();
   };
 
-  checkIfUserDidLike = () => {
-    const { likes } = this.props;
+  checkIfUserDidLikeAndReported = () => {
+    const { likes, reported } = this.props;
     const userId = this.props.user._id;
-    if (likes.includes(userId) === true) {
-      this.setState({
-        liked: true,
-      });
-    } else if (likes.includes(userId) === false) {
-      this.setState({
-        liked: false,
-      });
-    }
+    const liked = likes.includes(userId);
+    const isReported = reported.includes(userId);
+    this.setState({
+      liked: liked ? true : false,
+      userReported: isReported ? true : false,
+    })
+    // if (likes.includes(userId)) {
+    //   this.setState({
+    //     liked: 
+    //   });
+    // } else
+    //   if (reported.includes(userId)) {
+    //     this.setState({
+    //       userReported: true,
+    //     });
+    //   }
+    // const liked = likes.includes(userId);
+    // const userReported = reported.includes(userId);
+    // this.setState({
+    //   liked,
+    //   userReported,
+    // })
     this.calculateHours();
   };
 
@@ -62,10 +80,35 @@ class CardConfession extends Component {
       .catch(error => console.log(error));
   };
 
+  handleReport = () => {
+    const { id } = this.props;
+    const { userReported } = this.state;
+    const call = userReported ? console.log('You already reported this confession') : confessionService.reportConfession(id);
+
+    call
+      .then(confession => {
+        this.setState({
+          reported: [...confession.reported],
+          userReported: !userReported,
+        });
+      })
+      .catch(error => console.log(error));
+    // try {
+    //   confessionService.reportConfession(id)
+    //   this.setState({
+    //     userReported: true,
+    //   })
+    //   console.log('Thank you. We will keep an eye on it.', 'success');
+    //   this.componentDidMount();
+    // } catch (error) {
+    //   console.log('Something happened while trying to report.', 'error');
+    // }
+  };
+
   render() {
     const { avatar, username, description, categories, chat } = this.props;
-    const { likes, posted, liked } = this.state;
-
+    const { likes, posted, liked, userReported } = this.state;
+    console.log(this.state.userReported);
     return (
       <div className="card">
         <div className="card-header">
@@ -133,24 +176,66 @@ class CardConfession extends Component {
                 </svg>
               </button>
             ) : (
-              <button className="chat-none">
+                <button className="chat-none">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.3554 2H4.47934C3.07438 2 2 3.07438 2 4.47934V15.2231C2 16.6281 3.07438 17.7025 4.47934 17.7025H5.30579V22L10.1818 17.7025H19.3554C20.7603 17.7025 21.8347 16.6281 21.8347 15.2231V4.47934C21.8347 3.07438 20.7603 2 19.3554 2ZM20.1818 15.2231C20.1818 15.719 19.8512 16.0496 19.3554 16.0496H9.52066L6.95868 18.3636V16.0496H4.47934C3.98347 16.0496 3.65289 15.719 3.65289 15.2231V4.47934C3.65289 3.98347 3.98347 3.65289 4.47934 3.65289H19.3554C19.8512 3.65289 20.1818 3.98347 20.1818 4.47934V15.2231Z" />
+                    <path d="M17.7025 6.95868H6.13223V8.61157H17.7025V6.95868Z" />
+                    <path d="M17.7025 10.2645H6.13223V11.9174H17.7025V10.2645Z" />
+                  </svg>
+                </button>
+              )}
+            {userReported ? (
+              <button onClick={console.log('You already reported this confession.', 'regular')} className="report">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.3554 2H4.47934C3.07438 2 2 3.07438 2 4.47934V15.2231C2 16.6281 3.07438 17.7025 4.47934 17.7025H5.30579V22L10.1818 17.7025H19.3554C20.7603 17.7025 21.8347 16.6281 21.8347 15.2231V4.47934C21.8347 3.07438 20.7603 2 19.3554 2ZM20.1818 15.2231C20.1818 15.719 19.8512 16.0496 19.3554 16.0496H9.52066L6.95868 18.3636V16.0496H4.47934C3.98347 16.0496 3.65289 15.719 3.65289 15.2231V4.47934C3.65289 3.98347 3.98347 3.65289 4.47934 3.65289H19.3554C19.8512 3.65289 20.1818 3.98347 20.1818 4.47934V15.2231Z" />
-                  <path d="M17.7025 6.95868H6.13223V8.61157H17.7025V6.95868Z" />
-                  <path d="M17.7025 10.2645H6.13223V11.9174H17.7025V10.2645Z" />
+                  <path
+                    d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
+                    fill="white"
+                  />
+                  <path d="M13 6.5H11V14.5H13V6.5Z" fill="white" />
+                  <path d="M13 15.5H11V17.5H13V15.5Z" fill="white" />
                 </svg>
               </button>
-            )}
-            <button className="report">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
-                  fill="white"
-                />
-                <path d="M13 6.5H11V14.5H13V6.5Z" fill="white" />
-                <path d="M13 15.5H11V17.5H13V15.5Z" fill="white" />
-              </svg>
-            </button>
+            ) : (
+                <Popup
+                  overlayClassName="overlay"
+                  trigger={
+                    <button className="report">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
+                          fill="white"
+                        />
+                        <path d="M13 6.5H11V14.5H13V6.5Z" fill="white" />
+                        <path d="M13 15.5H11V17.5H13V15.5Z" fill="white" />
+                      </svg>
+                    </button>
+                  }
+                  position="left center"
+                >
+                  {close => (
+                    <>
+                      <div className="popup-content__close" onClick={close}>
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M2.01342 15.6167L8.6623 9.38334L15.3112 15.6167L16.6801 14.3333L10.0312 8.1L16.6801 1.86667L15.3112 0.583336L8.6623 6.81667L2.01342 0.583336L0.644531 1.86667L7.29341 8.1L0.644531 14.3333L2.01342 15.6167Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </div>
+                      <div className="popup-content__description">
+                        <h4>Are you offended by this confession?</h4>
+                        <p>If you are, report it and we will revise its content and delete if necessary. Thank you for keeping iConfess friendly!</p>
+                        <button onClick={this.handleReport} className="btn btn-primary">
+                          Report
+                  </button>
+                        <button onClick={close} className="btn btn-outlined">
+                          No, sorry
+                  </button>
+                      </div>
+                    </>
+                  )}
+                </Popup>
+              )}
           </div>
         </div>
       </div>

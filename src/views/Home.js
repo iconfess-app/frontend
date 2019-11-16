@@ -21,6 +21,7 @@ class Home extends Component {
     try {
       const allConfessions = await confessionService.getAllConfessions();
       this.setState({ allConfessions });
+      console.log(this.state.allConfessions);
       this.filterByDate();
     } catch (error) {
       console.log(error);
@@ -90,7 +91,7 @@ class Home extends Component {
     });
 
     return filteredConfessions.map(message => {
-      const { description, category, _id, user, time, likes, created_at } = message;
+      const { description, category, _id, user, time, likes, created_at, reported } = message;
       return (
         <CardConfession
           key={_id}
@@ -103,6 +104,7 @@ class Home extends Component {
           chat={user.allowsContact}
           id={_id}
           created={created_at}
+          reported={reported}
         />
       );
     });
