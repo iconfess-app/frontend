@@ -1,0 +1,74 @@
+@import '../base/colors';
+@import '../base/typography';
+
+// .notification-container {
+//   position: fixed;
+//   z-index: 999 !important;
+//   margin: 6vw 5vh 0 5vw;
+//   width: auto;
+// }
+
+.notification {
+  padding: 10px 25px 10px 40px;
+  margin: 6vw 5vh 0 5vw;
+  border-radius:  30px;
+  position: fixed;
+  width: auto;
+  color: black;
+  z-index: 1;
+  transform: translateX(-120%);
+  -webkit-transform: translateX(-120%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.notification:first-child {
+  display: none;
+}
+
+.close_notification {
+  width: 16px;
+  height: 16px;
+  margin: 4px 0 0 10px;
+}
+
+.slide-in {
+    animation: slide-in 2s forwards;
+    -webkit-animation: slide-in 2s forwards;
+}
+
+.slide-out {
+    animation: slide-out 2s forwards;
+    -webkit-animation: slide-out 2s forwards;
+}
+    
+@keyframes slide-in {
+    100% { transform: translateX(0%); }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+    
+@keyframes slide-out {
+    0% { transform: translateX(0%) }
+    100% { transform: translateX(-200%); }
+}
+
+@-webkit-keyframes slide-out {
+    0% { transform: translateX(0%) }
+    100% { -webkit-transform: translateX(-200%); }
+}
+
+.error {
+  background-color: $color-light-red;
+}
+.success {
+  background-color: $color-dark-purple;
+}
+.regular {
+  background-color: $color-medium-gray;
+}
+
+
