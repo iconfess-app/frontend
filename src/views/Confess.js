@@ -7,10 +7,6 @@ import confessionService from '../services/confessionService';
 import NavBar from './components/NavBar';
 import { withFlash } from '../Context/NotificationContext';
 
-// CSS PARA LLEVAR A SASS
-
-
-
 class Confessional extends Component {
   constructor() {
     super();
@@ -37,7 +33,6 @@ class Confessional extends Component {
         this.setState({
           category: [...category],
         });
-        // this.props.handleFlash('There was a problem with your confession!', 'error');
       }
     } else {
       this.setState({
@@ -91,10 +86,6 @@ class Confessional extends Component {
 
     return (
       <div className="form">
-        {/* {submitted && <Flash message="Confession sucessfully submitted" type="success" />}
-        {error && <Flash message="You didn't pick up a category" type="error" />} */}
-        {/* <div className="container"> */}
-        {/* <div className="content"> */}
         <h2>Confessional</h2>
         <p className="xsmall-text">Suggested: User conditions about confessions content</p>
         <form className="form-group" onSubmit={this.handleSubmit}>
