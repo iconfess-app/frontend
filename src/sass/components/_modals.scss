@@ -8,10 +8,12 @@
   border: 0px !important;
   margin-left: auto;
   margin-right: auto;
-  right: 15px;
   text-align: center;
   padding: 1em !important;
   top: 20% !important;
+  z-index: 99999999 !important;
+  left: 0 !important;
+  right: 0 !important;
   &__close {
     text-align: right;
     path {
@@ -30,6 +32,7 @@
 .popup-overlay {
   background-color: $color-dark-bg;
   opacity: 0.5;
+  z-index: 9999999;
 }
 
 .ReactModal__Body--open,
