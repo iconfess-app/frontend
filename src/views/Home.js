@@ -24,7 +24,7 @@ class Home extends Component {
       this.setState({ allConfessions });
       this.filterByDate();
     } catch (error) {
-      this.props.handleFlash('Oops! Something went wrong', 'error');
+      this.props.handleFlash('Oops! Check your Internet connection', 'error');
     }
   }
 
@@ -91,7 +91,7 @@ class Home extends Component {
     });
 
     return filteredConfessions.map(message => {
-      const { description, category, _id, user, time, likes, created_at } = message;
+      const { description, category, _id, user, time, likes, created_at, reported } = message;
       return (
         <CardConfession
           key={_id}
@@ -104,6 +104,7 @@ class Home extends Component {
           chat={user.allowsContact}
           id={_id}
           created={created_at}
+          reported={reported}
         />
       );
     });

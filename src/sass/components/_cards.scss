@@ -105,3 +105,45 @@
     transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
   }
 }
+
+.card {
+  &__icon {
+    margin-right: 8px;
+  }
+  &__date {
+    color: $color-medium-text;
+    font-size: $text-paragraph;
+  }
+  &__categories {
+    color: $color-medium-text;
+    display: flex;
+    margin: 1em 0;
+    &__item {
+      margin-right: 12px;
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__likes {
+    display: flex;
+    &--active {
+      fill: $color-light-red;
+    }
+    &__length {
+      color: $color-medium-text;
+      margin-left: 8px;
+    }
+  }
+  &__todelete {
+    color: $color-light-red;
+    &:focus {
+      outline: none;
+    }
+  }
+  &--encoded {
+    background-color: $color-first-layer;
+    color: transparent;
+  }
+}

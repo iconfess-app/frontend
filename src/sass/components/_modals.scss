@@ -1,0 +1,41 @@
+@import '../base/colors';
+
+.popup-content {
+  width: 80% !important;
+  // height: 300px;
+  border-radius: 10px;
+  background-color: $color-dark-gray !important;
+  border: 0px !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: 1em !important;
+  top: 20% !important;
+  z-index: 99999999 !important;
+  left: 0 !important;
+  right: 0 !important;
+  &__close {
+    text-align: right;
+    path {
+      fill: $color-medium-text;
+    }
+  }
+  &__description {
+    padding: 1em;
+  }
+}
+
+.popup-arrow {
+  display: none;
+}
+
+.popup-overlay {
+  background-color: $color-dark-bg;
+  opacity: 0.5;
+  z-index: 9999999;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}

@@ -22,7 +22,7 @@ class Confessional extends Component {
     };
   }
 
-  handleCategory = (event) => {
+  handleCategory = event => {
     const newCategory = event.target.name;
     const category = [...this.state.category];
     if (category.includes(newCategory)) {
@@ -39,9 +39,9 @@ class Confessional extends Component {
         category: [newCategory, ...category],
       });
     }
-  }
+  };
 
-  handleInput = (event) => {
+  handleInput = event => {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
@@ -54,9 +54,9 @@ class Confessional extends Component {
       isTooLong: description.length > 140 ? true : false,
       isTooShort: description.length < 10 ? true : false,
     });
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     const { category } = this.state;
     try {
@@ -65,10 +65,9 @@ class Confessional extends Component {
           isUncategorized: true,
           error: true,
         });
-        this.props.handleFlash('Pick at least one category', 'error');
+        this.props.handleFlash(`Missing confession's category`, 'error');
       } else {
-        const newConfession = confessionService.postNewConfession(this.state);
-        console.log(newConfession);
+        confessionService.postNewConfession(this.state);
         this.setState({
           submitted: true,
         });
@@ -77,12 +76,22 @@ class Confessional extends Component {
     } catch (error) {
       this.props.handleFlash('Oops! Something went wrong', 'error');
     }
-  }
+  };
 
   render() {
     const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
-    const categories = ['Family', 'Addictions', 'Fantasies', 'Friends', 'Health', 'Misc.', 'Self-esteem', 'Sex', 'Work'];
+    const categories = [
+      'Family',
+      'Addictions',
+      'Fantasies',
+      'Friends',
+      'Health',
+      'Misc.',
+      'Self-esteem',
+      'Sex',
+      'Work',
+    ];
 
     return (
       <div className="form">
@@ -107,9 +116,18 @@ class Confessional extends Component {
 
           <div className="scroll">
             <ul className="hscroll">
-              {/* ==== STUDIES & RELATIONSHIPS IMAGES MISSING, just add them to the category array and to the pics folder ====== */}
               {categories.map(category => {
-                return <li key={category} className="item"><img name={category} onClick={this.handleCategory} src={`/images/${category}.png`} alt="category icon" /><p>{category}</p></li>
+                return (
+                  <li key={category} className="item">
+                    <img
+                      src={`/images/${category}.png`}
+                      alt="category icon"
+                      name={category}
+                      onClick={this.handleCategory}
+                    />
+                    <p>{category}</p>
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -119,12 +137,16 @@ class Confessional extends Component {
             <input name="isDestroyed" type="checkbox" checked={isDestroyed} onChange={this.handleInput} />
             This secret will be destroyed after 24h.
           </label>
-          <button className="btn btn-primary" disabled={!validConfession}>I want to confess it</button>
-          <button className="btn btn-outlined"><Link to="/">I regretted</Link></button>
+          <button className="btn btn-primary" disabled={!validConfession}>
+            I want to confess it
+          </button>
+          <button className="btn btn-outlined">
+            <Link to="/">I regretted</Link>
+          </button>
         </form>
 
         <NavBar />
-      </div >
+      </div>
     );
   }
 }

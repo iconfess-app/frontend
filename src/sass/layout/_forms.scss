@@ -1,6 +1,180 @@
 @import '../base/colors';
 @import '../base/typography';
 
+.group-form {
+  width: 90%;
+  margin: 0 auto 2em;
+  &__input {
+    background-color: $color-first-layer;
+    width: 100%;
+    border: 1px solid $color-dark-gray;
+    border-radius: 10px;
+    height: 56px;
+    padding: 12px;
+    margin-bottom: 16px;
+    transition: border-color 0.5s ease-out;
+    &::placeholder {
+      color: $color-disabled-text;
+    }
+    &:focus {
+      outline: none;
+      background-color: $color-second-layer;
+      border: 1px solid $color-light-text;
+    }
+    &[type='password'] {
+      font-family: large Verdana, sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.2em;
+    }
+  }
+  &__toggle-password {
+    float: right;
+    margin-left: -30px;
+    margin-top: 18px;
+    position: absolute;
+    z-index: 2;
+  }
+  &__checkbox {
+    display: block;
+    position: relative;
+    padding-left: 24px;
+    cursor: pointer;
+    line-height: 1.4em;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      &:checked {
+        background-color: $color-light-red;
+        display: block;
+      }
+    }
+    &__check {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      background-color: $color-first-layer;
+      &:focus {
+        outline: none;
+        background-color: $color-first-layer;
+      }
+      &:hover {
+        background-color: $color-second-layer;
+      }
+      &:after {
+        background-color: $color-light-red;
+        content: '';
+        position: absolute;
+        display: none;
+        width: 12px;
+        height: 12px;
+        background-color: $color-light-red;
+        left: 2px;
+        top: 2px;
+        border-radius: 2px;
+      }
+    }
+  }
+  &__helpers {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5em;
+  }
+  &__helper-password {
+    color: $color-light-red;
+  }
+  &__footer {
+    text-align: center;
+    margin-top: 3em;
+  }
+  &__change-password {
+    float: right;
+    color: $color-light-red;
+    margin-bottom: 2em;
+  }
+  &__toggle-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+  }
+  &__toggle {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    &__slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-third-layer;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 100px;
+      &:before {
+        position: absolute;
+        content: '';
+        height: 24px;
+        width: 24px;
+        background-color: $color-disabled-text;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 90%;
+      }
+    }
+  }
+  &__toggle-text {
+    color: $color-light-text;
+  }
+}
+
+.group-form__toggle input:checked + .group-form__toggle__slider {
+  background-color: $color-light-red;
+}
+
+.group-form__toggle input:focus + .group-form__toggle__slider {
+  box-shadow: 0 0 1px $color-light-red;
+}
+
+.group-form__toggle input:checked + .group-form__toggle__slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+.divider {
+  clear: both;
+  background-color: $color-third-layer;
+  height: 1px;
+  width: 100%;
+  margin: 2em 0;
+}
+
+.group-form__checkbox input:checked ~ .group-form__checkbox__check:after {
+  display: block;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $color-medium-text;
+  -webkit-box-shadow: 0 0 0px 800px $color-first-layer inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 input[type='search'] {
   width: 100%;
   border-radius: 25px;
@@ -42,7 +216,7 @@ input[type='search'] {
 
 label {
   color: $color-light-gray;
-  margin: 5px 0 10px 0;
+  // margin: 5px 0 10px 0;
 }
 
 textarea {

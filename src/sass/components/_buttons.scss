@@ -25,20 +25,27 @@
 
 .btn {
   padding: 10px 16px;
-  margin: 10px 0;
   border-radius: 30px;
   display: block;
-  margin: 20px auto;
-  width: 275px;
-  height: 57px;
+  width: 100%;
+  height: 56px;
+  font-size: 1.2em;
   a {
     text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: $color-first-layer;
+    color: $color-third-layer;
   }
 }
 
 .btn-primary {
   background-color: $color-light-red;
   color: $color-white-text;
+  margin: 3em auto 2em;
 }
 
 .btn-outlined {
