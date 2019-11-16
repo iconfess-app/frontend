@@ -19,10 +19,11 @@ import Information from './views/Information';
 
 class App extends Component {
   render() {
-    // const { handleLogout } = this.props;
+    const { handleLogout } = this.props;
     return (
       <>
         <Router>
+          <button onClick={handleLogout}>Log out</button>
           <Route exact path="/" component={Home} />
           <AnonRoute exact path="/login" component={Login} />
           <AnonRoute exact path="/signup" component={Signup} />
