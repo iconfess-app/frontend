@@ -3,7 +3,7 @@
 
 .group-form {
   width: 90%;
-  margin: 0 auto;
+  margin: 0 auto 2em;
   &__input {
     background-color: $color-first-layer;
     width: 100%;
@@ -92,6 +92,75 @@
     text-align: center;
     margin-top: 3em;
   }
+  &__change-password {
+    float: right;
+    color: $color-light-red;
+    margin-bottom: 2em;
+  }
+  &__toggle-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5em;
+  }
+  &__toggle {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    &__slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-third-layer;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 100px;
+      &:before {
+        position: absolute;
+        content: '';
+        height: 24px;
+        width: 24px;
+        background-color: $color-disabled-text;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 90%;
+      }
+    }
+  }
+  &__toggle-text {
+    color: $color-light-text;
+  }
+}
+
+.group-form__toggle input:checked + .group-form__toggle__slider {
+  background-color: $color-light-red;
+}
+
+.group-form__toggle input:focus + .group-form__toggle__slider {
+  box-shadow: 0 0 1px $color-light-red;
+}
+
+.group-form__toggle input:checked + .group-form__toggle__slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(18px);
+}
+
+.divider {
+  clear: both;
+  background-color: $color-third-layer;
+  height: 1px;
+  width: 100%;
+  margin: 2em 0;
 }
 
 .group-form__checkbox input:checked ~ .group-form__checkbox__check:after {

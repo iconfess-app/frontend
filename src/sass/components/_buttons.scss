@@ -25,12 +25,9 @@
 
 .btn {
   padding: 10px 16px;
-  margin: 10px 0;
   border-radius: 30px;
   display: block;
-  margin: 20px auto;
   width: 100%;
-  // width: 275px;
   height: 56px;
   font-size: 1.2em;
   a {
@@ -48,6 +45,7 @@
 .btn-primary {
   background-color: $color-light-red;
   color: $color-white-text;
+  margin: 3em auto 2em;
 }
 
 .btn-outlined {
