@@ -36,6 +36,11 @@ class ConfessionService {
   unlikeConfession(id) {
     return this.axios.post(`/confessions/${id}/unlike`).then(({ data: confession }) => confession);
   }
+
+  reportConfession(id) {
+    return this.axios.post(`/confessions/${id}/report`).then(({ data: confession }) => confession);
+  }
+
 }
 
 const confessionService = new ConfessionService();

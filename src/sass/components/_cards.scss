@@ -1,0 +1,149 @@
+@import '../base/colors';
+@import '../base/typography';
+
+.card {
+  background-color: $color-first-layer;
+  border-radius: 10px;
+  margin: 2em 0;
+  padding: 1em;
+  .card-header {
+    display: flex;
+    margin-bottom: 1em;
+    .avatar {
+      img {
+        border-radius: 100%;
+        margin-right: 8px;
+      }
+    }
+    .username {
+      font-weight: bold;
+    }
+    .time {
+      color: $color-medium-text;
+      display: flex;
+      span {
+        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        path {
+          fill: $color-medium-text;
+        }
+      }
+    }
+  }
+  .categories {
+    margin-top: 1.5em;
+    ul {
+      display: flex;
+      flex-direction: row;
+      li {
+        margin-right: 8px;
+        color: $color-medium-text;
+      }
+    }
+  }
+  .card-footer {
+    display: flex;
+    margin-top: 1.5em;
+    justify-content: space-between;
+    .likes {
+      color: $color-light-red;
+      display: flex;
+      button {
+        margin-right: 5px;
+        outline: none;
+        // transform: scale(1, 1);
+        // transition: all 2s ease-out;
+        path {
+          fill: none;
+          transition: fill 2s ease-out;
+        }
+        &:focus {
+          outline: none;
+          border: none;
+        }
+        &.full {
+          path {
+            fill: $color-light-red;
+          }
+        }
+      }
+    }
+    .chat {
+      svg {
+        path {
+          fill: $color-white-text;
+        }
+      }
+    }
+    .chat-none {
+      svg {
+        path {
+          fill: $color-disabled-text;
+        }
+      }
+    }
+    .report {
+      margin-left: 8px;
+    }
+  }
+}
+
+// Heart likes
+.icon-like-wrapper {
+  display: inline-block;
+  padding: 1px 5px;
+}
+
+.icon-like {
+  fill: transparent;
+  transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
+
+  &--active {
+    fill: $color-light-red;
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
+  }
+}
+
+.card {
+  &__icon {
+    margin-right: 8px;
+  }
+  &__date {
+    color: $color-medium-text;
+    font-size: $text-paragraph;
+  }
+  &__categories {
+    color: $color-medium-text;
+    display: flex;
+    margin: 1em 0;
+    &__item {
+      margin-right: 12px;
+    }
+  }
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__likes {
+    display: flex;
+    &--active {
+      fill: $color-light-red;
+    }
+    &__length {
+      color: $color-medium-text;
+      margin-left: 8px;
+    }
+  }
+  &__todelete {
+    color: $color-light-red;
+    &:focus {
+      outline: none;
+    }
+  }
+  &--encoded {
+    background-color: $color-first-layer;
+    color: transparent;
+  }
+}

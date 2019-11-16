@@ -1,0 +1,30 @@
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/reset';
+@import 'base/normalize';
+@import 'base/typography';
+@import 'base/colors';
+
+@import 'layout/navbar';
+@import 'layout/grid';
+@import 'layout/forms';
+@import 'layout/topheader';
+@import 'layout/privacy';
+@import 'layout/login';
+@import 'layout/editProfile';
+
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/categories';
+@import 'components/modals';
+@import 'components/validations';
+
+@import 'themes/dark';
+@import 'themes/light';
+
+// Global styles //
+
+body {
+  background-color: $color-dark-gray;
+}

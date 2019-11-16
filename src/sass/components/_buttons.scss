@@ -1,0 +1,55 @@
+@import '../base/colors';
+
+// Add Button //
+
+.add-btn {
+  width: 56px;
+  height: 56px;
+  background-color: $color-light-red;
+  border-radius: 100%;
+  justify-content: center;
+  position: relative;
+  bottom: 27px;
+  -webkit-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.1);
+  path {
+    fill: $color-light-text;
+  }
+  &:hover,
+  .active {
+    fill: $color-light-text;
+    background-color: $color-dark-gray;
+  }
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 30px;
+  display: block;
+  width: 100%;
+  height: 56px;
+  font-size: 1.2em;
+  a {
+    text-decoration: none;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    background-color: $color-first-layer;
+    color: $color-third-layer;
+  }
+}
+
+.btn-primary {
+  background-color: $color-light-red;
+  color: $color-white-text;
+  margin: 3em auto 2em;
+}
+
+.btn-outlined {
+  background-color: $color-dark-gray;
+  color: $color-light-red;
+  border: 1px solid $color-light-red;
+}
