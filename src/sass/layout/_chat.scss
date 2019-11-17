@@ -1,0 +1,11 @@
+.chat-avatar {
+  width: 30px;
+  border-radius: 50%;
+}
+
+.chat-container {
+  overflow-y: scroll;
+  p {
+    color: white;
+  }
+}
