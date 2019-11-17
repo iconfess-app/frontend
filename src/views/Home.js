@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
+import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
@@ -21,10 +22,9 @@ class Home extends Component {
     try {
       const allConfessions = await confessionService.getAllConfessions();
       this.setState({ allConfessions });
-      console.log(this.state.allConfessions);
       this.filterByDate();
     } catch (error) {
-      console.log(error);
+      this.props.handleFlash('Oops! Check your Internet connection', 'error');
     }
   }
 
@@ -248,4 +248,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withFlash(Home);
