@@ -20,6 +20,8 @@ import Information from './views/Information';
 import NotFoundPage from './views/NotFoundPage';
 import InternalServer from './views/InternalServer';
 
+import Chat from './Chat';
+
 class App extends Component {
   render() {
     return (
@@ -35,6 +37,7 @@ class App extends Component {
             <Route exact path="/myconfessions" component={myConfessionsPage} />
             <Route exact path="/confess" component={Confessional} />
             <Route exact path="/privacy-policy" component={Information} />
+            <Route exact path="/chat" component={Chat} />
             <Route path="/500" component={InternalServer} />
             <Route exact path="*" component={NotFoundPage} />
           </Switch>
