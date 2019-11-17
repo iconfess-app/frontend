@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { withAuth } from '../../Context/AuthContext';
 
 class NavBar extends Component {
   constructor() {
@@ -70,4 +71,5 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+export default withAuth(NavBar);
+// this.props.user.allowsConnection === true > chat / false === policy information

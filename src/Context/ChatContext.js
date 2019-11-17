@@ -74,23 +74,6 @@ export default class ChatProvider extends Component {
     })
   }
 
-  // handleLogin = (user) => {
-  //   authService.login(user)
-  //     .then((loggedUser) => {
-  //       this.setState({
-  //         isLoggedin: true,
-  //         user: loggedUser,
-  //         isLoading: false
-  //       })
-  //     })
-  //     .catch(() => {
-  //       this.setState({
-  //         isLoading: false
-  //       })
-  //     })
-  // }
-
-
   render() {
     const { chats, user, loading } = this.state
     const { children } = this.props;

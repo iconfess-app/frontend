@@ -34,7 +34,6 @@ class App extends Component {
           <Route exact path="/myconfessions" component={myConfessionsPage} />
           <Route exact path="/confess" component={Confessional} />
           <Route exact path="/privacy-policy" component={Information} />
-
           <Route exact path="/chat" component={Chat} />
         </Router>
       </>
