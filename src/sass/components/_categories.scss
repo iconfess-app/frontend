@@ -28,6 +28,10 @@
   }
   &__image {
     width: 120px;
+    &--selected {
+      filter: opacity(30%);
+      width: 120px;
+    }
   }
   &__title {
     font-size: $text-paragraph;
@@ -35,32 +39,13 @@
     font-weight: 600;
     margin: 0.5em 0;
     letter-spacing: 0.05em;
+    &--selected {
+      font-size: $text-paragraph;
+      color: $color-medium-text;
+      font-weight: 600;
+      margin: 0.5em 0;
+      letter-spacing: 0.05em;
+      filter: opacity(30%);
+    }
   }
 }
-
-// .scroll {
-//   overflow: auto;
-//   white-space: nowrap;
-//   overflow-x: scroll;
-//   scroll-snap-type: x proximity;
-//   margin: 0 -1em;
-//   &__item {
-//     height: auto;
-//     display: inline-block;
-//     text-align: center;
-//     padding: 5%;
-//     text-decoration: none;
-//   }
-//   &__image {
-//     width: 120px;
-//   }
-//   &::-webkit-scrollbar {
-//     height: 12px;
-//   }
-//   &::-webkit-scrollbar-thumb {
-//     background: $color-third-layer;
-//     border-radius: 12px;
-//     width: 25px;
-//     margin: 0 1em;
-//   }
-// }
