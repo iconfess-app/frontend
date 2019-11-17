@@ -88,6 +88,10 @@
   &__helper-password {
     color: $color-light-red;
   }
+  &__helper-input {
+    font-size: $text-xs;
+    color: $color-medium-text;
+  }
   &__footer {
     text-align: center;
     margin-top: 3em;
@@ -138,6 +142,15 @@
   }
   &__toggle-text {
     color: $color-light-text;
+  }
+  &__textarea {
+    color: $color-white-text;
+    &--encoded {
+      color: transparent;
+      &:focus {
+        color: transparent;
+      }
+    }
   }
 }
 
@@ -220,15 +233,21 @@ label {
 }
 
 textarea {
-  width: 314px;
+  width: 100%;
   height: 200px;
-  background-color: $color-text-area;
-  border: $color-text-area;
+  background-color: $color-first-layer;
+  border: 0;
   border-radius: 10px;
-  padding: 17px 14px;
+  padding: 16px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  margin-top: 16px;
+  font-size: 1em;
+  resize: none;
+  color: $color-white-text;
+  line-height: 1.4em;
+  &:focus {
+    outline: none;
+    color: $color-white-text;
+  }
 }
 
 .xsmall-text {
@@ -246,4 +265,9 @@ textarea {
   p {
     color: $color-dark-red;
   }
+}
+
+.privacy-text {
+  color: $color-medium-text;
+  margin-top: 1em;
 }
