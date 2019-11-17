@@ -18,6 +18,8 @@ import myConfessionsPage from './views/MyConfessions';
 import Confessional from './views/Confess';
 import Information from './views/Information';
 
+import Chat from './Chat';
+
 class App extends Component {
   render() {
     return (
@@ -32,6 +34,8 @@ class App extends Component {
           <Route exact path="/myconfessions" component={myConfessionsPage} />
           <Route exact path="/confess" component={Confessional} />
           <Route exact path="/privacy-policy" component={Information} />
+
+          <Route exact path="/chat" component={Chat} />
         </Router>
       </>
     );
