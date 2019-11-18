@@ -6,7 +6,7 @@ import './sass/main.scss';
 import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
-import ChangePassword from './components/ChangePassword';
+import ChangePassword from './views/components/ChangePassword';
 import Home from './views/Home';
 import { withAuth } from './Context/AuthContext';
 

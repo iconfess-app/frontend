@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 import { Link } from 'react-router-dom';
-import ChangePassword from '../../components/ChangePassword';
+import ChangePassword from '../components/ChangePassword';
 import { withAuth } from '../../Context/AuthContext';
 import { withFlash } from '../../Context/NotificationContext';
 import NavBar from '../components/NavBar';
@@ -63,11 +63,17 @@ class EditProfile extends Component {
         email,
       });
       this.props.handleFlash('Your profile is updated', 'success');
+      this.redirect();
     } catch (error) {
-      this.props.handleFlash('Oops! Something went wrong', 'error');
+      this.props.handleFlash('Oops! Something went wrong. Try again', 'error');
     }
-
   };
+
+  redirect = () => {
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 2000)
+  }
 
   render() {
     const { username, allowsContact, allowsLocation, lightMode, showAvatars, avatar } = this.state;

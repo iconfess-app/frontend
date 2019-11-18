@@ -4,6 +4,20 @@ import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
+import PWAPrompt from 'react-ios-pwa-prompt'
+
+import Addictions from '../data/images/Addictions.png';
+import Work from '../data/images/Work.png';
+import relationships from '../data/images/relationships.png';
+import Family from '../data/images/Family.png';
+import Studies from '../data/images/studies.png';
+import Fantasies from '../data/images/Fantasies.png';
+import Friends from '../data/images/Friends.png';
+import Health from '../data/images/Health.png';
+import Misc from '../data/images/Misc.png';
+import Selfesteem from '../data/images/Selfesteem.png';
+import Sex from '../data/images/Sex.png';
+
 
 class Home extends Component {
   constructor(props) {
@@ -24,7 +38,7 @@ class Home extends Component {
       this.setState({ allConfessions });
       this.filterByDate();
     } catch (error) {
-      this.props.handleFlash('Oops! Check your Internet connection', 'error');
+      console.log(error);
     }
   }
 
@@ -130,7 +144,7 @@ class Home extends Component {
                 <img
                   name="Family"
                   onClick={this.handleCategory}
-                  src="/images/family.png"
+                  src={Family}
                   alt="family category icon"
                   className="scroll__image"
                 ></img>
@@ -140,7 +154,7 @@ class Home extends Component {
                 <img
                   name="Self-esteem"
                   onClick={this.handleCategory}
-                  src="/images/self-esteem.png"
+                  src={Selfesteem}
                   alt="self-esteem category icon"
                   className="scroll__image"
                 ></img>
@@ -150,7 +164,7 @@ class Home extends Component {
                 <img
                   name="Addictions"
                   onClick={this.handleCategory}
-                  src="/images/addictions.png"
+                  src={Addictions}
                   alt="addictions category icon"
                   className="scroll__image"
                 ></img>
@@ -160,7 +174,7 @@ class Home extends Component {
                 <img
                   name="Fantasies"
                   onClick={this.handleCategory}
-                  src="/images/fantasies.png"
+                  src={Fantasies}
                   alt="fantasies category icon"
                   className="scroll__image"
                 ></img>
@@ -170,7 +184,7 @@ class Home extends Component {
                 <img
                   name="Health"
                   onClick={this.handleCategory}
-                  src="/images/health.png"
+                  src={Health}
                   alt="health category icon"
                   className="scroll__image"
                 ></img>
@@ -180,7 +194,7 @@ class Home extends Component {
                 <img
                   name="Sex"
                   onClick={this.handleCategory}
-                  src="/images/sex.png"
+                  src={Sex}
                   alt="sex category icon"
                   className="scroll__image"
                 ></img>
@@ -190,7 +204,7 @@ class Home extends Component {
                 <img
                   name="Work"
                   onClick={this.handleCategory}
-                  src="/images/work.png"
+                  src={Work}
                   alt="work category icon"
                   className="scroll__image"
                 ></img>
@@ -200,7 +214,7 @@ class Home extends Component {
                 <img
                   name="Friends"
                   onClick={this.handleCategory}
-                  src="/images/friends.png"
+                  src={Friends}
                   alt="misc category icon"
                   className="scroll__image"
                 ></img>
@@ -210,7 +224,7 @@ class Home extends Component {
                 <img
                   name="Miscellaneous"
                   onClick={this.handleCategory}
-                  src="/images/misc.png"
+                  src={Misc}
                   alt="misc category icon"
                   className="scroll__image"
                 ></img>
@@ -220,7 +234,7 @@ class Home extends Component {
                 <img
                   name="Relationships"
                   onClick={this.handleCategory}
-                  src="/images/relationships.png"
+                  src={relationships}
                   alt="relationships category icon"
                   className="scroll__image"
                 ></img>
@@ -230,7 +244,7 @@ class Home extends Component {
                 <img
                   name="Studies"
                   onClick={this.handleCategory}
-                  src="/images/studies.png"
+                  src={Studies}
                   alt="studies category icon"
                   className="scroll__image"
                 ></img>
@@ -243,6 +257,7 @@ class Home extends Component {
           {loading ? 'loading...' : this.renderConfessions()}
         </div>
         <NavBar />
+        <PWAPrompt promptOnVisit={1} timesToShow={1} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
       </div>
     );
   }
