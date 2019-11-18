@@ -38,7 +38,6 @@ class EditProfile extends Component {
   };
 
   handleSelect = event => {
-    console.log(event.target.src);
     this.setState({ avatar: event.target.src });
   };
 
