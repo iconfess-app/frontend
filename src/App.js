@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './sass/main.scss';
 
-//import PrivateView from './views/PrivateView';
 import Login from './views/auth/Login';
 import Signup from './views/auth/Signup';
 import ChangePassword from './views/components/ChangePassword';
@@ -11,7 +10,6 @@ import Home from './views/Home';
 import { withAuth } from './Context/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
-//import AnonRoute from './components/AnonRoute';
 
 import EditProfile from './views/auth/EditProfile';
 import myConfessionsPage from './views/MyConfessions';
