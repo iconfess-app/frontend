@@ -4,6 +4,20 @@ import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
+import PWAPrompt from 'react-ios-pwa-prompt'
+
+import Addictions from '../data/images/Addictions.png';
+import Work from '../data/images/Work.png';
+import relationships from '../data/images/relationships.png';
+import Family from '../data/images/Family.png';
+import Studies from '../data/images/studies.png';
+import Fantasies from '../data/images/Fantasies.png';
+import Friends from '../data/images/Friends.png';
+import Health from '../data/images/Health.png';
+import Misc from '../data/images/Misc.png';
+import Selfesteem from '../data/images/Selfesteem.png';
+import Sex from '../data/images/Sex.png';
+
 import Loading from './components/Loading';
 
 class Home extends Component {
@@ -25,7 +39,7 @@ class Home extends Component {
       this.setState({ allConfessions });
       this.filterByDate();
     } catch (error) {
-      this.props.handleFlash('Oops! Check your Internet connection', 'error');
+      console.log(error);
     }
   }
 
@@ -176,6 +190,7 @@ class Home extends Component {
               <div className="confessions">{this.renderConfessions()}</div>
             </div>
             <NavBar />
+          <PWAPrompt promptOnVisit={1} timesToShow={1} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
           </div>
         )}
       </>

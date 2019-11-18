@@ -197,6 +197,7 @@ input:-webkit-autofill:focus {
   height: 56px;
   margin-top: 1em;
   outline: none;
+  background: url('../../data/images/icon-search.svg') no-repeat 12px 10px $color-first-layer;
   color: $color-medium-text;
   background: url(/images/icon-search.svg) no-repeat 16px 16px $color-first-layer;
   // -webkit-transition: all 0.7s ease 0s;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {withAuth} from '../Context/AuthContext';
+import { withAuth } from '../Context/AuthContext';
 
 const PrivateView = ({ user }) => {
   return (
