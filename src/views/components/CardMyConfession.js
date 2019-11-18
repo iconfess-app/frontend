@@ -12,7 +12,7 @@ class CardMyConfession extends Component {
 
     return (
       <div className="card">
-        <div className="card-header">
+        <div className="card__header">
           <svg
             width="18"
             height="17"
