@@ -132,16 +132,16 @@ class EditProfile extends Component {
               <div className="avatar-container__item" onClick={this.handleSelect}>
                 <img src={avatars.avatar2} alt="avatar2" name="avatar2" />
               </div>
-              <div className="avatar-container__item">
+              <div className="avatar-container__item" onClick={this.handleSelect}>
                 <img src={avatars.avatar3} alt="avatar3" name="avatar3" />
               </div>
-              <div className="avatar-container__item">
+              <div className="avatar-container__item" onClick={this.handleSelect}>
                 <img src={avatars.avatar4} alt="avatar4" name="avatar4" />
               </div>
-              <div className="avatar-container__item">
+              <div className="avatar-container__item" onClick={this.handleSelect}>
                 <img src={avatars.avatar5} alt="avatar5" name="avatar5" />
               </div>
-              <div className="avatar-container__item">
+              <div className="avatar-container__item" onClick={this.handleSelect}>
                 <img src={avatars.avatar6} alt="avatar6" name="avatar6" />
               </div>
             </div>
