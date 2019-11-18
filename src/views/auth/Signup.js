@@ -111,10 +111,17 @@ class Signup extends Component {
         isOver16,
       });
       this.props.handleFlash('You are an iConfessor now :D', 'success');
+      this.redirect();
     } catch (error) {
       this.props.handleFlash('Oops, your signup went wrong', 'error');
     }
   };
+
+  redirect = () => {
+    setTimeout(() => {
+      this.props.history.push('/confess');
+    }, 2000)
+  }
 
   render() {
     const {

@@ -45,7 +45,6 @@ export default class FlashProvider extends Component {
   }
 
   render() {
-    console.log(this.state.notifications);
     const { notifications } = this.state;
     const { children } = this.props;
     return (

@@ -6,93 +6,90 @@
   border-radius: 10px;
   margin: 2em 0;
   padding: 1em;
-  .card-header {
+  -webkit-animation: scale-up-ver-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+  animation: scale-up-ver-top 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) 1s both;
+  &__header {
     display: flex;
     margin-bottom: 1em;
-    .avatar {
-      img {
-        border-radius: 100%;
-        margin-right: 8px;
-      }
+  }
+  &__avatar {
+    img {
+      border-radius: 100%;
+      margin-right: 8px;
     }
-    .username {
-      font-weight: bold;
-    }
-    .time {
-      color: $color-medium-text;
+  }
+  &__username {
+    font-weight: bold;
+  }
+  &__time {
+    color: $color-medium-text;
+    display: flex;
+    span {
+      margin-right: 5px;
       display: flex;
-      span {
-        margin-right: 5px;
-        display: flex;
-        align-items: center;
-        path {
-          fill: $color-medium-text;
-        }
+      align-items: center;
+      path {
+        fill: $color-medium-text;
       }
     }
   }
-  .categories {
+  &__categories {
     margin-top: 1.5em;
     ul {
       display: flex;
       flex-direction: row;
       li {
-        margin-right: 8px;
+        margin-right: 12px;
         color: $color-medium-text;
       }
     }
   }
-  .card-footer {
+  &__footer {
     display: flex;
     margin-top: 1.5em;
     justify-content: space-between;
-    .likes {
-      color: $color-light-red;
-      display: flex;
-      button {
-        margin-right: 5px;
+  }
+  &__likes {
+    color: $color-light-red;
+    display: flex;
+    button {
+      margin-right: 5px;
+      outline: none;
+      path {
+        fill: none;
+        transition: fill 1s ease-out;
+      }
+      &:focus {
         outline: none;
-        // transform: scale(1, 1);
-        // transition: all 2s ease-out;
-        path {
-          fill: none;
-          transition: fill 2s ease-out;
-        }
-        &:focus {
-          outline: none;
-          border: none;
-        }
-        &.full {
-          path {
-            fill: $color-light-red;
-          }
-        }
+        border: none;
       }
     }
-    .chat {
-      svg {
-        path {
-          fill: $color-white-text;
-        }
+  }
+  &__chat {
+    outline: none;
+    svg {
+      path {
+        fill: $color-white-text;
       }
     }
-    .chat-none {
+    &--none {
       svg {
         path {
           fill: $color-disabled-text;
         }
       }
     }
-    .report {
-      margin-left: 8px;
-    }
+  }
+  &__report {
+    outline: none;
+    margin-left: 8px;
   }
 }
 
-// Heart likes
+/*** Likes heart animation ***/
 .icon-like-wrapper {
   display: inline-block;
-  padding: 1px 5px;
+  padding: 0 5px 0 0;
 }
 
 .icon-like {
@@ -101,10 +98,32 @@
 
   &--active {
     fill: $color-light-red;
-    transform: scale(1);
-    transition: all 0.5s cubic-bezier(0.24, -0.38, 0.97, -0.03);
+    -webkit-animation: scale-up-center 0.4s ease-in-out 2 alternate-reverse both;
+    animation: scale-up-center 0.4s ease-in-out 2 alternate-reverse both;
+  }
+  @-webkit-keyframes icon-like--active {
+    0% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+  }
+  @keyframes icon-like--active {
+    0% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
   }
 }
+
+/*** My confessions card ***/
 
 .card {
   &__icon {
@@ -145,5 +164,41 @@
   &--encoded {
     background-color: $color-first-layer;
     color: transparent;
+  }
+}
+
+/*** Confessions group of cards ***/
+
+.confessions {
+  margin-top: -1.5em;
+}
+
+/*** Animation ***/
+@-webkit-keyframes card {
+  0% {
+    -webkit-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+}
+@keyframes card {
+  0% {
+    -webkit-transform: scaleY(0.4);
+    transform: scaleY(0.4);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
+  }
+  100% {
+    -webkit-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transform-origin: 100% 0%;
+    transform-origin: 100% 0%;
   }
 }

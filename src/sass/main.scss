@@ -13,6 +13,8 @@
 @import 'layout/privacy';
 @import 'layout/login';
 @import 'layout/editProfile';
+@import 'layout/chat';
+@import 'layout/errorPage';
 
 @import 'components/buttons';
 @import 'components/notifications';
@@ -20,6 +22,8 @@
 @import 'components/categories';
 @import 'components/modals';
 @import 'components/validations';
+@import 'components/loading';
+@import 'components/splashScreen';
 
 @import 'themes/dark';
 @import 'themes/light';

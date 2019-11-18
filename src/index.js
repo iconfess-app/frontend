@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 
 import AuthProvider from './Context/AuthContext';
 import NotificationProvider from './Context/NotificationContext';
+import ChatProvider from './Context/ChatContext';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<AuthProvider>
   <NotificationProvider>
-    <App />
+    <ChatProvider>
+      <App />
+    </ChatProvider>
   </NotificationProvider>
 </AuthProvider>, document.getElementById('root'));
 

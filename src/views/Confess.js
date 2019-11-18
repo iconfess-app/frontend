@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import sensitiveContent from '../data/sensitiveContent.json';
@@ -46,7 +45,7 @@ class Confessional extends Component {
     const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
-    const { description, isEncoded } = this.state;
+    const { description } = this.state;
     const keyword = description.toLowerCase();
     const sensitiveValidation = sensitiveContent.some(substring => keyword.includes(substring));
     this.setState({
@@ -80,17 +79,23 @@ class Confessional extends Component {
           submitted: true,
         });
         this.props.handleFlash('Yay! Confession submitted!', 'success');
+        this.redirect();
       }
     } catch (error) {
       this.props.handleFlash('Oops! Something went wrong', 'error');
     }
   };
 
+  redirect = () => {
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 2000)
+  }
+
   render() {
     const { description, isDestroyed, isSensitive, isUncategorized, isTooLong, isTooShort, isEncoded } = this.state;
     const validConfession = !isSensitive && !isTooLong && !isTooShort && !isUncategorized;
     const goBack = () => this.props.history.goBack();
-    console.log(this.state);
     const categories = [
       'Family',
       'Addictions',
@@ -155,8 +160,8 @@ class Confessional extends Component {
                 isEncoded
                   ? 'group-form__textarea--encoded'
                   : isSensitive || isTooShort || isTooLong
-                  ? 'error-input'
-                  : 'group-form__textarea'
+                    ? 'error-input'
+                    : 'group-form__textarea'
               }
             />
             <p className="group-form__helper-input">Max. 140 characters</p>

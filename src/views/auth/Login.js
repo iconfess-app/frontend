@@ -24,12 +24,23 @@ class Login extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.handleLogin({
-      email,
-      password,
-    });
-    this.props.handleFlash('Welcome back dear confessor!', 'success');
+    try {
+      this.props.handleLogin({
+        email,
+        password,
+      });
+      this.props.handleFlash('Welcome back dear confessor!', 'success');
+      this.redirect();
+    } catch (error) {
+      this.props.handleFlash(error, 'error');
+    }
   };
+
+  redirect = () => {
+    setTimeout(() => {
+      this.props.history.push('/');
+    }, 2000)
+  }
 
   render() {
     const { email, password, hidden } = this.state;

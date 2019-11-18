@@ -4,6 +4,21 @@ import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
 import NavBar from './components/NavBar';
+import PWAPrompt from 'react-ios-pwa-prompt'
+
+import Addictions from '../data/images/Addictions.png';
+import Work from '../data/images/Work.png';
+import relationships from '../data/images/relationships.png';
+import Family from '../data/images/Family.png';
+import Studies from '../data/images/studies.png';
+import Fantasies from '../data/images/Fantasies.png';
+import Friends from '../data/images/Friends.png';
+import Health from '../data/images/Health.png';
+import Misc from '../data/images/Misc.png';
+import Selfesteem from '../data/images/Selfesteem.png';
+import Sex from '../data/images/Sex.png';
+
+import Loading from './components/Loading';
 
 class Home extends Component {
   constructor(props) {
@@ -24,7 +39,7 @@ class Home extends Component {
       this.setState({ allConfessions });
       this.filterByDate();
     } catch (error) {
-      this.props.handleFlash('Oops! Check your Internet connection', 'error');
+      console.log(error);
     }
   }
 
@@ -86,7 +101,7 @@ class Home extends Component {
       return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
     });
 
-    filteredConfessions.sort(function (a, b) {
+    filteredConfessions.sort(function(a, b) {
       return a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : 0;
     });
 
@@ -112,138 +127,73 @@ class Home extends Component {
 
   render() {
     const { loading, category, usesCategory, searchValue } = this.state;
+    console.log(this.state.category);
+    const categories = [
+      'Family',
+      'Addictions',
+      'Fantasies',
+      'Friends',
+      'Health',
+      'Misc',
+      'Self-esteem',
+      'Sex',
+      'Work',
+      'Relationships',
+      'Studies',
+    ];
     return (
-      <div className="container">
-        <div className="content">
-          <input
-            className="search-bar"
-            type="search"
-            name="searchBar"
-            value={searchValue}
-            placeholder="Type a keyword to search..."
-            onChange={this.handleSearch}
-          />
-          <h5>Most popular categories</h5>
-          <div className="scroll">
-            <ul className="scroll__list">
-              <li className="scroll__item">
-                <img
-                  name="Family"
-                  onClick={this.handleCategory}
-                  src="/images/family.png"
-                  alt="family category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Family</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Self-esteem"
-                  onClick={this.handleCategory}
-                  src="/images/self-esteem.png"
-                  alt="self-esteem category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Self-esteem</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Addictions"
-                  onClick={this.handleCategory}
-                  src="/images/addictions.png"
-                  alt="addictions category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Addictions</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Fantasies"
-                  onClick={this.handleCategory}
-                  src="/images/fantasies.png"
-                  alt="fantasies category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Fantasies</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Health"
-                  onClick={this.handleCategory}
-                  src="/images/health.png"
-                  alt="health category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Health</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Sex"
-                  onClick={this.handleCategory}
-                  src="/images/sex.png"
-                  alt="sex category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Sex</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Work"
-                  onClick={this.handleCategory}
-                  src="/images/work.png"
-                  alt="work category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Work</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Friends"
-                  onClick={this.handleCategory}
-                  src="/images/friends.png"
-                  alt="misc category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Friends</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Miscellaneous"
-                  onClick={this.handleCategory}
-                  src="/images/misc.png"
-                  alt="misc category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Misc.</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Relationships"
-                  onClick={this.handleCategory}
-                  src="/images/relationships.png"
-                  alt="relationships category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Relationships</p>
-              </li>
-              <li className="scroll__item">
-                <img
-                  name="Studies"
-                  onClick={this.handleCategory}
-                  src="/images/studies.png"
-                  alt="studies category icon"
-                  className="scroll__image"
-                ></img>
-                <p className="scroll__title">Studies</p>
-              </li>
-            </ul>
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="container">
+            <div className="content">
+              <input
+                className="searchbar"
+                type="search"
+                name="searchBar"
+                value={searchValue}
+                placeholder="Type a keyword to search..."
+                onChange={this.handleSearch}
+              />
+              <h5>Most popular categories</h5>
+              <div className="scroll">
+                <ul className="scroll__list">
+                  {categories.map(categoryFilter => {
+                    return (
+                      <li key={categoryFilter} className="scroll__item">
+                        <img
+                          src={`/images/${categoryFilter}.png`}
+                          alt={`${categoryFilter} category icon`}
+                          name={categoryFilter}
+                          onClick={this.handleCategory}
+                          className={category === categoryFilter ? 'scroll__image--selected' : 'scroll__image'}
+                        />
+                        <p className={category === categoryFilter ? 'scroll__title--selected' : 'scroll__title'}>
+                          {categoryFilter}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+              <div className="filtered-categories-title">
+                <h5>{category} confessions</h5>
+                {usesCategory ? (
+                  <span onClick={this.handleRecent} className="filtered-categories-title__filter">
+                    View all
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="confessions">{this.renderConfessions()}</div>
+            </div>
+            <NavBar />
+          <PWAPrompt promptOnVisit={1} timesToShow={1} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
           </div>
-          <h5>{category} confessions</h5>
-          {usesCategory ? <p onClick={this.handleRecent}>View all</p> : <></>}
-          {loading ? 'loading...' : this.renderConfessions()}
-        </div>
-        <NavBar />
-      </div>
+        )}
+      </>
     );
   }
 }
