@@ -171,50 +171,50 @@ class CardConfession extends Component {
                 </svg>
               </button>
             ) : (
-              <Popup
-                overlayClassName="overlay"
-                className="popup"
-                trigger={
-                  <button className="card__report">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
-                        fill="white"
-                      />
-                      <path d="M13 6.5H11V14.5H13V6.5Z" fill="white" />
-                      <path d="M13 15.5H11V17.5H13V15.5Z" fill="white" />
-                    </svg>
-                  </button>
-                }
-                position="left center"
-              >
-                {close => (
-                  <div className="popup-wrapper">
-                    <div className="popup-content__close" onClick={close}>
-                      <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <Popup
+                  overlayClassName="overlay"
+                  className="popup"
+                  trigger={
+                    <button className="card__report">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
-                          d="M2.01342 15.6167L8.6623 9.38334L15.3112 15.6167L16.6801 14.3333L10.0312 8.1L16.6801 1.86667L15.3112 0.583336L8.6623 6.81667L2.01342 0.583336L0.644531 1.86667L7.29341 8.1L0.644531 14.3333L2.01342 15.6167Z"
+                          d="M12 1C5.9 1 1 5.9 1 12C1 18.1 5.9 23 12 23C18.1 23 23 18.1 23 12C23 5.9 18.1 1 12 1ZM12 21C7 21 3 17 3 12C3 7 7 3 12 3C17 3 21 7 21 12C21 17 17 21 12 21Z"
                           fill="white"
                         />
+                        <path d="M13 6.5H11V14.5H13V6.5Z" fill="white" />
+                        <path d="M13 15.5H11V17.5H13V15.5Z" fill="white" />
                       </svg>
-                    </div>
-                    <div className="popup-content__description">
-                      <h4>Are you offended by this confession?</h4>
-                      <p>
-                        If you are, report it and we will revise its content and delete if necessary. Thank you for
-                        keeping iConfess friendly!
+                    </button>
+                  }
+                  position="left center"
+                >
+                  {close => (
+                    <div className="popup-wrapper">
+                      <div className="popup-content__close" onClick={close}>
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M2.01342 15.6167L8.6623 9.38334L15.3112 15.6167L16.6801 14.3333L10.0312 8.1L16.6801 1.86667L15.3112 0.583336L8.6623 6.81667L2.01342 0.583336L0.644531 1.86667L7.29341 8.1L0.644531 14.3333L2.01342 15.6167Z"
+                            fill="white"
+                          />
+                        </svg>
+                      </div>
+                      <div className="popup-content__description">
+                        <h4>Are you offended by this confession?</h4>
+                        <p>
+                          If you are, report it and we will revise its content and delete if necessary. Thank you for
+                          keeping iConfess friendly!
                       </p>
-                      <button onClick={this.handleReport} className="btn btn-primary">
-                        Report
+                        <button onClick={this.handleReport} className="btn btn-primary">
+                          Report
                       </button>
-                      <button onClick={close} className="btn btn-outlined">
-                        No, sorry
+                        <button onClick={close} className="btn btn-outlined">
+                          No, sorry
                       </button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </Popup>
-            )}
+                  )}
+                </Popup>
+              )}
           </div>
         </div>
       </div>

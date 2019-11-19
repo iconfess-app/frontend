@@ -17,7 +17,8 @@ class ChangePassword extends Component {
     });
   };
 
-  updatePassword = password => {
+  updatePassword = e => {
+    const password = e.target.value;
     this.setState({ password }, this.validatePassword);
   };
 
@@ -73,7 +74,7 @@ class ChangePassword extends Component {
               name="password"
               placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
               value={password}
-              onChange={e => this.updatePassword(e.target.value)}
+              onChange={this.updatePassword}
               className={passwordValid ? 'group-form__input' : 'group-form__input error-input'}
             />
             <span onClick={this.handlePassword} className="group-form__toggle-password">

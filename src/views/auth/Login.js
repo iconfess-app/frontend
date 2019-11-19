@@ -209,27 +209,33 @@ class Login extends Component {
               )}
             </span>
             <div className="group-form__helpers">
-              <label className="group-form__checkbox">
+              <p>
+                Don’t have an account?
+                <a href="/signup" className="red-link">
+                  &nbsp;Sign Up
+                </a>
+              </p>
+              {/* <label className="group-form__checkbox">
                 Remember me
                 <input type="checkbox" name="rememberMe" id="rememberMe" />
                 <span className="group-form__checkbox__check"></span>
               </label>
-              <span className="group-form__helper-password">I forgot my password</span>
+              <span className="group-form__helper-password">I forgot my password</span> */}
             </div>
             <button type="submit" value="Login" className="btn btn-primary">
               Login
             </button>
-            <div className="group-form__footer">
+            {/* <div className="group-form__footer">
               <p>
                 Don’t have an account? &nbsp;
                 <Link to="/signup" className="red-link">
                   Sign Up
                 </Link>
               </p>
-            </div>
+            </div> */}
           </form>
         </div>
-      </div>
+      </div >
     );
   }
 }
