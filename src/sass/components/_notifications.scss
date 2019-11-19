@@ -1,6 +1,3 @@
-@import '../base/colors';
-@import '../base/typography';
-
 // .notification-container {
 //   position: fixed;
 //   z-index: 999 !important;
@@ -9,12 +6,14 @@
 // }
 
 .notification {
-  padding: 10px 25px 10px 40px;
+  width: 90%;
+  height: 48px;
+  padding: 12px 24px;
   margin: 6vw 5vh 0 5vw;
-  border-radius:  30px;
+  border-radius: 25px;
   position: fixed;
-  width: auto;
-  color: black;
+  color: $color-dark-bg;
+  font-size: 1em;
   z-index: 1;
   transform: translateX(-120%);
   -webkit-transform: translateX(-120%);
@@ -31,44 +30,57 @@
   width: 16px;
   height: 16px;
   margin: 4px 0 0 10px;
+  path {
+    fill: $color-dark-bg;
+  }
 }
 
 .slide-in {
-    animation: slide-in 2s forwards;
-    -webkit-animation: slide-in 2s forwards;
+  animation: slide-in 2s forwards;
+  -webkit-animation: slide-in 2s forwards;
 }
 
 .slide-out {
-    animation: slide-out 2s forwards;
-    -webkit-animation: slide-out 2s forwards;
+  animation: slide-out 2s forwards;
+  -webkit-animation: slide-out 2s forwards;
 }
-    
+
 @keyframes slide-in {
-    100% { transform: translateX(0%); }
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 @-webkit-keyframes slide-in {
-    100% { -webkit-transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
 }
-    
+
 @keyframes slide-out {
-    0% { transform: translateX(0%) }
-    100% { transform: translateX(-200%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
 }
 
 @-webkit-keyframes slide-out {
-    0% { transform: translateX(0%) }
-    100% { -webkit-transform: translateX(-200%); }
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(-200%);
+  }
 }
 
 .error {
-  background-color: $color-light-red;
+  background-color: $color-error;
 }
 .success {
-  background-color: $color-dark-purple;
+  background-color: $color-sucess;
 }
 .regular {
   background-color: $color-medium-gray;
 }
-
-

@@ -1,20 +1,61 @@
-
 .chat {
   overflow-y: scroll;
   p {
-    color: white;
+    color: $color-light-text;
   }
   h3 {
     text-align: center;
   }
-  input {
-    background-color: $color-first-layer;
-    width: 80%;
+}
+
+.chat-container {
+  height: 64vh;
+  margin-top: 1em;
+}
+
+.chat-avatar {
+  width: 36px;
+  border-radius: 50%;
+  margin: 0 12px 0 0;
+}
+
+.chat-bubble {
+  margin-bottom: 1.5em;
+  display: flex;
+  align-items: start;
+  &-content {
+    background-color: $color-third-layer;
+    border: $color-third-layer;
+    border-radius: 0 10px 10px 10px;
+    padding: 10px;
+    &__user {
+      font-weight: 700;
+    }
+  }
+  &-top {
+    display: flex;
+    align-items: center;
+    p {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.chat-form {
+  min-width: 380px;
+  bottom: 64px;
+  position: fixed;
+  margin: 0 auto;
+  &__chatinput {
+    width: 100%;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
     border: 1px solid $color-dark-gray;
-    border-radius: 50px;
+    padding: 16px 48px 16px 16px;
     height: 56px;
-    padding: 12px;
-    margin-bottom: 16px;
+    background-color: $color-first-layer;
+    outline: none;
     transition: border-color 0.5s ease-out;
     &::placeholder {
       color: $color-disabled-text;
@@ -22,40 +63,21 @@
     &:focus {
       outline: none;
       background-color: $color-second-layer;
-      border: 1px solid $color-light-text;
-    }
-    &-container {
-      margin-bottom: 50px;
+      border: 1px solid $color-third-layer;
     }
   }
-}
-
-.chat-input-section {
-  width: 100%;
-}
-
-.chat-avatar {
-  width: 30px;
-  border-radius: 50%;
-  margin: 0 5px 5px 0;
-}
-
-.chat-bubble {
-  margin-bottom: 10px;
-  &-content {
-    background-color: $color-light-purple;
-    border: $color-light-purple;
-    border-radius: 0 10px 10px 10px;
-    padding: 10px;
-  }
-  &-top {
-    display: flex;
-    align-items: center;
-    font-family: 'Open Sans', sans-serif;
-    padding: 5px;
-    color: $color-light-text;
-    p {
-      margin-bottom: 15px;
+  &__btn {
+    width: 42px;
+    height: 42px;
+    background-color: $color-light-red;
+    border-radius: 100%;
+    justify-content: center;
+    position: relative;
+    bottom: 49px;
+    left: 330px;
+    outline: none;
+    path {
+      fill: $color-light-text;
     }
   }
 }
