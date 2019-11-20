@@ -43,7 +43,8 @@ class Chat extends Component {
   };
 
   render() {
-    const chats = this.props.chats;
+    const { chats } = this.props;
+    console.log(this.props);
     const goBack = () => this.props.history.goBack();
     return (
       <div className="container">
@@ -65,7 +66,7 @@ class Chat extends Component {
               return (
                 <div key={index} className="chat-bubble">
                   <div className="chat-bubble-top">
-                    <img className="chat-avatar" src={chat.sender.avatar} alt="user icon"></img>
+                    <img className="chat-avatar" src={chat.sender.avatar} alt="user icon" />
                   </div>
                   <div className="chat-bubble-content">
                     <p className="chat-bubble-content__user">@{chat.sender.username}</p>
