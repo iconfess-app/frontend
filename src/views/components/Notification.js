@@ -25,12 +25,6 @@ class Flash extends Component {
       <div className={`notification ${mounted ? 'slide-in' : 'slide-out'} ${type}`}>
         {' '}
         {message}
-        {/* <img
-          className="close_notification"
-          onClick={this.handleClose}
-          alt="cross-icon"
-          src="images/icon-close-black.png"
-        /> */}
         <svg
           width="17"
           height="16"
