@@ -17,13 +17,14 @@ class Chat extends Component {
       this.props.afterPostMessage(messageFromBackend);
     });
     this.props.handleFlash('Messages on this chat will self-destroy in 15 minutes 🤫', 'regular');
+    console.log(this.props);
   };
 
   componentDidUpdate = () => {
     this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
-  handleSearchChange = e => {
+  handleSearchChange = (e) => {
     this.setState({
       chatMessage: e.target.value,
     });
@@ -38,7 +39,7 @@ class Chat extends Component {
     let type = 'Text';
     const message = { chatMessage, userId, username, avatar, type, nowTime };
     this.socket.emit('Input Chat Message', message);
-    this.setState({ chatMessage: '' });
+    this.setState({ chatMessage: "" });
   };
 
   render() {
@@ -46,7 +47,7 @@ class Chat extends Component {
     console.log(this.props);
     const goBack = () => this.props.history.goBack();
     return (
-      <div className="container chat">
+      <div className="container">
         <div className="content">
           <div className="top-header">
             <span onClick={goBack}>
@@ -74,11 +75,7 @@ class Chat extends Component {
                 </div>
               );
             })}
-            <div
-              ref={el => {
-                this.messagesEnd = el;
-              }}
-            />
+            <div ref={el => { this.messagesEnd = el; }} />
           </div>
           <form onSubmit={this.handleSubmit} className="chat-form">
             <input

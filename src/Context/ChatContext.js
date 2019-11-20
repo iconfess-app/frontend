@@ -57,7 +57,7 @@ export default class ChatProvider extends Component {
   getChats = () => {
     chatService
       .getChats()
-      .then(chats => {
+      .then((chats) => {
         this.setState({
           chats: [...chats],
           loading: false,

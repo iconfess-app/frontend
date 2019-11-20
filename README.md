@@ -7,6 +7,8 @@ iConfess is a webapp designed for those willing to share their secrets and also 
 
 This project is designed as part of the last module's work at IronHack, which aims for students to develop a MERN full-stack application.
 
+Here is a link to the user's [manual](https://docs.google.com/presentation/d/11oIWdHsxO_dBpvZd_FZIIDIzfJ8VIVmJ0T022HFYen0/edit#slide=id.g75596b312f_0_0) for a quick start.
+
 ## USER STORIES
 
 **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
@@ -111,14 +113,14 @@ User model
 ### Git
 
 URls for the project repo and deploy
-[Link Repo](https://github.com/iconfess-app)
-[Link Deploy]()
+- [Link Repo](https://github.com/iconfess-app)
+- [Link Deploy](https://iconfess.netlify.com/login)
 
-### Wireframes
+### Wireframes 
 
 [InVision with Wireframes](https://invis.io/6EUID9GH4YF)
 
 ### Slides
 
 URls for the project presentation (slides)
-[Link Slides.com](https://slides.com/)
+[Google slides](https://docs.google.com/presentation/d/1wRGTwM_nockjRXuu2N-mVLRci_xrsM7Y_s7DTiTs5Lc/edit?usp=sharing)

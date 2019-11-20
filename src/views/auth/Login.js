@@ -8,6 +8,55 @@ class Login extends Component {
     email: '',
     password: '',
     hidden: true,
+    emailValid: true,
+    passwordValid: true,
+    formValid: false,
+    errorMessage: {},
+  };
+
+  validateForm = () => {
+    const { emailValid, passwordValid } = this.state;
+    this.setState({
+      formValid: emailValid && passwordValid,
+    });
+  };
+
+  updateEmail = email => {
+    this.setState({ email }, this.validateEmail);
+  };
+
+  validateEmail = () => {
+    const { email } = this.state;
+    let emailValid = true;
+    const errorMessage = { ...this.state.errorMessage };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailValid = false;
+      errorMessage.email = 'This is an invalid email format';
+    }
+    this.setState({ emailValid, errorMessage }, this.validateForm);
+  };
+
+  updatePassword = password => {
+    this.setState({ password }, this.validatePassword);
+  };
+
+  validatePassword = () => {
+    const { password } = this.state;
+    let passwordValid = true;
+    const errorMessage = { ...this.state.errorMessage };
+
+    if (password.length < 6) {
+      passwordValid = false;
+      errorMessage.password = 'Password must be at least 6 characters long';
+    } else if (!/\d/.test(password)) {
+      passwordValid = false;
+      errorMessage.password = 'Password must contain a number';
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      passwordValid = false;
+      errorMessage.password = 'Password must contain special character: !@#$%^&*';
+    }
+
+    this.setState({ passwordValid, errorMessage }, this.validateForm);
   };
 
   handleChange = event => {
@@ -44,7 +93,7 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password, hidden } = this.state;
+    const { email, password, hidden, formValid, emailValid, passwordValid, errorMessage } = this.state;
     return (
       <div className="container">
         <div className="content">
@@ -173,16 +222,21 @@ class Login extends Component {
               type="email"
               name="email"
               value={email}
-              onChange={this.handleChange}
-              className="group-form__input"
+              onChange={e => this.updateEmail(e.target.value)}
+              className={emailValid ? 'group-form__input' : 'group-form__input error-input'}
               placeholder="username@email.com"
             />
+            {!emailValid && (
+              <div className="error-message">
+                <p>{errorMessage.email}</p>
+              </div>
+            )}
             <input
               type={hidden ? 'password' : 'text'}
               name="password"
               value={password}
-              onChange={this.handleChange}
-              className="group-form__input"
+              onChange={e => this.updatePassword(e.target.value)}
+              className={passwordValid ? 'group-form__input' : 'group-form__input error-input'}
               placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
             />
             <span onClick={this.handlePassword} className="group-form__toggle-password">
@@ -208,6 +262,11 @@ class Login extends Component {
                 </svg>
               )}
             </span>
+            {!passwordValid && (
+              <div className="error-message">
+                <p>{errorMessage.password}</p>
+              </div>
+            )}
             <div className="group-form__helpers">
               <p>
                 Don’t have an account?
@@ -222,7 +281,7 @@ class Login extends Component {
               </label>
               <span className="group-form__helper-password">I forgot my password</span> */}
             </div>
-            <button type="submit" value="Login" className="btn btn-primary">
+            <button type="submit" value="Login" disabled={!formValid} className="btn btn-primary">
               Login
             </button>
             {/* <div className="group-form__footer">
@@ -235,7 +294,7 @@ class Login extends Component {
             </div> */}
           </form>
         </div>
-      </div >
+      </div>
     );
   }
 }
