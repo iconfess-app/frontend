@@ -1,23 +1,10 @@
+/* eslint-disable class-methods-use-this */
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { withAuth } from '../../Context/AuthContext';
 
 class NavBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userAllowsContact: '',
-    };
-  }
-
-  componentDidMount = () => {
-    this.setState({
-      userAllowsContact: this.props.user.allowsContact,
-    });
-  };
 
   render() {
-    const { userAllowsContact } = this.state;
     return (
       <nav>
         <div className="navbar">
@@ -30,30 +17,17 @@ class NavBar extends Component {
             </svg>
             <span className="navbar__label">Home</span>
           </NavLink>
-          {userAllowsContact ? (
-            <NavLink to="/chat" exact activeClassName="navbar__active" className="navbar__item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M19.3554 2H4.47934C3.07438 2 2 3.07438 2 4.47934V15.2231C2 16.6281 3.07438 17.7025 4.47934 17.7025H5.30579V22L10.1818 17.7025H19.3554C20.7603 17.7025 21.8347 16.6281 21.8347 15.2231V4.47934C21.8347 3.07438 20.7603 2 19.3554 2ZM20.1818 15.2231C20.1818 15.719 19.8512 16.0496 19.3554 16.0496H9.52066L6.95868 18.3636V16.0496H4.47934C3.98347 16.0496 3.65289 15.719 3.65289 15.2231V4.47934C3.65289 3.98347 3.98347 3.65289 4.47934 3.65289H19.3554C19.8512 3.65289 20.1818 3.98347 20.1818 4.47934V15.2231Z"
-                  fill="white"
-                />
-                <path d="M17.7025 6.95868H6.13223V8.61157H17.7025V6.95868Z" fill="white" />
-                <path d="M17.7025 10.2645H6.13223V11.9174H17.7025V10.2645Z" fill="white" />
-              </svg>
-              <span className="navbar__label">Chat</span>
-            </NavLink>
-          ) : (
-              <NavLink to="/privacy-policy" exact activeClassName="navbar__active" className="navbar__item">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 22H18V20H16V9H7V11H9V22ZM11 11H14V20H11V11Z" fill="white" />
-                  <path
-                    d="M12.5 8C14.4 8 16 6.4 16 4.5C16 2.6 14.4 1 12.5 1C10.6 1 9 2.6 9 4.5C9 6.4 10.6 8 12.5 8ZM12.5 3C13.3 3 14 3.7 14 4.5C14 5.3 13.3 6 12.5 6C11.7 6 11 5.3 11 4.5C11 3.7 11.7 3 12.5 3Z"
-                    fill="white"
-                  />
-                </svg>
-                <span className="navbar__label">Policy</span>
-              </NavLink>
-            )}
+          <NavLink to="/chat" exact activeClassName="navbar__active" className="navbar__item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19.3554 2H4.47934C3.07438 2 2 3.07438 2 4.47934V15.2231C2 16.6281 3.07438 17.7025 4.47934 17.7025H5.30579V22L10.1818 17.7025H19.3554C20.7603 17.7025 21.8347 16.6281 21.8347 15.2231V4.47934C21.8347 3.07438 20.7603 2 19.3554 2ZM20.1818 15.2231C20.1818 15.719 19.8512 16.0496 19.3554 16.0496H9.52066L6.95868 18.3636V16.0496H4.47934C3.98347 16.0496 3.65289 15.719 3.65289 15.2231V4.47934C3.65289 3.98347 3.98347 3.65289 4.47934 3.65289H19.3554C19.8512 3.65289 20.1818 3.98347 20.1818 4.47934V15.2231Z"
+                fill="white"
+              />
+              <path d="M17.7025 6.95868H6.13223V8.61157H17.7025V6.95868Z" fill="white" />
+              <path d="M17.7025 10.2645H6.13223V11.9174H17.7025V10.2645Z" fill="white" />
+            </svg>
+            <span className="navbar__label">Chat</span>
+          </NavLink>
           <NavLink to="/confess" exact className="add-btn navbar__item">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -91,4 +65,4 @@ class NavBar extends Component {
   }
 }
 
-export default withAuth(NavBar);
+export default NavBar;

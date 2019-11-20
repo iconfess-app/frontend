@@ -47,7 +47,7 @@
   position: fixed;
   margin: 0 auto;
   &__chatinput {
-    width: 100%;
+    width: 90%;
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -74,7 +74,7 @@
     justify-content: center;
     position: relative;
     bottom: 49px;
-    left: 330px;
+    left: 293px;
     outline: none;
     path {
       fill: $color-light-text;
