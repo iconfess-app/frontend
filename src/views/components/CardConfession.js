@@ -82,7 +82,7 @@ class CardConfession extends Component {
   };
 
   render() {
-    const { avatar, username, description, categories, chat } = this.props;
+    const { avatar, username, description, categories } = this.props;
     const { likes, posted, liked, userReported } = this.state;
     return (
       <div className="card">
