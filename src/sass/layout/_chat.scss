@@ -22,7 +22,7 @@
 .chat-bubble {
   margin-bottom: 1.5em;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   &-content {
     background-color: $color-third-layer;
     border: $color-third-layer;

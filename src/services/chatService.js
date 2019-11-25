@@ -2,14 +2,14 @@ import axios from 'axios';
 
 class ChatService {
   constructor() {
-    this.axios = axios.create({
+    this.chat = axios.create({
       baseURL: process.env.REACT_APP_BACKEND_BASE_URL,
       withCredentials: true,
     });
   }
 
   getChats() {
-    return this.axios.get('/getchats').then(({ data: chats }) => chats);
+    return this.chat.get('/getchats').then(({ data: chats }) => chats);
   }
 
 }
