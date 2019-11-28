@@ -26,7 +26,7 @@ class App extends Component {
     super(props);
     this.state = {
       splashScreen: true,
-      lightMode: this.props.user === undefined || !this.props.user ? false : this.props.user.lightMode,
+      lightMode: this.props.user === undefined ? false : this.props.user.lightMode,
     };
   }
 
@@ -44,17 +44,25 @@ class App extends Component {
     setTimeout(() => {
       this.setState({
         splashScreen: false,
-        lightMode: this.props.user === undefined ? false : this.props.user.lightMode,
       });
     }, 4000);
   };
 
   componentDidUpdate(prevProps) {
     if (this.props.user !== undefined) {
-      if (this.props.user.lightMode !== prevProps.user.lightMode) {
-        this.setState({
-          lightMode: this.props.user.lightMode,
-        });
+      try {
+        if (this.props.user.lightMode !== prevProps.user.lightMode) {
+          this.setState({
+            lightMode: this.props.user.lightMode,
+          });
+        }
+      } catch (error) {
+        const lightModeUpdate = this.props.user.lightMode;
+        if (lightModeUpdate) {
+          this.setState({
+            lightMode: lightModeUpdate,
+          });
+        }
       }
     }
     document
@@ -64,7 +72,6 @@ class App extends Component {
 
   render() {
     const { splashScreen, lightMode } = this.state;
-    console.log('propss', this.props);
     return (
       <div className={lightMode ? 'light-mode' : 'dark-mode'}>
         {splashScreen ? (

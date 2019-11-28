@@ -19,6 +19,12 @@ html[data-theme='light-mode'] {
   h3 {
     color: $color-light-red;
   }
+  h4 {
+    color: $color-medium-text;
+  }
+  h5 {
+    color: $color-text-paragraph;
+  }
   p,
   input {
     color: $color-text-paragraph;
@@ -55,6 +61,28 @@ html[data-theme='light-mode'] {
       }
     }
   }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: $color-medium-text;
+    -webkit-box-shadow: 0 0 0px 800px $color-first-layer inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  .searchbar {
+    background: url(/images/icon-search-dark.svg) no-repeat 16px 16px $color-second-layer;
+    color: $color-medium-text;
+    &::placeholder {
+      color: $color-medium-text;
+    }
+  }
+  textarea {
+    background-color: $color-second-layer;
+    color: $color-disabled-text;
+    &:focus {
+      background-color: white;
+      color: $color-text-paragraph;
+    }
+  }
   /* BUTTONS */
   .btn-outlined {
     background-color: transparent;
@@ -80,5 +108,97 @@ html[data-theme='light-mode'] {
   }
   .add-btn.active {
     background-color: $color-text-paragraph;
+  }
+  /* CARD */
+  .card {
+    background-color: white;
+    &__time {
+      color: $color-text-paragraph;
+      span {
+        path {
+          fill: $color-text-paragraph;
+        }
+      }
+    }
+    &__categories {
+      ul {
+        li {
+          color: $color-medium-text;
+        }
+      }
+    }
+    &__chat {
+      svg {
+        path {
+          fill: $color-text-paragraph;
+        }
+      }
+      &--none {
+        svg {
+          path {
+            fill: $color-disabled-text;
+          }
+        }
+      }
+    }
+    &__report {
+      path {
+        fill: $color-medium-text;
+      }
+    }
+  }
+  /* MY CONFESSIONS CARD */
+  .card {
+    &__categories {
+      color: $color-medium-text;
+    }
+    &__likes {
+      &__length {
+        color: $color-medium-text;
+      }
+    }
+    &__todelete {
+      path {
+        fill: $color-medium-text;
+      }
+    }
+    &__date {
+      color: $color-medium-text;
+    }
+    &--encoded {
+      background-color: $color-third-layer;
+      color: transparent;
+    }
+    &__header {
+      path {
+        fill: $color-medium-text;
+      }
+    }
+  }
+  /* MODALS */
+  .popup-content {
+    background-color: white !important;
+    &__close {
+      path {
+        fill: $color-light-red;
+      }
+    }
+  }
+  .popup-overlay {
+    background-color: white;
+  }
+  /* POLICY */
+  .cross_list_item {
+    color: $color-text-paragraph;
+    font-weight: 400;
+  }
+  /* NOTIFICATIONS */
+  .notification {
+    color: white;
+  }
+  .close_notification {
+    path {
+      fill: white;
+    }
   }
 }

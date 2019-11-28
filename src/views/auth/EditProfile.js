@@ -13,7 +13,7 @@ class EditProfile extends Component {
     allowsContact: '',
     allowsLocation: '',
     avatar: null,
-    lightMode: false,
+    lightMode: '',
     email: '',
     showAvatars: false,
   };
