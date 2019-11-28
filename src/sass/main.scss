@@ -32,4 +32,11 @@
 
 body {
   background-color: $color-dark-gray;
+  min-height: 100vh;
 }
+
+// html[data-theme='dark-mode'] {
+//   body {
+//     background-color: $color-dark-gray;
+//   }
+// }

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import PWAPrompt from 'react-ios-pwa-prompt'
+import PWAPrompt from 'react-ios-pwa-prompt';
 import { withFlash } from '../Context/NotificationContext';
 import confessionService from '../services/confessionService';
 import CardConfession from './components/CardConfession';
@@ -89,7 +89,7 @@ class Home extends Component {
       return description.toLowerCase().search(searchValue.toLowerCase()) !== -1;
     });
 
-    filteredConfessions.sort(function (a, b) {
+    filteredConfessions.sort(function(a, b) {
       return a.created_at < b.created_at ? 1 : a.created_at > b.created_at ? -1 : 0;
     });
 
@@ -133,53 +133,53 @@ class Home extends Component {
         {loading ? (
           <Loading />
         ) : (
-            <div className="container">
-              <div className="content">
-                <input
-                  className="searchbar"
-                  type="search"
-                  name="searchBar"
-                  value={searchValue}
-                  placeholder="Type a keyword to search..."
-                  onChange={this.handleSearch}
-                />
-                <h5>Most popular categories</h5>
-                <div className="scroll">
-                  <ul className="scroll__list">
-                    {categories.map(categoryFilter => {
-                      return (
-                        <li key={categoryFilter} className="scroll__item">
-                          <img
-                            src={`/images/${categoryFilter}.png`}
-                            alt={`${categoryFilter} category icon`}
-                            name={categoryFilter}
-                            onClick={this.handleCategory}
-                            className={category === categoryFilter ? 'scroll__image--selected' : 'scroll__image'}
-                          />
-                          <p className={category === categoryFilter ? 'scroll__title--selected' : 'scroll__title'}>
-                            {categoryFilter}
-                          </p>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-                <div className="filtered-categories-title">
-                  <h5>{category} confessions</h5>
-                  {usesCategory ? (
-                    <span onClick={this.handleRecent} className="filtered-categories-title__filter">
-                      View all
-                  </span>
-                  ) : (
-                      <></>
-                    )}
-                </div>
-                <div className="confessions">{this.renderConfessions()}</div>
+          <div className="container">
+            <div className="content">
+              <input
+                className="searchbar"
+                type="search"
+                name="searchBar"
+                value={searchValue}
+                placeholder="Type a keyword to search..."
+                onChange={this.handleSearch}
+              />
+              <h5>Most popular categories</h5>
+              <div className="scroll">
+                <ul className="scroll__list">
+                  {categories.map(categoryFilter => {
+                    return (
+                      <li key={categoryFilter} className="scroll__item">
+                        <img
+                          src={`/images/${categoryFilter}.png`}
+                          alt={`${categoryFilter} category icon`}
+                          name={categoryFilter}
+                          onClick={this.handleCategory}
+                          className={category === categoryFilter ? 'scroll__image--selected' : 'scroll__image'}
+                        />
+                        <p className={category === categoryFilter ? 'scroll__title--selected' : 'scroll__title'}>
+                          {categoryFilter}
+                        </p>
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
-              <NavBar />
-              <PWAPrompt promptOnVisit={1} timesToShow={1} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
+              <div className="filtered-categories-title">
+                <h5>{category} confessions</h5>
+                {usesCategory ? (
+                  <span onClick={this.handleRecent} className="filtered-categories-title__filter">
+                    View all
+                  </span>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div className="confessions">{this.renderConfessions()}</div>
             </div>
-          )}
+            <NavBar />
+            <PWAPrompt promptOnVisit={1} timesToShow={1} copyClosePrompt="Close" permanentlyHideOnDismiss={false} />
+          </div>
+        )}
       </>
     );
   }
