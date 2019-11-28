@@ -1,0 +1,84 @@
+html[data-theme='light-mode'] {
+  /* GLOBAL STYLES */
+  body {
+    background: $color-fake-white;
+  }
+  /* COLORS */
+  $color-first-layer: rgba(111, 129, 145, 0.05);
+  $color-second-layer: rgba(111, 129, 145, 0.11);
+  $color-third-layer: rgba(111, 129, 145, 0.16);
+  $color-white-text: rgba(111, 129, 145, 0.95);
+  $color-light-text: rgba(111, 129, 145, 0.87);
+  $color-medium-text: rgba(111, 129, 145, 0.6);
+  $color-disabled-text: rgba(111, 129, 145, 0.3);
+  $color-text-paragraph: #6f8191;
+  /* TYPOGRAPHY */
+  h2 {
+    color: $color-medium-gray;
+  }
+  h3 {
+    color: $color-light-red;
+  }
+  p,
+  input {
+    color: $color-text-paragraph;
+    font-weight: 400;
+  }
+  /* TOP HEADER */
+  .top-header {
+    path {
+      fill: $color-light-red;
+    }
+  }
+  /* GROUP FORM */
+  .group-form {
+    &__input {
+      background-color: $color-second-layer;
+      border-color: $color-second-layer;
+      &::placeholder {
+        color: $color-disabled-text;
+      }
+      &:focus {
+        background-color: white;
+        border-color: $color-first-layer;
+      }
+    }
+    &__toggle-text {
+      color: $color-text-paragraph;
+    }
+    &__toggle {
+      &__slider {
+        background-color: $color-light-gray;
+        &:before {
+          background-color: $color-fake-white;
+        }
+      }
+    }
+  }
+  /* BUTTONS */
+  .btn-outlined {
+    background-color: transparent;
+  }
+  /* NAVBAR */
+  nav {
+    background-color: white;
+  }
+  .navbar {
+    -webkit-box-shadow: 0px -1px 4px 0px $color-second-layer;
+    -moz-box-shadow: 0px -1px 4px 0px $color-second-layer;
+    box-shadow: 0px -1px 4px 0px $color-second-layer;
+    &__active {
+      path {
+        fill: $color-light-red !important;
+      }
+    }
+    &__item:not(.add-btn) {
+      path {
+        fill: rgba(61, 66, 73, 0.3);
+      }
+    }
+  }
+  .add-btn.active {
+    background-color: $color-text-paragraph;
+  }
+}

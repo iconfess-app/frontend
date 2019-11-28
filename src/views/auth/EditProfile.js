@@ -13,7 +13,7 @@ class EditProfile extends Component {
     allowsContact: '',
     allowsLocation: '',
     avatar: null,
-    lightMode: '',
+    lightMode: false,
     email: '',
     showAvatars: false,
   };
@@ -71,8 +71,8 @@ class EditProfile extends Component {
   redirect = () => {
     setTimeout(() => {
       this.props.history.push('/');
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   render() {
     const { username, allowsContact, allowsLocation, lightMode, showAvatars, avatar } = this.state;
@@ -87,7 +87,6 @@ class EditProfile extends Component {
                 <path
                   d="M13.2624 19.1765L4.36879 10.812L13.2624 2.29805L11.078 0.206909L0 10.812L11.078 21.2677L13.2624 19.1765Z"
                   fill="white"
-                  fillOpacity="0.6"
                 />
               </svg>
             </span>

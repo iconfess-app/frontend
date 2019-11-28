@@ -22,42 +22,71 @@ import Chat from './Chat';
 import Splashscreen from './views/components/SplashScreen';
 
 class App extends Component {
-  state = {
-    splashScreen: true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      splashScreen: true,
+      lightMode: this.props.user === undefined || !this.props.user ? false : this.props.user.lightMode,
+    };
+  }
+
+  toggleThemeBackground = () => {
+    if (this.props.user.lightMode) {
+      console.log(this.props.user.lightMode);
+      document.body.style.backgroundColor = 'white';
+    }
   };
 
   componentDidMount = () => {
+    document
+      .getElementsByTagName('HTML')[0]
+      .setAttribute('data-theme', this.state.lightMode ? 'light-mode' : 'dark-mode');
     setTimeout(() => {
       this.setState({
         splashScreen: false,
+        lightMode: this.props.user === undefined ? false : this.props.user.lightMode,
       });
     }, 4000);
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.user !== undefined) {
+      if (this.props.user.lightMode !== prevProps.user.lightMode) {
+        this.setState({
+          lightMode: this.props.user.lightMode,
+        });
+      }
+    }
+    document
+      .getElementsByTagName('HTML')[0]
+      .setAttribute('data-theme', this.state.lightMode ? 'light-mode' : 'dark-mode');
+  }
+
   render() {
-    const { splashScreen } = this.state;
+    const { splashScreen, lightMode } = this.state;
+    console.log('propss', this.props);
     return (
-      <>
+      <div className={lightMode ? 'light-mode' : 'dark-mode'}>
         {splashScreen ? (
           <Splashscreen />
         ) : (
-            <Router>
-              <Switch>
-                <PrivateRoute exact path="/" component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={Signup} />
-                <PrivateRoute exact path="/edit" component={EditProfile} />
-                <PrivateRoute exact path="/changepw" component={ChangePassword} />
-                <PrivateRoute exact path="/myconfessions" component={myConfessionsPage} />
-                <PrivateRoute exact path="/confess" component={Confessional} />
-                <Route exact path="/privacy-policy" component={Information} />
-                <PrivateRoute exact path="/chat" component={Chat} />
-                <Route path="/500" component={InternalServer} />
-                <Route exact path="*" component={NotFoundPage} />
-              </Switch>
-            </Router>
-          )}
-      </>
+          <Router>
+            <Switch>
+              <PrivateRoute exact path="/" component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <PrivateRoute exact path="/edit" component={EditProfile} />
+              <PrivateRoute exact path="/changepw" component={ChangePassword} />
+              <PrivateRoute exact path="/myconfessions" component={myConfessionsPage} />
+              <PrivateRoute exact path="/confess" component={Confessional} />
+              <Route exact path="/privacy-policy" component={Information} />
+              <PrivateRoute exact path="/chat" component={Chat} />
+              <Route path="/500" component={InternalServer} />
+              <Route exact path="*" component={NotFoundPage} />
+            </Switch>
+          </Router>
+        )}
+      </div>
     );
   }
 }
