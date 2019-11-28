@@ -86,6 +86,7 @@ class Login extends Component {
         password,
       });
       this.props.handleFlash('Welcome back dear confessor!', 'success');
+      // Flash should go to authcontext
       this.redirect();
     } catch (error) {
       this.props.handleFlash(error, 'error');
