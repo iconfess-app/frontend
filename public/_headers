@@ -1,2 +1,2 @@
 /*
-  Access-Control-Allow-Origin: "https://iconfessbackend.netlify.com"
+  Access-Control-Allow-Origin: *
