@@ -20,11 +20,11 @@
       background-color: $color-second-layer;
       border: 1px solid $color-light-text;
     }
-    &[type='password'] {
-      font-family: large Verdana, sans-serif;
-      letter-spacing: 1px;
-      font-size: 1.2em;
-    }
+    // &[type='password'] {
+    //   font-family: large Verdana, sans-serif;
+    //   letter-spacing: 1px;
+    //   font-size: 1.2em;
+    // }
   }
   &__toggle-password {
     float: right;
@@ -130,12 +130,12 @@
       &:before {
         position: absolute;
         content: '';
-        height: 24px;
-        width: 24px;
+        height: 23px;
+        width: 23px;
         background-color: $color-disabled-text;
         -webkit-transition: 0.4s;
         transition: 0.4s;
-        border-radius: 90%;
+        border-radius: 100%;
       }
     }
   }
@@ -197,7 +197,7 @@ input:-webkit-autofill:focus {
   height: 56px;
   margin-top: 1em;
   outline: none;
-  background: url('../../data/images/icon-search.svg') no-repeat 12px 10px $color-first-layer;
+  // background: url('../../data/images/icon-search.svg') no-repeat 12px 10px $color-first-layer;
   color: $color-medium-text;
   background: url(/images/icon-search.svg) no-repeat 16px 16px $color-first-layer;
   // -webkit-transition: all 0.7s ease 0s;

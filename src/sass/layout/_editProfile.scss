@@ -31,6 +31,19 @@
   }
 }
 
+html[data-theme='light-mode'] {
+  .edit-intro {
+    &__username {
+      color: $color-light-red;
+    }
+    &__avatar {
+      &__selected {
+        border-color: $color-light-gray;
+      }
+    }
+  }
+}
+
 .top-header {
   &__logout {
     display: flex;
@@ -63,6 +76,14 @@
         border: 6px solid $color-third-layer;
         border-radius: 100%;
       }
+    }
+  }
+}
+
+html[data-theme='light-mode'] {
+  &__item {
+    &:hover {
+      border-color: $color-light-gray;
     }
   }
 }
